@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { adminApi } from '../api/adminApi';
-import SantaCap from './SantaCap';
-import JingleBell from './JingleBell';
+import SantaRath from './SantaRath';
 
 export default function AssignSantaModal({ isOpen, onClose, employee, onAssigned }) {
   const [candidates, setCandidates] = useState([]);
@@ -58,31 +57,32 @@ export default function AssignSantaModal({ isOpen, onClose, employee, onAssigned
 
   return (
     <div className="modal-overlay" role="dialog" aria-modal="true" onClick={onClose}>
-      <div className="modal-content-animated festive-dark-modal" onClick={(e) => e.stopPropagation()}>
-        <SantaCap size={36} className="modal-corner-cap" />
+      <div className="modal-content-animated festive-rath-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-rath-flight-track">
+          <SantaRath mode="mini" width={200} />
+        </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <JingleBell size={26} />
-            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.35rem', color: '#fef08a', margin: 0, textShadow: '0 0 10px rgba(251, 191, 36, 0.4)' }}>
-              Secret Santa Assignment
+        <div className="modal-header-clean">
+          <div>
+            <h3 className="modal-heading-text">
+              🛷 Secret Santa Assignment
             </h3>
+            <p style={{ color: '#94a3b8', fontSize: '0.86rem', margin: '3px 0 0' }}>
+              Select who <strong style={{ color: '#fef08a' }}>{employee.name}</strong> will be Santa for
+            </p>
           </div>
           <button
+            type="button"
+            className="modal-close-btn"
             onClick={onClose}
             disabled={saving}
-            style={{ background: 'rgba(255, 255, 255, 0.1)', border: '1px solid rgba(255, 255, 255, 0.2)', borderRadius: '50%', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem', cursor: 'pointer', color: '#e2e8f0' }}
           >
             &times;
           </button>
         </div>
 
-        <p style={{ fontSize: '0.94rem', color: '#cbd5e1', marginBottom: '18px', lineHeight: 1.5 }}>
-          Choose who <strong style={{ color: '#fef08a' }}>{employee.name}</strong> will be Secret Santa for:
-        </p>
-
         {error && (
-          <div style={{ background: 'rgba(153, 27, 27, 0.85)', border: '1px solid #ef4444', color: '#fee2e2', padding: '10px 14px', borderRadius: '8px', fontSize: '0.88rem', marginBottom: '16px' }}>
+          <div className="modal-error-banner">
             🎅 {error}
           </div>
         )}
@@ -92,7 +92,7 @@ export default function AssignSantaModal({ isOpen, onClose, employee, onAssigned
             <div className="candy-spinner" />
           </div>
         ) : candidates.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '24px 16px', background: 'rgba(30, 48, 77, 0.7)', borderRadius: '12px', border: '1.5px dashed rgba(251, 191, 36, 0.4)', marginBottom: '16px' }}>
+          <div className="empty-sub-box" style={{ textAlign: 'center', padding: '24px 16px', margin: '16px 0' }}>
             <div style={{ fontSize: '2rem', marginBottom: '8px' }}>🎄</div>
             <p style={{ fontWeight: 600, color: '#fef08a', fontSize: '1rem' }}>
               No available recipients
@@ -102,13 +102,13 @@ export default function AssignSantaModal({ isOpen, onClose, employee, onAssigned
             </p>
           </div>
         ) : (
-          <form onSubmit={handleConfirm}>
-            <div style={{ marginBottom: '18px' }}>
-              <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, marginBottom: '8px', color: '#fde68a' }}>
+          <form onSubmit={handleConfirm} style={{ marginTop: '16px' }}>
+            <div className="form-group-clean">
+              <label className="form-label-gold">
                 Select Gift Recipient:
               </label>
               <select
-                className="form-control-festive"
+                className="form-control-rath"
                 value={selectedRecipientId}
                 onChange={(e) => setSelectedRecipientId(e.target.value)}
                 required
@@ -121,11 +121,11 @@ export default function AssignSantaModal({ isOpen, onClose, employee, onAssigned
               </select>
             </div>
 
-            <div style={{ fontSize: '0.82rem', color: '#94a3b8', background: 'rgba(15, 23, 42, 0.65)', border: '1px solid rgba(255, 255, 255, 0.1)', padding: '10px 14px', borderRadius: '8px', marginBottom: '22px', lineHeight: 1.5 }}>
-              ℹ️ <strong>Rules:</strong> The list excludes {employee.name} and anyone already selected by another Santa. A Santa can only be assigned once.
+            <div className="rath-rules-pill">
+              ℹ️ <strong>Confidential Assignment:</strong> Candidate list excludes {employee.name} and anyone already assigned. Assignments are permanent and confidential.
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
               <button
                 type="button"
                 className="btn-festive btn-outline-festive"

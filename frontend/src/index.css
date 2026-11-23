@@ -1,19 +1,23 @@
 /* =====================================================
-   MAGICAL CHRISTMAS NIGHT THEME & LUXURY GLASS STYLING
+   ROYAL CHRISTMAS RATH & LUXURY GLASS THEME
+   Modern, Festive, Majestic Web Experience
    ===================================================== */
 :root {
-  --xmas-red: #ef4444;
-  --xmas-red-dark: #b91c1c;
-  --xmas-green: #22c55e;
-  --xmas-green-dark: #15803d;
-  --xmas-gold: #fbbf24;
-  --xmas-gold-dark: #d97706;
-  --card-dark-bg: linear-gradient(145deg, rgba(20, 34, 58, 0.88) 0%, rgba(10, 20, 36, 0.95) 100%);
-  --card-border-gold: 1.5px solid rgba(251, 191, 36, 0.38);
-  --card-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 30px rgba(239, 68, 68, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.14);
-  --font-festive: 'Mountains of Christmas', cursive;
-  --font-serif: 'Playfair Display', serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --xmas-red: #e11d48;
+  --xmas-red-dark: #9f1239;
+  --xmas-green: #059669;
+  --xmas-green-dark: #064e3b;
+  --xmas-gold: #f59e0b;
+  --xmas-gold-light: #fef08a;
+  --xmas-gold-dark: #b45309;
+
+  --card-glass-bg: linear-gradient(165deg, rgba(16, 26, 46, 0.82) 0%, rgba(9, 15, 28, 0.92) 100%);
+  --card-glass-border: 1px solid rgba(255, 255, 255, 0.09);
+  --card-glass-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(245, 158, 11, 0.05);
+
+  --font-title: 'Cinzel', serif;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 * {
@@ -24,157 +28,165 @@
 
 body {
   font-family: var(--font-body);
-  /* Deep Atmospheric Enchanting Christmas Night Sky */
-  background: radial-gradient(circle at 50% 12%, #172c4c 0%, #0d1b30 38%, #081120 72%, #030710 100%);
+  background: radial-gradient(circle at 50% 8%, #14213d 0%, #0c1527 35%, #070d18 70%, #03060c 100%);
   background-attachment: fixed;
   color: #f1f5f9;
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Atmospheric Aurora Swirls (Emerald & Ruby Lights in Sky) */
+/* Atmospheric Aurora Highlights (Emerald & Ruby Northern Lights) */
 body::before {
   content: '';
   position: fixed;
-  top: -25%;
-  left: 5%;
-  width: 90vw;
+  top: -15%;
+  left: 2%;
+  width: 96vw;
   height: 65vh;
-  background: radial-gradient(ellipse at center, rgba(34, 197, 94, 0.12) 0%, rgba(239, 68, 68, 0.08) 45%, transparent 75%);
+  background: radial-gradient(ellipse at 30% 30%, rgba(5, 150, 105, 0.12) 0%, rgba(225, 29, 72, 0.09) 45%, transparent 75%);
   pointer-events: none;
   z-index: 0;
-  animation: auroraPulse 14s infinite alternate ease-in-out;
+  animation: auroraShimmer 16s infinite alternate ease-in-out;
 }
 
-@keyframes auroraPulse {
+@keyframes auroraShimmer {
   0% { transform: scale(1) translateY(0); opacity: 0.6; }
-  50% { transform: scale(1.18) translateY(25px) rotate(1deg); opacity: 0.95; }
-  100% { transform: scale(0.96) translateY(-12px) rotate(-1deg); opacity: 0.7; }
+  50% { transform: scale(1.12) translateY(18px) rotate(1deg); opacity: 0.9; }
+  100% { transform: scale(0.96) translateY(-8px) rotate(-1deg); opacity: 0.65; }
 }
 
 /* =====================================================
-   TWINKLING CHRISTMAS LIGHTS (TOP STRING)
+   TOP TWINKLING FAIRY LIGHTS
    ===================================================== */
 .lights-string {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 24px;
+  height: 20px;
   display: flex;
   justify-content: space-around;
   pointer-events: none;
   z-index: 200;
   overflow: hidden;
-  border-bottom: 2px dashed rgba(251, 191, 36, 0.4);
+  border-bottom: 1px dashed rgba(245, 158, 11, 0.35);
 }
 
 .light-bulb {
-  width: 12px;
-  height: 18px;
+  width: 10px;
+  height: 15px;
   border-radius: 50% 50% 40% 40%;
   margin-top: -3px;
-  animation: twinkleLight 1.5s infinite alternate ease-in-out;
+  animation: twinkleLight 1.6s infinite alternate ease-in-out;
   position: relative;
 }
 
-.light-red { background: #ef4444; box-shadow: 0 4px 14px #ef4444; animation-delay: 0s; }
-.light-green { background: #22c55e; box-shadow: 0 4px 14px #22c55e; animation-delay: 0.3s; }
-.light-gold { background: #fbbf24; box-shadow: 0 4px 14px #fbbf24; animation-delay: 0.6s; }
-.light-blue { background: #38bdf8; box-shadow: 0 4px 14px #38bdf8; animation-delay: 0.9s; }
-.light-pink { background: #f472b6; box-shadow: 0 4px 14px #f472b6; animation-delay: 1.2s; }
-.light-emerald { background: #34d399; box-shadow: 0 4px 14px #34d399; animation-delay: 0.45s; }
+.light-red { background: #ef4444; box-shadow: 0 4px 12px #ef4444; animation-delay: 0s; }
+.light-green { background: #10b981; box-shadow: 0 4px 12px #10b981; animation-delay: 0.3s; }
+.light-gold { background: #fbbf24; box-shadow: 0 4px 12px #fbbf24; animation-delay: 0.6s; }
+.light-blue { background: #38bdf8; box-shadow: 0 4px 12px #38bdf8; animation-delay: 0.9s; }
+.light-pink { background: #f472b6; box-shadow: 0 4px 12px #f472b6; animation-delay: 1.2s; }
+.light-emerald { background: #34d399; box-shadow: 0 4px 12px #34d399; animation-delay: 0.45s; }
 
 @keyframes twinkleLight {
   0% { opacity: 0.35; transform: scale(0.85); }
-  100% { opacity: 1; transform: scale(1.22); }
+  100% { opacity: 1; transform: scale(1.2); }
 }
 
 /* =====================================================
-   FLYING REINDEER SLEIGH (RATH) ACROSS THE SKY
+   GLOBAL SKY LAYER: FLYING SANTA RATH ACROSS THE SKY
    ===================================================== */
 .flying-sleigh-sky-layer {
   position: fixed;
-  top: 22px;
+  top: 74px; /* Clearly below the sticky navbar */
   left: 0;
   width: 100vw;
   height: 110px;
   pointer-events: none;
-  z-index: 120;
+  z-index: 30; /* Floats above background, below modals & interactive dropdowns */
   overflow: visible;
 }
 
 .flying-rath-track {
   position: absolute;
-  top: 6px;
-  left: -480px;
+  top: 0;
+  left: -520px;
   display: flex;
   align-items: center;
-  animation: flyAcrossSky 22s linear infinite;
+  animation: flyRathAcrossSky 28s linear infinite;
 }
 
-@keyframes flyAcrossSky {
+@keyframes flyRathAcrossSky {
   0% {
-    transform: translateX(0) translateY(0);
+    transform: translateX(0) translateY(12px) rotate(2deg) scale(0.9);
     opacity: 0;
   }
   3% {
     opacity: 1;
   }
-  25% {
-    transform: translateX(calc(30vw + 120px)) translateY(-8px) rotate(2deg);
+  28% {
+    transform: translateX(calc(28vw + 80px)) translateY(-8px) rotate(1deg) scale(0.95);
   }
-  50% {
-    transform: translateX(calc(60vw + 240px)) translateY(6px) rotate(-1.5deg);
+  55% {
+    transform: translateX(calc(58vw + 160px)) translateY(6px) rotate(-1deg) scale(0.92);
   }
-  75% {
-    transform: translateX(calc(85vw + 360px)) translateY(-5px) rotate(1.5deg);
+  80% {
+    transform: translateX(calc(82vw + 240px)) translateY(-6px) rotate(1.5deg) scale(0.94);
   }
   97% {
     opacity: 1;
   }
   100% {
-    transform: translateX(calc(100vw + 600px)) translateY(0);
+    transform: translateX(calc(100vw + 600px)) translateY(4px) rotate(2deg) scale(0.9);
     opacity: 0;
   }
 }
 
-.sleigh-rath-svg {
-  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.65));
+.rudolph-sky-nose,
+.rudolph-hero-nose,
+.rudolph-mini-nose {
+  animation: rudolphPulsingGlow 0.9s infinite alternate ease-in-out;
 }
 
-.rudolph-nose {
-  animation: rudolphBlink 0.9s infinite alternate ease-in-out;
-}
-
-@keyframes rudolphBlink {
-  0% { opacity: 0.7; r: 3.5px; }
+@keyframes rudolphPulsingGlow {
+  0% { opacity: 0.75; r: 3.5px; }
   100% { opacity: 1; r: 5px; }
 }
 
-.santa-arm-wave {
-  transform-origin: 94px 40px;
-  animation: waveArm 1.6s infinite alternate ease-in-out;
+.santa-hero-wave {
+  transform-origin: 92px 48px;
+  animation: heroArmWave 1.8s infinite alternate ease-in-out;
 }
 
-@keyframes waveArm {
+@keyframes heroArmWave {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(15deg); }
+}
+
+.santa-sky-wave {
+  transform-origin: 94px 40px;
+  animation: skyArmWave 1.6s infinite alternate ease-in-out;
+}
+
+@keyframes skyArmWave {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(14deg); }
 }
 
 .rath-sparkle-trail {
   position: absolute;
-  left: -40px;
-  top: 30px;
+  left: -35px;
+  top: 32px;
   display: flex;
-  gap: 12px;
+  gap: 10px;
 }
 
 .trail-star {
-  font-size: 1.1rem;
-  animation: starTwinkle 1.2s infinite alternate ease-in-out;
+  font-size: 1.15rem;
+  animation: starSparkleAnim 1.2s infinite alternate ease-in-out;
 }
 
 .star-1 { animation-delay: 0s; }
@@ -184,13 +196,13 @@ body::before {
 .star-5 { animation-delay: 1s; }
 .star-6 { animation-delay: 1.25s; }
 
-@keyframes starTwinkle {
+@keyframes starSparkleAnim {
   0% { transform: scale(0.6) rotate(0deg); opacity: 0.3; }
   100% { transform: scale(1.3) rotate(45deg); opacity: 1; }
 }
 
 /* =====================================================
-   HOLIDAY AMBIENCE LAYER (FALLING SNOW & FLOATING MAGIC)
+   HOLIDAY AMBIENCE LAYER (STARS & SNOWFLAKES)
    ===================================================== */
 .holiday-ambience-layer {
   position: fixed;
@@ -199,8 +211,21 @@ body::before {
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 2;
+  z-index: 1;
   overflow: hidden;
+}
+
+.ambient-sky-star {
+  position: absolute;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 6px #ffffff, 0 0 10px #fbbf24;
+  animation: skyStarTwinkle ease-in-out infinite alternate;
+}
+
+@keyframes skyStarTwinkle {
+  0% { opacity: 0.25; transform: scale(0.8); }
+  100% { opacity: 0.95; transform: scale(1.35); }
 }
 
 .ambient-snowflake {
@@ -208,7 +233,7 @@ body::before {
   top: -25px;
   color: rgba(255, 255, 255, 0.85);
   user-select: none;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
   animation-name: fallSnow;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
@@ -219,396 +244,29 @@ body::before {
     transform: translateY(0) translateX(0) rotate(0deg);
   }
   50% {
-    transform: translateY(50vh) translateX(18px) rotate(180deg);
+    transform: translateY(50vh) translateX(16px) rotate(180deg);
   }
   100% {
-    transform: translateY(105vh) translateX(-18px) rotate(360deg);
-  }
-}
-
-.ambient-floating-item {
-  position: absolute;
-  user-select: none;
-  opacity: 0.65;
-  filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.45));
-  animation: ambientFloat infinite alternate ease-in-out;
-}
-
-@keyframes ambientFloat {
-  0% {
-    transform: translateY(0) rotate(-6deg) scale(0.95);
-  }
-  50% {
-    transform: translateY(-22px) rotate(6deg) scale(1.08);
-  }
-  100% {
-    transform: translateY(-8px) rotate(-3deg) scale(1);
+    transform: translateY(105vh) translateX(-16px) rotate(360deg);
   }
 }
 
 /* =====================================================
-   REALISTIC SANTA ANIMATIONS (SITTING, WAITING, DELIVERING)
-   ===================================================== */
-/* Dangling legs bounce playfully over the ledge/title */
-.santa-dangle-leg-left {
-  transform-origin: 56px 105px;
-  animation: legDangleBounce 2.8s infinite ease-in-out;
-}
-
-.santa-dangle-leg-right {
-  transform-origin: 100px 105px;
-  animation: legDangleBounce 2.8s infinite ease-in-out 0.4s;
-}
-
-@keyframes legDangleBounce {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(7deg) translateY(-2px); }
-}
-
-/* Sitting Santa arm waving */
-.santa-sitting-wave-arm {
-  transform-origin: 112px 80px;
-  animation: santaSitArmWave 1.8s infinite alternate ease-in-out;
-}
-
-@keyframes santaSitArmWave {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(18deg); }
-}
-
-/* Waiting Santa foot tapping */
-.santa-foot-tap {
-  transform-origin: 102px 118px;
-  animation: footTapAction 1.4s infinite alternate ease-in-out;
-}
-
-@keyframes footTapAction {
-  0% { transform: rotate(0deg); }
-  70% { transform: rotate(0deg); }
-  85% { transform: rotate(-8deg); }
-  100% { transform: rotate(6deg); }
-}
-
-/* Pom-pom bounces */
-.santa-sitting-pompom,
-.santa-waiting-pompom {
-  animation: pompomBob 1.6s infinite alternate ease-in-out;
-}
-
-/* =====================================================
-   SANTA GLIDING SLOWLY FROM UPPER-RIGHT CORNER TO SIT ON TEXT
-   ===================================================== */
-.modal-with-perched-santa {
-  padding-top: 28px !important;
-  position: relative !important;
-}
-
-/* Santa glides slowly from upper-right corner and sits directly on the modal text */
-.santa-glide-sit-modal {
-  position: absolute;
-  top: -48px;
-  left: 20px;
-  z-index: 10005;
-  pointer-events: none;
-  animation: santaGlideFromTopRight 1.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes santaGlideFromTopRight {
-  0% {
-    transform: translate(280px, -150px) rotate(22deg) scale(0.65);
-    opacity: 0;
-  }
-  30% {
-    opacity: 1;
-  }
-  75% {
-    transform: translate(-6px, 4px) rotate(-4deg) scale(1.04);
-  }
-  90% {
-    transform: translate(2px, -2px) rotate(2deg) scale(0.98);
-  }
-  100% {
-    transform: translate(0, 0) rotate(0deg) scale(1);
-    opacity: 1;
-  }
-}
-
-/* Santa glides slowly from upper-right corner and sits directly on the empty state text */
-.santa-glide-sit-empty-text {
-  position: absolute;
-  top: -62px;
-  left: 50%;
-  margin-left: -52px;
-  z-index: 20;
-  pointer-events: none;
-  animation: santaGlideToEmptyText 1.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes santaGlideToEmptyText {
-  0% {
-    transform: translate(340px, -180px) rotate(24deg) scale(0.65);
-    opacity: 0;
-  }
-  25% {
-    opacity: 1;
-  }
-  75% {
-    transform: translate(-8px, 6px) rotate(-5deg) scale(1.05);
-  }
-  90% {
-    transform: translate(3px, -2px) rotate(2deg) scale(0.98);
-  }
-  100% {
-    transform: translate(0, 0) rotate(0deg) scale(1);
-    opacity: 1;
-  }
-}
-
-/* =====================================================
-   GIFT WRAPPING ANIMATION SCENE (DASHBOARD)
-   ===================================================== */
-.gift-wrapping-stage-container {
-  background: linear-gradient(145deg, rgba(22, 38, 64, 0.92) 0%, rgba(12, 22, 38, 0.96) 100%);
-  border: 1.5px solid rgba(251, 191, 36, 0.45);
-  border-radius: 18px;
-  padding: 24px 20px 20px;
-  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.55), 0 12px 35px rgba(0, 0, 0, 0.4);
-  position: relative;
-  overflow: hidden;
-}
-
-.wrapping-scenery-backdrop {
-  position: relative;
-  min-height: 175px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.snowy-ground-ledge {
-  position: absolute;
-  bottom: 0;
-  left: 5%;
-  width: 90%;
-  height: 8px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85) 20%, rgba(226, 232, 240, 0.85) 80%, transparent);
-  border-radius: 4px;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
-}
-
-.santa-delivery-track {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 32px;
-  position: relative;
-  min-height: 165px;
-  padding-bottom: 8px;
-}
-
-/* Santa delivery motion */
-.santa-character-wrapper {
-  transition: transform 0.3s ease;
-}
-
-.santa-character-wrapper.phase-carrying {
-  animation: santaDeliverStride 2.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.santa-character-wrapper.phase-departed {
-  opacity: 0;
-  transform: translateX(450px) translateY(-40px) scale(0.6);
-}
-
-@keyframes santaDeliverStride {
-  0% {
-    transform: translateX(0) translateY(0);
-  }
-  20% {
-    transform: translateX(40px) translateY(-8px);
-  }
-  40% {
-    transform: translateX(110px) translateY(-14px);
-  }
-  65% {
-    transform: translateX(220px) translateY(-22px) rotate(-3deg);
-  }
-  85% {
-    transform: translateX(340px) translateY(-32px) rotate(-5deg);
-    opacity: 0.9;
-  }
-  100% {
-    transform: translateX(460px) translateY(-45px) rotate(-6deg) scale(0.6);
-    opacity: 0;
-  }
-}
-
-/* Gift Box Ribbon Wrapping Animations */
-.pedestal-gift-box {
-  position: relative;
-  display: inline-block;
-  animation: boxHover 2s infinite alternate ease-in-out;
-}
-
-@keyframes boxHover {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-4px); }
-}
-
-.ribbon-vertical-wrap {
-  transform-origin: top center;
-  animation: wrapVert 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes wrapVert {
-  0% { transform: scaleY(0); }
-  100% { transform: scaleY(1); }
-}
-
-.ribbon-horizontal-wrap {
-  transform-origin: left center;
-  animation: wrapHoriz 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
-}
-
-@keyframes wrapHoriz {
-  0% { transform: scaleX(0); }
-  100% { transform: scaleX(1); }
-}
-
-.ribbon-bow-pop {
-  transform-origin: 50px 28px;
-  animation: bowPopIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.9s forwards;
-}
-
-@keyframes bowPopIn {
-  0% { transform: scale(0); opacity: 0; }
-  70% { transform: scale(1.3); opacity: 1; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-.wrapping-sparkle-burst {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
-.wrap-sparkle {
-  position: absolute;
-  font-size: 1.2rem;
-  animation: sparkleOrbit 1.5s infinite ease-out;
-}
-
-.wrap-sparkle.s1 { top: -25px; left: -25px; animation-delay: 0s; }
-.wrap-sparkle.s2 { top: -30px; right: -25px; animation-delay: 0.35s; }
-.wrap-sparkle.s3 { bottom: -20px; left: -20px; animation-delay: 0.7s; }
-.wrap-sparkle.s4 { bottom: -22px; right: -22px; animation-delay: 1.05s; }
-
-@keyframes sparkleOrbit {
-  0% { transform: scale(0.3) rotate(0deg); opacity: 0; }
-  50% { transform: scale(1.3) rotate(90deg); opacity: 1; }
-  100% { transform: scale(0.5) rotate(180deg); opacity: 0; }
-}
-
-
-
-/* =====================================================
-   CHRISTMAS TREE STYLES & GLOWS
-   ===================================================== */
-.tree-top-star {
-  transform-origin: 80px 18px;
-  animation: starPulse 1.8s infinite alternate ease-in-out;
-}
-
-@keyframes starPulse {
-  0% { transform: scale(0.92); filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6)); }
-  100% { transform: scale(1.15); filter: drop-shadow(0 0 16px rgba(251, 191, 36, 1)); }
-}
-
-.tree-light-wire {
-  animation: wireTwinkle 1.6s infinite alternate ease-in-out;
-}
-
-@keyframes wireTwinkle {
-  0% { opacity: 0.5; stroke: #fde047; }
-  100% { opacity: 1; stroke: #ffffff; }
-}
-
-/* =====================================================
-   ANIMATED JINGLE BELL (SWINGS & SPARKLES)
-   ===================================================== */
-.jingle-bell-wrapper {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.bell-swinger {
-  transform-origin: 24px 9px;
-  animation: swingBell 3.2s infinite ease-in-out;
-}
-
-@keyframes swingBell {
-  0%, 70%, 100% { transform: rotate(0deg); }
-  75% { transform: rotate(18deg); }
-  80% { transform: rotate(-16deg); }
-  85% { transform: rotate(12deg); }
-  90% { transform: rotate(-8deg); }
-  95% { transform: rotate(4deg); }
-}
-
-.bell-sparkles {
-  animation: bellSparklePulse 2.2s infinite alternate ease-in-out;
-}
-
-@keyframes bellSparklePulse {
-  0% { opacity: 0.2; transform: scale(0.8); }
-  100% { opacity: 1; transform: scale(1.25); }
-}
-
-/* =====================================================
-   ANIMATED SANTA CAP
-   ===================================================== */
-.santa-cap-container {
-  display: inline-block;
-  transform-origin: bottom center;
-  animation: capWiggle 4s infinite ease-in-out;
-}
-
-.cap-pompom {
-  transform-origin: 39px 22px;
-  animation: pompomBob 1.6s infinite alternate ease-in-out;
-}
-
-@keyframes capWiggle {
-  0%, 100% { transform: rotate(0deg); }
-  40% { transform: rotate(-4deg); }
-  45% { transform: rotate(5deg); }
-  50% { transform: rotate(-3deg); }
-  55% { transform: rotate(0deg); }
-}
-
-@keyframes pompomBob {
-  0% { transform: scale(0.9) translateY(0); }
-  100% { transform: scale(1.15) translateY(-2px); }
-}
-
-/* =====================================================
-   NAVBAR (LUXURY FROSTED GLASS & GOLD ACCENTS)
+   NAVBAR (MODERN FLOATING GLASS)
    ===================================================== */
 .app-navbar {
   position: sticky;
   top: 0;
-  background: rgba(10, 20, 36, 0.92);
-  backdrop-filter: blur(18px);
-  border-bottom: 1.5px solid rgba(251, 191, 36, 0.35);
+  background: rgba(9, 16, 29, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(251, 191, 36, 0.22);
   padding: 12px 28px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 150;
-  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(239, 68, 68, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(251, 191, 36, 0.05);
 }
 
 .nav-left, .nav-right {
@@ -620,39 +278,31 @@ body::before {
 .brand-link {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   text-decoration: none;
+  transition: transform 0.2s ease;
 }
 
-.brand-logo-wrapper {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-
-.brand-santa-cap {
-  position: absolute;
-  top: -14px;
-  left: -8px;
-  transform: rotate(-15deg);
+.brand-link:hover {
+  transform: scale(1.02);
 }
 
 .brand-title {
-  font-family: var(--font-festive);
-  font-size: 2.15rem;
-  font-weight: 700;
-  color: #fca5a5;
-  text-shadow: 0 0 15px rgba(239, 68, 68, 0.5), 0 0 30px rgba(251, 191, 36, 0.4);
-  letter-spacing: 1px;
+  font-family: var(--font-title);
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #fef08a;
+  text-shadow: 0 0 16px rgba(251, 191, 36, 0.45);
 }
 
 .user-profile-chip {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(251, 191, 36, 0.3);
-  padding: 5px 14px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  padding: 6px 14px;
   border-radius: 9999px;
   color: #f1f5f9;
 }
@@ -670,6 +320,7 @@ body::before {
   padding: 2px 8px;
   border-radius: 9999px;
   font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .role-admin {
@@ -679,9 +330,9 @@ body::before {
 }
 
 .role-employee {
-  background: rgba(34, 197, 94, 0.2);
-  color: #86efac;
-  border: 1px solid rgba(34, 197, 94, 0.4);
+  background: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.4);
 }
 
 .nav-btn {
@@ -689,39 +340,39 @@ body::before {
   align-items: center;
   gap: 8px;
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 600;
   padding: 8px 18px;
   border-radius: 9999px;
-  border: 1.5px solid rgba(251, 191, 36, 0.35);
+  border: 1px solid rgba(251, 191, 36, 0.3);
   background-color: rgba(255, 255, 255, 0.08);
   color: #ffffff;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.22s ease;
   text-decoration: none;
 }
 
 .nav-btn:hover {
   background-color: var(--xmas-green);
-  border-color: #4ade80;
+  border-color: #34d399;
   color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
 }
 
 .nav-btn.primary {
   background: linear-gradient(135deg, var(--xmas-red) 0%, var(--xmas-red-dark) 100%);
   border-color: #f87171;
   color: #ffffff;
-  box-shadow: 0 4px 18px rgba(220, 38, 38, 0.5);
+  box-shadow: 0 4px 16px rgba(225, 29, 72, 0.4);
 }
 
 .nav-btn.primary:hover {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 6px 25px rgba(239, 68, 68, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(225, 29, 72, 0.6);
 }
 
 /* =====================================================
-   MAIN LAYOUT & FROSTED HOLIDAY CARDS (NO WHITE BACKGROUNDS!)
+   MAIN PAGE LAYOUT & MODERN FROSTED CARDS
    ===================================================== */
 .page-container {
   max-width: 1040px;
@@ -732,254 +383,325 @@ body::before {
 }
 
 .festive-card {
-  background: var(--card-dark-bg);
-  backdrop-filter: blur(20px);
-  border: var(--card-border-gold);
-  border-radius: 18px;
+  background: var(--card-glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: var(--card-glass-border);
+  border-top: 1.5px solid rgba(251, 191, 36, 0.45);
+  border-radius: 24px;
   padding: 32px;
-  box-shadow: var(--card-shadow);
+  box-shadow: var(--card-glass-shadow);
   margin-bottom: 28px;
   position: relative;
-  overflow: visible;
-}
-
-.card-ribbon {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 6px;
-  border-radius: 18px 18px 0 0;
-  background: repeating-linear-gradient(
-    45deg,
-    #dc2626,
-    #dc2626 14px,
-    #fbbf24 14px,
-    #fbbf24 22px,
-    #16a34a 22px,
-    #16a34a 36px,
-    #fbbf24 36px,
-    #fbbf24 44px
-  );
-  box-shadow: 0 0 12px rgba(251, 191, 36, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .festive-heading {
-  font-family: var(--font-serif);
-  font-size: 1.75rem;
-  color: #fef08a;
-  text-shadow: 0 0 14px rgba(251, 191, 36, 0.35);
+  font-family: var(--font-heading);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+}
+
+/* =====================================================
+   RATH HERO BANNER (HEADQUARTERS & WISHLIST BANNERS)
+   ===================================================== */
+.rath-banner-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.rath-banner-left {
+  flex: 1 1 360px;
+}
+
+.rath-banner-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pill-badge-emerald,
+.pill-badge-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
   margin-bottom: 8px;
 }
 
-.festive-sub {
-  color: #cbd5e1;
-  font-size: 0.96rem;
-  margin-bottom: 20px;
+.pill-badge-emerald {
+  background: rgba(16, 185, 129, 0.16);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #6ee7b7;
 }
 
-/* =====================================================
-   COZY WAITING BOX (RECIPIENT NOT ASSIGNED YET)
-   ===================================================== */
-.festive-waiting-box {
-  text-align: center;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, rgba(30, 48, 77, 0.75) 0%, rgba(18, 30, 49, 0.88) 100%);
-  border: 1.8px dashed rgba(251, 191, 36, 0.5);
-  border-radius: 16px;
-  box-shadow: inset 0 0 35px rgba(251, 191, 36, 0.08), 0 10px 30px rgba(0, 0, 0, 0.3);
+.pill-badge-gold {
+  background: rgba(251, 191, 36, 0.16);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  color: #fde047;
 }
 
-/* =====================================================
-   BUTTONS (FESTIVE GLOW & HOVERS)
-   ===================================================== */
-.btn-festive {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 0.94rem;
-  font-weight: 700;
-  padding: 10px 20px;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  text-decoration: none;
-}
-
-.btn-festive:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
-}
-
-.btn-festive:active:not(:disabled) {
-  transform: translateY(1px);
-}
-
-.btn-red {
-  background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
-  border: 1px solid #f87171;
-  color: #ffffff;
-  box-shadow: 0 4px 18px rgba(220, 38, 38, 0.45);
-}
-
-.btn-green {
-  background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
-  border: 1px solid #4ade80;
-  color: #ffffff;
-  box-shadow: 0 4px 18px rgba(34, 197, 94, 0.45);
-}
-
-.btn-gold {
-  background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-  border: 1px solid #fde047;
-  color: #1f2937;
-  font-weight: 800;
-  box-shadow: 0 4px 20px rgba(251, 191, 36, 0.5);
-}
-
-.btn-outline-festive {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1.5px solid rgba(251, 191, 36, 0.4);
-  color: #f1f5f9;
-}
-
-.btn-outline-festive:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.16);
-  border-color: #fbbf24;
+.count-pill {
+  font-size: 0.86rem;
+  padding: 3px 12px;
+  border-radius: 9999px;
+  background: rgba(251, 191, 36, 0.2);
+  border: 1px solid rgba(251, 191, 36, 0.4);
   color: #fef08a;
-  transform: translateY(-2px);
+  font-weight: 700;
 }
 
-.btn-festive:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-  transform: none !important;
-  box-shadow: none !important;
+.status-pill {
+  font-size: 0.86rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 9999px;
 }
 
-.btn-glow {
-  animation: pulseGlow 2.4s infinite;
+.pill-matched {
+  background: rgba(16, 185, 129, 0.18);
+  border: 1px solid #10b981;
+  color: #6ee7b7;
 }
 
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
-  }
-  50% {
-    box-shadow: 0 0 0 12px rgba(239, 68, 68, 0);
-  }
+.pill-pending {
+  background: rgba(251, 191, 36, 0.18);
+  border: 1px solid #fbbf24;
+  color: #fde047;
 }
 
 /* =====================================================
-   AUTH PAGES (LOGIN / REGISTER)
+   RATH DELIVERY SECTION (EMPLOYEE DASHBOARD)
    ===================================================== */
-.auth-page {
-  min-height: calc(100vh - 65px);
+.rath-delivery-card {
+  padding: 32px 28px;
+}
+
+.rath-section-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  padding: 24px 16px;
-  position: relative;
-  z-index: 10;
-}
-
-.auth-card {
-  background: var(--card-dark-bg);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  border: var(--card-border-gold);
-  box-shadow: var(--card-shadow);
-  max-width: 450px;
-  width: 100%;
-  padding: 38px 34px;
-  text-align: center;
-  position: relative;
-  overflow: visible;
-}
-
-.auth-header h1 {
-  font-family: var(--font-festive);
-  font-size: 2.3rem;
-  color: #fca5a5;
-  line-height: 1.2;
-  margin-bottom: 6px;
-  text-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
-}
-
-.auth-header p {
-  color: #cbd5e1;
-  font-size: 0.94rem;
+  flex-wrap: wrap;
+  gap: 14px;
   margin-bottom: 24px;
 }
 
-.festive-banner-strip {
-  margin-bottom: 16px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(251, 191, 36, 0.3);
-  padding: 8px 18px;
-  border-radius: 9999px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-}
-
-.banner-strip-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 0.9rem;
-  color: #fde68a;
-  font-weight: 600;
-}
-
-/* =====================================================
-   SANTA ENTRANCE BANNER (WISHLIST PAGE)
-   ===================================================== */
-.santa-banner-box {
-  background: linear-gradient(135deg, rgba(28, 44, 72, 0.88) 0%, rgba(16, 28, 48, 0.95) 100%);
-  border: var(--card-border-gold);
-  border-radius: 16px;
-  padding: 22px 28px;
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  margin-bottom: 26px;
-  box-shadow: var(--card-shadow);
+.rath-scenery-container {
   position: relative;
-  overflow: visible;
+  background: linear-gradient(180deg, rgba(14, 25, 45, 0.6) 0%, rgba(7, 14, 26, 0.85) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  border-radius: 20px;
+  padding: 28px 24px 24px;
+  overflow: hidden;
+  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.5);
+}
+
+.rath-scenery-backdrop {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 24px;
+  min-height: 190px;
+}
+
+.rath-vehicle-side.rath-delivering-takeoff {
+  animation: rathTakeoff 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes rathTakeoff {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(120px) translateY(-20px) rotate(-3deg); }
+  100% { transform: translateX(360px) translateY(-50px) rotate(-6deg) scale(0.7); opacity: 0; }
+}
+
+.unwrapping-gift-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 30;
+}
+
+.unwrapping-box-icon {
+  font-size: 4rem;
+  animation: giftShakeAndPop 0.8s infinite ease-in-out;
+}
+
+@keyframes giftShakeAndPop {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-8deg) scale(1.1); }
+  75% { transform: rotate(8deg) scale(1.1); }
+}
+
+.gift-glow-halo {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.6) 0%, transparent 70%);
+  animation: haloPulse 1.2s infinite alternate ease-in-out;
+}
+
+@keyframes haloPulse {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  100% { transform: scale(1.3); opacity: 1; }
+}
+
+.stardust-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: starBurst 1s forwards ease-out;
+}
+
+.sparkle.sp1 { top: -40px; left: -40px; animation-delay: 0s; }
+.sparkle.sp2 { top: -45px; right: -40px; animation-delay: 0.2s; }
+.sparkle.sp3 { bottom: -35px; left: -35px; animation-delay: 0.4s; }
+.sparkle.sp4 { bottom: -40px; right: -35px; animation-delay: 0.6s; }
+.sparkle.sp5 { top: 0; left: 0; animation-delay: 0.3s; }
+
+@keyframes starBurst {
+  0% { transform: scale(0.2); opacity: 0; }
+  50% { transform: scale(1.4); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+.rath-notice-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px dashed rgba(251, 191, 36, 0.4);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-top: 18px;
+}
+
+.btn-large-reveal {
+  font-size: 1.12rem !important;
+  padding: 14px 34px !important;
+  letter-spacing: 0.5px;
 }
 
 /* =====================================================
-   GIFT TAG WISHLIST PARCEL CARDS (NO WHITE BACKGROUNDS!)
+   REVEALED RECIPIENT BANNER
+   ===================================================== */
+.rath-revealed-view {
+  animation: dropInFade 0.6s ease-out;
+}
+
+@keyframes dropInFade {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.recipient-parchment-banner {
+  text-align: center;
+  background: linear-gradient(135deg, rgba(136, 19, 55, 0.85) 0%, rgba(76, 5, 25, 0.95) 100%);
+  border: 1.5px solid #fbbf24;
+  border-radius: 20px;
+  padding: 36px 24px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(251, 191, 36, 0.25);
+  position: relative;
+}
+
+.rath-banner-badge {
+  display: inline-block;
+  background: rgba(251, 191, 36, 0.25);
+  border: 1px solid #fbbf24;
+  color: #fde047;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  margin-bottom: 12px;
+}
+
+.recipient-name-shimmer {
+  font-family: var(--font-title);
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #fef08a;
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.75), 0 0 35px rgba(225, 29, 72, 0.45);
+  margin: 8px 0;
+  letter-spacing: 2px;
+}
+
+/* =====================================================
+   RATH EMPTY STATE (WISHLIST PAGE)
+   ===================================================== */
+.rath-empty-state {
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.empty-rath-scene {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.empty-sub-box {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px dashed rgba(251, 191, 36, 0.35);
+  border-radius: 14px;
+  padding: 24px 20px;
+  text-align: center;
+}
+
+/* =====================================================
+   GIFT TAG WISHLIST CARDS
    ===================================================== */
 .wishlist-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 22px;
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .gift-tag-card {
-  background: linear-gradient(145deg, rgba(26, 42, 68, 0.88) 0%, rgba(14, 24, 40, 0.95) 100%);
-  border: 1.5px solid rgba(251, 191, 36, 0.4);
-  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(20, 34, 58, 0.85) 0%, rgba(10, 18, 32, 0.95) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 18px;
   padding: 24px 22px 20px;
   position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  animation: bounceDrop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
 }
 
 .gift-tag-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  border-color: #f59e0b;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(251, 191, 36, 0.25);
+  transform: translateY(-5px);
+  border-color: #fbbf24;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 20px rgba(251, 191, 36, 0.2);
 }
 
 .gift-tag-ribbon-seal {
@@ -988,29 +710,28 @@ body::before {
   right: 0;
   width: 44px;
   height: 44px;
-  background: linear-gradient(135deg, transparent 50%, rgba(239, 68, 68, 0.85) 50%);
-  border-top-right-radius: 14px;
+  background: linear-gradient(135deg, transparent 50%, rgba(225, 29, 72, 0.85) 50%);
+  border-top-right-radius: 16px;
 }
 
 .gift-tag-hole {
   position: absolute;
   top: 14px;
   left: 14px;
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background-color: #0d1b30;
+  background-color: #0b1526;
   border: 2px solid #fbbf24;
 }
 
 .gift-tag-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   font-size: 1.25rem;
   font-weight: 700;
   color: #fef08a;
   margin-left: 20px;
   margin-bottom: 12px;
-  text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
 }
 
 .gift-tag-note {
@@ -1026,7 +747,7 @@ body::before {
 }
 
 .gift-tag-link {
-  color: #86efac;
+  color: #6ee7b7;
   font-weight: 600;
   font-size: 0.88rem;
   display: inline-flex;
@@ -1037,7 +758,7 @@ body::before {
 }
 
 .gift-tag-link:hover {
-  color: #bbf7d0;
+  color: #a7f3d0;
   text-decoration: underline;
 }
 
@@ -1046,7 +767,7 @@ body::before {
   justify-content: flex-end;
   gap: 10px;
   margin-top: 16px;
-  border-top: 1px dotted rgba(255, 255, 255, 0.15);
+  border-top: 1px dotted rgba(255, 255, 255, 0.12);
   padding-top: 12px;
 }
 
@@ -1082,124 +803,90 @@ body::before {
   color: #ffffff;
 }
 
-.card-deleting {
-  animation: floatAway 0.5s forwards ease-in;
-}
-
-@keyframes bounceDrop {
-  0% { opacity: 0; transform: translateY(-40px) scale(0.9); }
-  60% { opacity: 1; transform: translateY(6px) scale(1.02); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@keyframes floatAway {
-  0% { opacity: 1; transform: translateY(0) scale(1); }
-  100% { opacity: 0; transform: translateY(-30px) rotate(4deg) scale(0.85); }
-}
-
 /* =====================================================
-   REVEAL SECRET SANTA BOX SEQUENCE & REVEAL CARD
+   BUTTONS (MODERN SLEEK FESTIVE)
    ===================================================== */
-.reveal-stage {
-  text-align: center;
-  padding: 34px 16px;
-}
-
-.reveal-box-wrapper {
-  display: inline-block;
+.btn-festive {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.94rem;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 12px;
+  border: none;
   cursor: pointer;
-  position: relative;
-  transition: transform 0.25s ease;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
 }
 
-.reveal-box-wrapper:hover {
-  transform: scale(1.06);
+.btn-festive:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
 }
 
-.gift-halo-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 160px;
-  height: 160px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.3) 0%, transparent 70%);
-  pointer-events: none;
-  animation: haloPulse 2s infinite alternate ease-in-out;
+.btn-festive:active:not(:disabled) {
+  transform: translateY(1px);
 }
 
-.gift-halo-glow.active {
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.6) 0%, rgba(239, 68, 68, 0.4) 50%, transparent 75%);
+.btn-red {
+  background: linear-gradient(135deg, #e11d48 0%, #be123c 60%, #9f1239 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  box-shadow: 0 4px 18px rgba(225, 29, 72, 0.4);
 }
 
-@keyframes haloPulse {
-  0% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.5; }
-  100% { transform: translate(-50%, -50%) scale(1.25); opacity: 1; }
+.btn-green {
+  background: linear-gradient(135deg, #059669 0%, #047857 60%, #064e3b 100%);
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  color: #ffffff;
+  box-shadow: 0 4px 18px rgba(5, 150, 105, 0.4);
 }
 
-.giftbox-shaking {
-  animation: giftShake 0.6s infinite ease-in-out;
+.btn-gold {
+  background: linear-gradient(135deg, #fbbf24 0%, #d97706 70%, #b45309 100%);
+  border: 1px solid rgba(254, 240, 138, 0.5);
+  color: #0f172a;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(251, 191, 36, 0.4);
 }
 
-@keyframes giftShake {
-  0%, 100% { transform: rotate(0deg) scale(1.02); }
-  20% { transform: rotate(-8deg) scale(1.08); }
-  40% { transform: rotate(8deg) scale(1.08); }
-  60% { transform: rotate(-6deg) scale(1.05); }
-  80% { transform: rotate(6deg) scale(1.05); }
+.btn-outline-festive {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(251, 191, 36, 0.35);
+  color: #f1f5f9;
 }
 
-.giftbox-popping {
-  animation: lidPop 0.8s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes lidPop {
-  0% { transform: scale(1); }
-  40% { transform: scale(1.18) translateY(-14px); }
-  100% { transform: scale(1) translateY(0); }
-}
-
-.confetti-burst {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  animation: popSparkle 0.9s forwards ease-out;
-}
-
-@keyframes popSparkle {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
-  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.5); }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(2.2); }
-}
-
-.recipient-reveal-card {
-  background: linear-gradient(135deg, rgba(153, 27, 27, 0.9) 0%, rgba(100, 15, 20, 0.98) 100%);
-  border: 2.5px solid #fbbf24;
-  border-radius: 18px;
-  padding: 34px 28px;
-  margin: 22px auto;
-  max-width: 660px;
-  text-align: center;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 35px rgba(251, 191, 36, 0.35);
-  animation: bounceDrop 0.6s ease-out;
-  position: relative;
-  overflow: visible;
-}
-
-.recipient-gold-glow {
-  font-family: var(--font-festive);
-  font-size: 2.8rem;
+.btn-outline-festive:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: #fbbf24;
   color: #fef08a;
-  text-shadow: 0 0 20px rgba(251, 191, 36, 0.8), 0 0 35px rgba(239, 68, 68, 0.5);
-  margin: 10px 0 18px;
-  letter-spacing: 1px;
+}
+
+.btn-festive:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn-glow {
+  animation: pulseGlow 2.4s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(251, 191, 36, 0);
+  }
 }
 
 /* =====================================================
-   ADMIN DASHBOARD STATS, TABS & DATA TABLE
+   ADMIN STATS & DATA TABLE
    ===================================================== */
 .stats-grid {
   display: grid;
@@ -1209,11 +896,11 @@ body::before {
 }
 
 .stat-card {
-  background: linear-gradient(135deg, rgba(22, 36, 60, 0.88) 0%, rgba(12, 22, 38, 0.95) 100%);
-  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(18, 30, 52, 0.85) 0%, rgba(9, 16, 29, 0.95) 100%);
+  border-radius: 16px;
   padding: 18px 20px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(251, 191, 36, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(251, 191, 36, 0.22);
   transition: transform 0.2s ease;
 }
 
@@ -1240,8 +927,8 @@ body::before {
 }
 
 .stat-value.green {
-  color: #22c55e;
-  text-shadow: 0 0 12px rgba(34, 197, 94, 0.4);
+  color: #10b981;
+  text-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
 }
 
 .filter-tab {
@@ -1250,7 +937,7 @@ body::before {
   gap: 6px;
   padding: 7px 16px;
   border-radius: 9999px;
-  border: 1.5px solid rgba(251, 191, 36, 0.3);
+  border: 1px solid rgba(251, 191, 36, 0.3);
   background-color: rgba(255, 255, 255, 0.08);
   color: #cbd5e1;
   font-size: 0.84rem;
@@ -1279,11 +966,11 @@ body::before {
   box-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
 }
 
-/* Data Table in Dark Luxury Christmas Glass */
+/* Data Table in Dark Luxury Glass */
 .table-responsive {
   overflow-x: auto;
-  border-radius: 12px;
-  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 16px;
+  border: 1px solid rgba(251, 191, 36, 0.22);
 }
 
 .data-table {
@@ -1294,7 +981,7 @@ body::before {
 }
 
 .data-table th {
-  background-color: rgba(15, 23, 42, 0.85);
+  background-color: rgba(10, 18, 32, 0.96);
   padding: 14px 16px;
   border-bottom: 2px solid rgba(251, 191, 36, 0.35);
   font-weight: 700;
@@ -1304,16 +991,15 @@ body::before {
 
 .data-table td {
   padding: 15px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   vertical-align: middle;
   color: #f1f5f9;
 }
 
 .data-table tr:hover td {
-  background-color: rgba(255, 255, 255, 0.06);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
-/* Status Chips */
 .chip {
   display: inline-flex;
   align-items: center;
@@ -1325,9 +1011,9 @@ body::before {
 }
 
 .chip-submitted {
-  background: rgba(34, 197, 94, 0.2);
-  color: #86efac;
-  border: 1px solid rgba(34, 197, 94, 0.4);
+  background: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.4);
 }
 
 .chip-pending {
@@ -1337,9 +1023,9 @@ body::before {
 }
 
 .chip-assigned {
-  background: rgba(34, 197, 94, 0.25);
-  color: #4ade80;
-  border: 1.5px solid #22c55e;
+  background: rgba(16, 185, 129, 0.25);
+  color: #34d399;
+  border: 1.5px solid #10b981;
 }
 
 .chip-unassigned {
@@ -1348,18 +1034,29 @@ body::before {
   border: 1px solid rgba(239, 68, 68, 0.4);
 }
 
+.assigned-status-badge {
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1.5px solid #10b981;
+  color: #6ee7b7;
+  font-weight: 700;
+  font-size: 0.84rem;
+  padding: 6px 16px;
+  border-radius: 9999px;
+}
+
 /* =====================================================
-   UNIVERSAL MODAL OVERLAY & DARK FROSTED GLASS POPUP
+   RATH MODALS & POPUPS
    ===================================================== */
-.modal-overlay,
-.modal-backdrop {
+.modal-overlay {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
-  background: rgba(3, 7, 18, 0.82) !important;
-  backdrop-filter: blur(12px) !important;
+  background: rgba(3, 7, 18, 0.85) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -1367,59 +1064,228 @@ body::before {
   padding: 16px !important;
 }
 
-.modal-content-animated,
-.modal-box {
-  background: linear-gradient(145deg, rgba(22, 36, 60, 0.97) 0%, rgba(10, 18, 32, 0.98) 100%) !important;
-  border-radius: 20px !important;
+.modal-content-animated {
+  background: linear-gradient(155deg, rgba(16, 28, 48, 0.98) 0%, rgba(7, 14, 25, 0.99) 100%) !important;
+  border-radius: 24px !important;
   width: 100% !important;
-  max-width: 490px !important;
-  padding: 34px 30px !important;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(239, 68, 68, 0.2) !important;
+  max-width: 500px !important;
+  padding: 30px 28px !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(251, 191, 36, 0.12) !important;
   position: relative !important;
   z-index: 10000 !important;
-  animation: scaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  border: 2px solid rgba(251, 191, 36, 0.45) !important;
+  animation: modalScaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-top: 2px solid #fbbf24 !important;
   overflow: visible !important;
 }
 
-@keyframes scaleIn {
+@keyframes modalScaleIn {
   0% { opacity: 0; transform: scale(0.92); }
   100% { opacity: 1; transform: scale(1); }
 }
 
-/* =====================================================
-   FORM CONTROLS (FESTIVE DARK GLASS)
-   ===================================================== */
-.form-control-festive {
+.modal-rath-flight-track {
+  display: flex;
+  justify-content: center;
+  margin-top: -10px;
+  margin-bottom: 8px;
+}
+
+.modal-header-clean {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.modal-heading-text {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fef08a;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.modal-close-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: rgba(239, 68, 68, 0.3);
+  border-color: #ef4444;
+  color: #ffffff;
+}
+
+.modal-error-banner {
+  background: rgba(153, 27, 27, 0.85);
+  border: 1px solid #ef4444;
+  color: #fee2e2;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+}
+
+.form-group-clean {
+  margin-bottom: 16px;
+}
+
+.form-label-gold {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #fde68a;
+}
+
+.form-control-rath {
   width: 100%;
   padding: 11px 14px;
   border-radius: 10px;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  background: rgba(15, 23, 42, 0.75);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  background: rgba(10, 18, 32, 0.85);
   color: #f8fafc;
+  font-family: var(--font-body);
   font-size: 0.94rem;
   transition: all 0.2s ease;
   outline: none;
 }
 
-.form-control-festive:focus {
+.form-control-rath:focus {
   border-color: #fbbf24;
-  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.3);
-  background: rgba(15, 23, 42, 0.9);
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.25);
+  background: rgba(10, 18, 32, 0.98);
 }
 
-.form-control-festive::placeholder {
-  color: rgba(203, 213, 225, 0.5);
+.form-control-rath::placeholder {
+  color: rgba(203, 213, 225, 0.45);
+}
+
+.rath-rules-pill {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 22px;
+  line-height: 1.5;
 }
 
 /* =====================================================
-   SPINNER (CANDY CANE / GOLD)
+   AUTH PAGES (LOGIN & REGISTER)
+   ===================================================== */
+.auth-page {
+  min-height: calc(100vh - 65px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  position: relative;
+  z-index: 10;
+}
+
+.auth-card {
+  background: var(--card-glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 24px;
+  border: var(--card-glass-border);
+  border-top: 2px solid #fbbf24;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(251, 191, 36, 0.1);
+  max-width: 440px;
+  width: 100%;
+  padding: 34px 30px;
+  text-align: center;
+  position: relative;
+}
+
+.auth-rath-header {
+  display: flex;
+  justify-content: center;
+  margin-top: -10px;
+  margin-bottom: 12px;
+}
+
+.auth-title {
+  font-family: var(--font-title);
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #fef08a;
+  line-height: 1.2;
+  margin-bottom: 4px;
+  text-shadow: 0 0 16px rgba(251, 191, 36, 0.4);
+}
+
+.auth-subtitle {
+  color: #cbd5e1;
+  font-size: 0.92rem;
+  margin-bottom: 20px;
+}
+
+.auth-error-banner {
+  background: rgba(153, 27, 27, 0.85);
+  border: 1px solid #ef4444;
+  color: #fee2e2;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+/* =====================================================
+   TOAST & ERROR NOTIFICATIONS
+   ===================================================== */
+.rath-toast-pill {
+  position: fixed;
+  top: 75px;
+  right: 24px;
+  background: linear-gradient(135deg, rgba(16, 28, 48, 0.98), rgba(9, 18, 33, 0.98));
+  border: 1.5px solid #fbbf24;
+  border-radius: 9999px;
+  padding: 10px 22px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(251, 191, 36, 0.3);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fef08a;
+  font-weight: 700;
+  animation: dropInFade 0.35s ease;
+}
+
+.rath-error-card {
+  background: rgba(153, 27, 27, 0.85);
+  border: 1px solid #ef4444;
+  color: #fee2e2;
+  padding: 12px 18px;
+  border-radius: 12px;
+  margin-bottom: 22px;
+}
+
+/* =====================================================
+   SPINNER (GOLD ACCENT)
    ===================================================== */
 .candy-spinner {
   width: 44px;
   height: 44px;
   margin: 20px auto;
-  border: 4px solid rgba(251, 191, 36, 0.25);
+  border: 3.5px solid rgba(251, 191, 36, 0.2);
   border-top-color: #ef4444;
   border-right-color: #fbbf24;
   border-radius: 50%;
@@ -1438,7 +1304,7 @@ body::before {
   padding: 30px 16px;
   color: #94a3b8;
   font-size: 0.88rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   margin-top: 50px;
 }
 

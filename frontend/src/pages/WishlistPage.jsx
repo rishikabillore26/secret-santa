@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import FestiveFooter from '../components/FestiveFooter';
-import JingleBell from '../components/JingleBell';
-import RealisticSanta from '../components/RealisticSanta';
+import SantaRath from '../components/SantaRath';
 import ChristmasTree from '../components/ChristmasTree';
 import WishModal from '../components/WishModal';
 import ConfirmModal from '../components/ConfirmModal';
@@ -52,11 +51,11 @@ export default function WishlistPage() {
     if (wishToEdit) {
       const updated = await employeeApi.updateWish(wishToEdit.id, wishData);
       setWishes(wishes.map((w) => (w.id === updated.id ? updated : w)));
-      showToast('Wish updated on Santa’s list! 🎁');
+      showToast('Wish updated on Santa’s Rath! 🎁');
     } else {
       const created = await employeeApi.addWish(wishData);
       setWishes([...wishes, created]);
-      showToast('New wish dropped under the tree! 🎄');
+      showToast('New wish packed onto Santa’s Rath! 🎄');
     }
   };
 
@@ -80,7 +79,7 @@ export default function WishlistPage() {
         setDeletingId(null);
         setDeleteConfirmOpen(false);
         setWishToDelete(null);
-        showToast('Wish removed from your tag! ✨');
+        showToast('Wish removed from your list! ✨');
       }, 400);
     } catch (err) {
       setError(err.message || 'Failed to delete wish.');
@@ -95,61 +94,45 @@ export default function WishlistPage() {
       <main className="page-container">
         {/* Toast Notification */}
         {toast && (
-          <div
-            style={{
-              position: 'fixed',
-              top: '75px',
-              right: '24px',
-              background: 'linear-gradient(135deg, rgba(22, 36, 60, 0.98), rgba(10, 18, 32, 0.98))',
-              border: '2px solid #fbbf24',
-              borderRadius: '12px',
-              padding: '12px 20px',
-              boxShadow: '0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(251, 191, 36, 0.3)',
-              zIndex: 1000,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-              animation: 'bounceDrop 0.4s ease'
-            }}
-          >
-            <JingleBell size={22} />
-            <span style={{ fontWeight: 600, color: '#fef08a' }}>{toast}</span>
+          <div className="rath-toast-pill">
+            <span style={{ fontSize: '1.2rem' }}>✨</span>
+            <span>{toast}</span>
           </div>
         )}
 
-        {/* Santa & Christmas Tree Header Banner */}
-        <div className="santa-banner-box" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
-            <RealisticSanta pose="sitting" size={95} />
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <JingleBell size={26} />
-                <h2 style={{ fontFamily: 'var(--font-festive)', fontSize: '2.3rem', color: '#fef08a', margin: 0, textShadow: '0 0 14px rgba(251, 191, 36, 0.45)' }}>
-                  My Christmas Wishlist 📜
-                </h2>
-              </div>
-              <p style={{ fontSize: '0.96rem', color: '#cbd5e1', marginTop: '6px', margin: 0 }}>
-                Santa and your Secret Santa are listening! Add the gifts you'd love to unwrap this year.
-              </p>
+        {/* Santa's Rath Hero Banner */}
+        <div className="festive-card rath-banner-card">
+          <div className="rath-banner-left">
+            <div className="pill-badge-gold">
+              <span>🛷 Holiday Gift Registry</span>
             </div>
+            <h2 className="festive-heading" style={{ fontSize: '2.1rem', margin: '8px 0 6px' }}>
+              My Christmas Wishlist 📜
+            </h2>
+            <p style={{ color: '#cbd5e1', fontSize: '0.98rem', maxWidth: '480px', margin: 0, lineHeight: 1.6 }}>
+              Add up to 3 gifts you'd love to unwrap this holiday season. Santa's Rath will deliver your list to your Secret Santa!
+            </p>
           </div>
 
-          <div style={{ marginRight: '10px' }}>
-            <ChristmasTree size={120} />
+          <div className="rath-banner-right">
+            <SantaRath mode="hero" width={320} />
           </div>
         </div>
 
         {error && (
-          <div style={{ background: 'rgba(153, 27, 27, 0.85)', border: '1px solid #ef4444', color: '#fee2e2', padding: '12px 16px', borderRadius: '8px', marginBottom: '20px' }}>
+          <div className="rath-error-card">
             🎅 {error}
           </div>
         )}
 
-        {/* Card Header & Add Button */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '22px', flexWrap: 'wrap', gap: '12px' }}>
-          <div>
-            <span style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fef08a', textShadow: '0 0 10px rgba(251, 191, 36, 0.35)' }}>
-              Your Gift Wishes ({wishes.length} / 3)
+        {/* Wishlist Header & Add Button */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '22px', flexWrap: 'wrap', gap: '14px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span style={{ fontSize: '1.25rem', fontWeight: 700, color: '#fef08a' }}>
+              Your Gift Wishes
+            </span>
+            <span className="count-pill">
+              {wishes.length} / 3
             </span>
           </div>
 
@@ -158,45 +141,44 @@ export default function WishlistPage() {
             <button
               onClick={handleOpenAdd}
               className="btn-festive btn-red btn-glow"
-              style={{ fontSize: '1rem', padding: '12px 26px' }}
+              style={{ fontSize: '0.98rem', padding: '11px 24px' }}
             >
-              <span>+ Add Wish</span>
+              <span>+ Add Wish to Rath</span>
               <span>🎁</span>
             </button>
           )}
         </div>
 
-        {/* Wishlist Items List or Waiting Empty State */}
+        {/* Wishlist Items List or Waiting Empty State with Rath & Tree */}
         {loading ? (
           <div style={{ textAlign: 'center', padding: '60px' }}>
             <div className="candy-spinner" />
           </div>
         ) : wishes.length === 0 ? (
-          /* SANTA SLOWLY COMES FROM UPPER-RIGHT CORNER AND SITS DIRECTLY ON THE TEXT */
-          <div className="festive-card" style={{ textAlign: 'center', padding: '48px 20px 42px', position: 'relative' }}>
-            <div className="card-ribbon" />
-
-            <div style={{ position: 'relative', display: 'inline-block', margin: '48px auto 14px' }}>
-              {/* Santa glides in slowly from top right corner and sits directly on the text */}
-              <div className="santa-glide-sit-empty-text" aria-hidden="true">
-                <RealisticSanta pose="sitting" size={110} />
+          /* EMPTY STATE WITH RATH AND TREE */
+          <div className="festive-card rath-empty-state">
+            <div className="empty-rath-scene">
+              <div className="tree-col">
+                <ChristmasTree size={160} />
               </div>
-
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', color: '#fef08a', margin: 0, textShadow: '0 0 14px rgba(251, 191, 36, 0.45)' }}>
-                No wishes yet, add your first one!
-              </h3>
+              <div className="rath-col">
+                <SantaRath mode="hero" width={360} />
+              </div>
             </div>
 
-            <p style={{ color: '#cbd5e1', maxWidth: '480px', margin: '0 auto 28px', fontSize: '1rem', lineHeight: 1.6 }}>
-              Tell your Secret Santa what makes you smile: gadgets, warm hoodies, coffee, or books.
+            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.65rem', color: '#fef08a', marginBottom: '8px' }}>
+              No wishes on Santa’s Rath yet!
+            </h3>
+            <p style={{ color: '#cbd5e1', maxWidth: '480px', margin: '0 auto 26px', fontSize: '1rem', lineHeight: 1.6 }}>
+              Tell your Secret Santa what you'd love to unwrap this year: coffee beans, warm socks, gadgets, books or games!
             </p>
 
             <button
               onClick={handleOpenAdd}
-              className="btn-festive btn-green btn-glow"
-              style={{ padding: '13px 32px', fontSize: '1.05rem' }}
+              className="btn-festive btn-gold btn-glow"
+              style={{ padding: '13px 34px', fontSize: '1.05rem' }}
             >
-              <span>+ Create Your First Wish ✨🎁</span>
+              <span>+ Add Your First Wish to Rath ✨🎁</span>
             </button>
           </div>
         ) : (
@@ -225,7 +207,7 @@ export default function WishlistPage() {
                       rel="noopener noreferrer"
                       className="gift-tag-link"
                     >
-                      <span>🔗 View Item</span>
+                      <span>🔗 View Store Link</span>
                       <span>↗</span>
                     </a>
                   )}
@@ -255,7 +237,7 @@ export default function WishlistPage() {
         <FestiveFooter />
       </main>
 
-      {/* Add / Edit Wish Modal with Santa sitting on top of the title */}
+      {/* Add / Edit Wish Modal */}
       <WishModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -267,7 +249,7 @@ export default function WishlistPage() {
       <ConfirmModal
         isOpen={deleteConfirmOpen}
         title="Remove Gift Wish?"
-        message={`Are you sure you want to remove "${wishToDelete?.productName}" from your Christmas wishlist?`}
+        message={`Are you sure you want to remove "${wishToDelete?.productName}" from Santa's Rath?`}
         confirmText="Remove Wish"
         isDanger={true}
         onConfirm={handleConfirmDelete}

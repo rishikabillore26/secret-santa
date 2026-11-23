@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import RealisticSanta from './RealisticSanta';
-import JingleBell from './JingleBell';
+import SantaRath from './SantaRath';
 
 export default function WishModal({ isOpen, onClose, onSave, wishToEdit }) {
   const [productName, setProductName] = useState('');
@@ -55,101 +54,86 @@ export default function WishModal({ isOpen, onClose, onSave, wishToEdit }) {
 
   return (
     <div className="modal-overlay" onClick={onClose} role="dialog" aria-modal="true">
-      <div className="modal-content-animated festive-dark-modal modal-with-perched-santa" onClick={(e) => e.stopPropagation()}>
-        
-        {/* Header container with Santa gliding in slowly from the upper-right corner */}
-        <div style={{ position: 'relative', marginTop: '10px', marginBottom: '22px' }}>
-          
-          {/* Santa glides slowly from upper right corner and sits directly on top of the text */}
-          <div className="santa-glide-sit-modal" aria-hidden="true">
-            <RealisticSanta pose="sitting" size={88} />
-          </div>
+      <div className="modal-content-animated festive-rath-modal" onClick={(e) => e.stopPropagation()}>
+        {/* Animated Mini Rath gliding along modal top */}
+        <div className="modal-rath-flight-track">
+          <SantaRath mode="mini" width={220} />
+        </div>
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <JingleBell size={26} />
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', color: '#fef08a', margin: 0, textShadow: '0 0 12px rgba(251, 191, 36, 0.45)' }}>
-                {wishToEdit ? 'Edit Christmas Wish' : 'Add to Your Wishlist'}
-              </h3>
-            </div>
-            <button
-              type="button"
-              className="modal-close"
-              onClick={onClose}
-              disabled={isSubmitting}
-              style={{
-                background: 'rgba(255, 255, 255, 0.1)',
-                border: '1px solid rgba(255, 255, 255, 0.25)',
-                borderRadius: '50%',
-                width: '32px',
-                height: '32px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '1.3rem',
-                cursor: 'pointer',
-                color: '#e2e8f0',
-                transition: 'all 0.2s ease'
-              }}
-            >
-              &times;
-            </button>
+        {/* Modal Header */}
+        <div className="modal-header-clean">
+          <div>
+            <h3 className="modal-heading-text">
+              {wishToEdit ? '✏️ Edit Christmas Wish' : '🎁 Add to Your Wishlist'}
+            </h3>
+            <p style={{ color: '#94a3b8', fontSize: '0.86rem', margin: '3px 0 0' }}>
+              Load this gift onto Santa's Rath for your Secret Santa!
+            </p>
           </div>
+          <button
+            type="button"
+            className="modal-close-btn"
+            onClick={onClose}
+            disabled={isSubmitting}
+            aria-label="Close modal"
+          >
+            &times;
+          </button>
         </div>
 
         {error && (
-          <div style={{ background: 'rgba(153, 27, 27, 0.85)', border: '1px solid #ef4444', color: '#fee2e2', padding: '10px 14px', borderRadius: '8px', fontSize: '0.88rem', marginBottom: '16px' }}>
+          <div className="modal-error-banner">
             🎅 {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: '16px' }}>
-            <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, marginBottom: '6px', color: '#fde68a' }}>
+        <form onSubmit={handleSubmit} style={{ marginTop: '16px' }}>
+          <div className="form-group-clean">
+            <label className="form-label-gold">
               Item Name *
             </label>
             <input
               type="text"
-              className="form-control-festive"
+              className="form-control-rath"
               value={productName}
               onChange={(e) => setProductName(e.target.value)}
-              placeholder="e.g., Wireless Headphones, Warm Wool Scarf, Book..."
+              placeholder="e.g. Wireless Headphones, Wool Blanket, Coffee Tumbler..."
               maxLength={255}
               required
               autoFocus
             />
           </div>
 
-          <div style={{ marginBottom: '16px' }}>
-            <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, marginBottom: '6px', color: '#fde68a' }}>
+          <div className="form-group-clean">
+            <label className="form-label-gold">
               Product Link (optional)
             </label>
             <input
               type="url"
-              className="form-control-festive"
+              className="form-control-rath"
               value={productUrl}
               onChange={(e) => setProductUrl(e.target.value)}
-              placeholder="https://example.com/item"
+              placeholder="https://amazon.com/... or store link"
               maxLength={1000}
             />
           </div>
 
-          <div style={{ marginBottom: '22px' }}>
-            <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, marginBottom: '6px', color: '#fde68a' }}>
+          <div className="form-group-clean" style={{ marginBottom: '24px' }}>
+            <label className="form-label-gold">
               Description / Notes (optional)
             </label>
             <textarea
-              className="form-control-festive"
+              className="form-control-rath"
               rows="3"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              placeholder="e.g., Preferred color is Forest Green or Navy Blue, Size M"
+              placeholder="e.g. Preferred color: Emerald green or Navy, Size L"
               maxLength={500}
               style={{ fontFamily: 'inherit' }}
             />
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
             <button
               type="button"
               className="btn-festive btn-outline-festive"
@@ -160,10 +144,10 @@ export default function WishModal({ isOpen, onClose, onSave, wishToEdit }) {
             </button>
             <button
               type="submit"
-              className="btn-festive btn-red btn-glow"
+              className="btn-festive btn-gold btn-glow"
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Saving...' : wishToEdit ? 'Save Changes' : 'Add to Wishlist 🎁'}
+              {isSubmitting ? 'Packing into Rath...' : wishToEdit ? 'Save Changes' : 'Pack into Rath 🎁'}
             </button>
           </div>
         </form>

@@ -1,60 +1,59 @@
 import React, { useMemo } from 'react';
 
 /**
- * Enchanting Holiday Ambience Layer:
- * - Gentle falling snowflakes
- * - Floating festive ornaments: golden bells 🔔, gingerbread cookies 🍪, sparkling stars ⭐,
- *   holiday gifts 🎁, candy canes 🍬, and festive baubles
- * - Non-intrusive background drift with varied depth and gentle sway
+ * Enchanting Holiday Night Atmosphere:
+ * - Subtle, realistic falling snowflakes with natural drift and depth
+ * - Gentle twinkling celestial stars in the night sky
+ * - Pure CSS animations with low CPU overhead
  */
 export default function HolidayAmbience() {
-  // Generate a fixed set of falling snowflakes
+  // Generate falling snowflakes with gentle swaying and varied depth
   const snowflakes = useMemo(() => {
     const chars = ['❄', '❅', '❆', '•'];
-    return Array.from({ length: 42 }).map((_, i) => ({
+    return Array.from({ length: 48 }).map((_, i) => ({
       id: `snow-${i}`,
       left: Math.random() * 100,
-      duration: 6 + Math.random() * 8,
+      duration: 7 + Math.random() * 9,
       delay: Math.random() * 6,
-      size: 11 + Math.random() * 16,
-      opacity: 0.35 + Math.random() * 0.5,
+      size: 9 + Math.random() * 15,
+      opacity: 0.25 + Math.random() * 0.55,
       char: chars[Math.floor(Math.random() * chars.length)]
     }));
   }, []);
 
-  // Generate floating holiday magic elements (bells, stars, gifts, cookies, ornaments)
-  const floatingMagic = useMemo(() => {
-    const items = [
-      { icon: '🔔', label: 'bell', size: 20 },
-      { icon: '⭐', label: 'star', size: 18 },
-      { icon: '✨', label: 'sparkle', size: 16 },
-      { icon: '🎁', label: 'gift', size: 22 },
-      { icon: '🍪', label: 'cookie', size: 20 },
-      { icon: '🍬', label: 'candy', size: 18 },
-      { icon: '🌟', label: 'star2', size: 22 },
-      { icon: '🎄', label: 'tree', size: 24 },
-      { icon: '🔔', label: 'bell2', size: 18 },
-      { icon: '⭐', label: 'star3', size: 16 }
-    ];
-
-    return Array.from({ length: 18 }).map((_, i) => {
-      const template = items[i % items.length];
-      return {
-        id: `magic-${i}`,
-        left: 3 + Math.random() * 94,
-        top: Math.random() * 100,
-        duration: 9 + Math.random() * 12,
-        delay: Math.random() * 7,
-        size: template.size + Math.floor(Math.random() * 6),
-        icon: template.icon,
-        driftX: (Math.random() - 0.5) * 50
-      };
-    });
+  // Generate twinkling celestial stars in the background
+  const stars = useMemo(() => {
+    return Array.from({ length: 32 }).map((_, i) => ({
+      id: `star-${i}`,
+      left: Math.random() * 100,
+      top: Math.random() * 65, // upper sky
+      size: 2 + Math.random() * 3,
+      duration: 2 + Math.random() * 4,
+      delay: Math.random() * 3,
+      opacity: 0.3 + Math.random() * 0.7
+    }));
   }, []);
 
   return (
     <div className="holiday-ambience-layer" aria-hidden="true">
-      {/* Falling Snowflakes */}
+      {/* Background Starfield */}
+      {stars.map((s) => (
+        <span
+          key={s.id}
+          className="ambient-sky-star"
+          style={{
+            left: `${s.left}%`,
+            top: `${s.top}%`,
+            width: `${s.size}px`,
+            height: `${s.size}px`,
+            animationDuration: `${s.duration}s`,
+            animationDelay: `${s.delay}s`,
+            opacity: s.opacity
+          }}
+        />
+      ))}
+
+      {/* Gentle Falling Snowflakes */}
       {snowflakes.map((f) => (
         <span
           key={f.id}
@@ -68,23 +67,6 @@ export default function HolidayAmbience() {
           }}
         >
           {f.char}
-        </span>
-      ))}
-
-      {/* Floating Holiday Magic Ornaments */}
-      {floatingMagic.map((item) => (
-        <span
-          key={item.id}
-          className="ambient-floating-item"
-          style={{
-            left: `${item.left}%`,
-            top: `${item.top}%`,
-            fontSize: `${item.size}px`,
-            animationDuration: `${item.duration}s`,
-            animationDelay: `${item.delay}s`
-          }}
-        >
-          {item.icon}
         </span>
       ))}
     </div>

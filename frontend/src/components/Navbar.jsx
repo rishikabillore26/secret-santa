@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import SantaCap from './SantaCap';
-import JingleBell from './JingleBell';
+import SantaRath from './SantaRath';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -19,49 +18,43 @@ export default function Navbar() {
 
   return (
     <header className="app-navbar">
-      {/* Upper-Left: Quick navigation button for employees */}
+      {/* Left Action: Quick Navigation */}
       <div className="nav-left">
         {isEmployee && (
           isWishlistPage ? (
             <Link to="/dashboard" className="nav-btn nav-btn-glow">
-              <span className="nav-icon">🏠</span>
-              <span>Back to Dashboard</span>
+              <span>🏠</span>
+              <span>Dashboard</span>
             </Link>
           ) : (
             <Link to="/wishlist" className="nav-btn primary nav-btn-glow">
-              <span className="nav-icon">🎁</span>
+              <span>🎁</span>
               <span>My Wishlist</span>
             </Link>
           )
         )}
       </div>
 
-      {/* Center: Brand with animated Santa Cap and swinging Jingle Bell */}
-      <Link to="/" className="nav-center brand-link">
-        <JingleBell size={28} className="brand-bell" />
-        <div className="brand-logo-wrapper">
-          <SantaCap size={32} className="brand-santa-cap" />
-          <span className="brand-title">Secret Santa</span>
-        </div>
+      {/* Center: Brand with sleek Santa Rath */}
+      <Link to="/" className="brand-link">
+        <SantaRath mode="mini" width={85} />
+        <span className="brand-title">Secret Santa</span>
       </Link>
 
-      {/* Upper-Right: User info and Logout */}
+      {/* Right: User Profile & Logout */}
       <div className="nav-right">
         {user ? (
           <>
             <div className="user-profile-chip">
               <span className="user-name">
-                <SantaCap size={18} style={{ marginRight: '4px' }} />
+                <span style={{ marginRight: '6px' }}>🎅</span>
                 {user.name}
               </span>
               <span className={`user-role-badge ${user.role === 'ADMIN' ? 'role-admin' : 'role-employee'}`}>
                 {user.role}
               </span>
             </div>
-            <button
-              onClick={handleLogout}
-              className="btn-festive btn-outline-festive btn-logout"
-            >
+            <button onClick={handleLogout} className="btn-festive btn-outline-festive btn-logout">
               Logout
             </button>
           </>
