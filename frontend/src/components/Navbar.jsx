@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import SantaCap from './SantaCap';
+import JingleBell from './JingleBell';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -17,52 +19,54 @@ export default function Navbar() {
 
   return (
     <header className="app-navbar">
-      {/* Upper-Left: My Wishlist button for employees */}
+      {/* Upper-Left: Quick navigation button for employees */}
       <div className="nav-left">
         {isEmployee && (
           isWishlistPage ? (
-            <Link to="/dashboard" className="nav-btn">
-              <span>🏠</span>
+            <Link to="/dashboard" className="nav-btn nav-btn-glow">
+              <span className="nav-icon">🏠</span>
               <span>Back to Dashboard</span>
             </Link>
           ) : (
-            <Link to="/wishlist" className="nav-btn primary">
-              <span>🎁</span>
+            <Link to="/wishlist" className="nav-btn primary nav-btn-glow">
+              <span className="nav-icon">🎁</span>
               <span>My Wishlist</span>
             </Link>
           )
         )}
       </div>
 
-      {/* Center: Brand */}
-      <Link to="/" className="nav-center">
-        <span style={{ fontSize: '1.5rem' }}>🎅</span>
-        <span className="brand-title">Secret Santa</span>
+      {/* Center: Brand with animated Santa Cap and swinging Jingle Bell */}
+      <Link to="/" className="nav-center brand-link">
+        <JingleBell size={28} className="brand-bell" />
+        <div className="brand-logo-wrapper">
+          <SantaCap size={32} className="brand-santa-cap" />
+          <span className="brand-title">Secret Santa</span>
+        </div>
       </Link>
 
       {/* Upper-Right: User info and Logout */}
       <div className="nav-right">
         {user ? (
           <>
-            <span style={{ fontWeight: 600, fontSize: '0.88rem' }}>{user.name}</span>
-            <span
-              style={{
-                fontSize: '0.75rem',
-                padding: '2px 8px',
-                borderRadius: '9999px',
-                background: user.role === 'ADMIN' ? 'var(--xmas-gold-light)' : 'var(--xmas-green-light)',
-                color: user.role === 'ADMIN' ? '#92400e' : 'var(--xmas-green-dark)',
-                fontWeight: 700
-              }}
+            <div className="user-profile-chip">
+              <span className="user-name">
+                <SantaCap size={18} style={{ marginRight: '4px' }} />
+                {user.name}
+              </span>
+              <span className={`user-role-badge ${user.role === 'ADMIN' ? 'role-admin' : 'role-employee'}`}>
+                {user.role}
+              </span>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="btn-festive btn-outline-festive btn-logout"
             >
-              {user.role}
-            </span>
-            <button onClick={handleLogout} className="btn-festive btn-outline-festive" style={{ padding: '5px 12px', fontSize: '0.82rem' }}>
               Logout
             </button>
           </>
         ) : (
-          <Link to="/login" className="btn-festive btn-red" style={{ padding: '6px 14px', fontSize: '0.85rem' }}>
+          <Link to="/login" className="btn-festive btn-red" style={{ padding: '7px 18px', fontSize: '0.88rem' }}>
             Sign In
           </Link>
         )}

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
-import ChristmasLights from '../components/ChristmasLights';
-import Snowfall from '../components/Snowfall';
 import FestiveFooter from '../components/FestiveFooter';
+import SantaCap from '../components/SantaCap';
+import JingleBell from '../components/JingleBell';
 import WishModal from '../components/WishModal';
 import ConfirmModal from '../components/ConfirmModal';
 import { employeeApi } from '../api/employeeApi';
@@ -89,8 +89,6 @@ export default function WishlistPage() {
 
   return (
     <>
-      <ChristmasLights />
-      <Snowfall />
       <Navbar />
 
       <main className="page-container">
@@ -101,11 +99,11 @@ export default function WishlistPage() {
               position: 'fixed',
               top: '75px',
               right: '24px',
-              background: '#ffffff',
-              border: '2px solid var(--xmas-red)',
+              background: 'linear-gradient(135deg, rgba(22, 36, 60, 0.98), rgba(10, 18, 32, 0.98))',
+              border: '2px solid #fbbf24',
               borderRadius: '12px',
               padding: '12px 20px',
-              boxShadow: '0 12px 30px rgba(194, 37, 43, 0.25)',
+              boxShadow: '0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(251, 191, 36, 0.3)',
               zIndex: 1000,
               display: 'flex',
               alignItems: 'center',
@@ -113,20 +111,21 @@ export default function WishlistPage() {
               animation: 'bounceDrop 0.4s ease'
             }}
           >
-            <span style={{ fontSize: '1.4rem' }}>🏷️</span>
-            <span style={{ fontWeight: 600, color: 'var(--xmas-red-dark)' }}>{toast}</span>
+            <JingleBell size={22} />
+            <span style={{ fontWeight: 600, color: '#fef08a' }}>{toast}</span>
           </div>
         )}
 
         {/* Santa Entrance Animation Banner */}
         <div className="santa-banner-box">
+          <SantaCap size={36} className="card-corner-cap" />
           <div className="santa-walker">
-            <svg width="70" height="70" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="30" r="14" fill="#fecaca" />
-              <path d="M36 26C38 12 60 12 64 26Z" fill="#c2252b" />
+            <svg width="74" height="74" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="30" r="14" fill="#fed7aa" />
+              <path d="M36 26C38 12 60 12 64 26Z" fill="#dc2626" />
               <circle cx="68" cy="20" r="5" fill="#ffffff" />
               <path d="M40 32C42 46 58 46 60 32C56 42 44 42 40 32Z" fill="#ffffff" />
-              <rect x="36" y="44" width="28" height="30" rx="8" fill="#c2252b" />
+              <rect x="36" y="44" width="28" height="30" rx="8" fill="#dc2626" />
               <rect x="36" y="58" width="28" height="6" fill="#1f2937" />
               <rect x="47" y="56" width="6" height="10" stroke="#fbbf24" strokeWidth="2" fill="none" />
               <rect x="38" y="74" width="10" height="12" rx="4" fill="#1f2937" />
@@ -138,71 +137,79 @@ export default function WishlistPage() {
             </svg>
           </div>
           <div>
-            <h2 style={{ fontFamily: 'var(--font-festive)', fontSize: '2rem', color: 'var(--xmas-red)' }}>
-              My Christmas Wishlist 📜
-            </h2>
-            <p style={{ fontSize: '0.92rem', color: '#4b5563' }}>
-              Santa and your team are listening! Add the gifts you'd love to unwrap this year.
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <JingleBell size={24} />
+              <h2 style={{ fontFamily: 'var(--font-festive)', fontSize: '2.2rem', color: '#fef08a', margin: 0, textShadow: '0 0 12px rgba(251, 191, 36, 0.4)' }}>
+                My Christmas Wishlist 📜
+              </h2>
+            </div>
+            <p style={{ fontSize: '0.95rem', color: '#cbd5e1', marginTop: '4px', margin: 0 }}>
+              Santa and your Secret Santa are listening! Add the gifts you'd love to unwrap this year.
             </p>
           </div>
         </div>
 
         {error && (
-          <div style={{ background: '#fee2e2', color: '#991b1b', padding: '12px 16px', borderRadius: '8px', marginBottom: '20px' }}>
+          <div style={{ background: 'rgba(153, 27, 27, 0.85)', border: '1px solid #ef4444', color: '#fee2e2', padding: '12px 16px', borderRadius: '8px', marginBottom: '20px' }}>
             🎅 {error}
           </div>
         )}
 
         {/* Card Header & Add Button */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
           <div>
-            <span style={{ fontSize: '1.05rem', fontWeight: 600, color: '#ffffff', textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
+            <span style={{ fontSize: '1.15rem', fontWeight: 700, color: '#fef08a', textShadow: '0 0 8px rgba(251, 191, 36, 0.3)' }}>
               Your Gift Wishes ({wishes.length})
             </span>
           </div>
 
-          {/* Hide Add Wish button once 3 wishes exist (enforced on backend, no text about limit) */}
+          {/* Maximum 3 wishes constraint enforced in UI (hides once 3 exist) */}
           {wishes.length < 3 && (
             <button
-              type="button"
               onClick={handleOpenAdd}
               className="btn-festive btn-red btn-glow"
-              style={{ fontSize: '1rem', padding: '10px 22px' }}
+              style={{ fontSize: '0.98rem', padding: '11px 24px' }}
             >
-              <span>+</span>
-              <span>Add Wish 🎁</span>
+              <span>+ Add Wish</span>
+              <span>🎁</span>
             </button>
           )}
         </div>
 
+        {/* Wishlist Items List */}
         {loading ? (
-          <div className="candy-spinner" />
+          <div style={{ textAlign: 'center', padding: '60px' }}>
+            <div className="candy-spinner" />
+          </div>
         ) : wishes.length === 0 ? (
-          <div className="festive-card" style={{ textAlign: 'center', padding: '52px 20px' }}>
-            <div className="card-ribbon" />
-            <div style={{ fontSize: '3.5rem', marginBottom: '14px' }}>🎁</div>
-            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', color: 'var(--xmas-red)', marginBottom: '8px' }}>
+          <div className="festive-card empty-wishlist-box" style={{ textAlign: 'center', padding: '54px 20px' }}>
+            <SantaCap size={36} className="card-corner-cap" />
+            <div style={{ fontSize: '3.6rem', marginBottom: '14px', animation: 'giftBounce 2.5s infinite ease-in-out' }}>
+              🎁
+            </div>
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', color: '#fef08a', marginBottom: '8px' }}>
               No wishes yet, add your first one!
             </h3>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', maxWidth: '440px', margin: '0 auto 24px' }}>
-              Tell your Secret Santa what makes you smile! Name the item, add an optional link and description.
+            <p style={{ color: '#cbd5e1', maxWidth: '440px', margin: '0 auto 24px', fontSize: '0.95rem', lineHeight: 1.6 }}>
+              Tell your Secret Santa what makes you smile! It could be coffee beans, warm socks, gadgets, or books.
             </p>
             <button
-              type="button"
               onClick={handleOpenAdd}
               className="btn-festive btn-green btn-glow"
-              style={{ fontSize: '1rem', padding: '12px 28px' }}
+              style={{ padding: '12px 28px', fontSize: '1rem' }}
             >
-              + Create Your First Wish 🎄
+              <span>+ Create Your First Wish ✨</span>
             </button>
           </div>
         ) : (
           <div className="wishlist-grid">
-            {wishes.map((wish) => (
+            {wishes.map((wish, index) => (
               <div
                 key={wish.id}
                 className={`gift-tag-card ${deletingId === wish.id ? 'card-deleting' : ''}`}
+                style={{ animationDelay: `${index * 0.12}s` }}
               >
+                <div className="gift-tag-ribbon-seal" />
                 <div>
                   <div className="gift-tag-hole" aria-hidden="true" />
                   <h4 className="gift-tag-title">{wish.productName}</h4>
@@ -220,7 +227,7 @@ export default function WishlistPage() {
                       rel="noopener noreferrer"
                       className="gift-tag-link"
                     >
-                      <span>🔗 View Item Link</span>
+                      <span>🔗 View Item</span>
                       <span>↗</span>
                     </a>
                   )}
@@ -229,17 +236,17 @@ export default function WishlistPage() {
                 <div className="gift-tag-actions">
                   <button
                     onClick={() => handleOpenEdit(wish)}
-                    className="btn-festive btn-outline-festive"
-                    style={{ padding: '5px 12px', fontSize: '0.82rem' }}
+                    className="btn-tag-action btn-edit"
+                    title="Edit Wish"
                   >
-                    Edit
+                    ✏️ Edit
                   </button>
                   <button
                     onClick={() => handleOpenDelete(wish)}
-                    className="btn-festive"
-                    style={{ background: '#fee2e2', color: '#991b1b', padding: '5px 12px', fontSize: '0.82rem' }}
+                    className="btn-tag-action btn-delete"
+                    title="Delete Wish"
                   >
-                    Remove
+                    🗑️ Delete
                   </button>
                 </div>
               </div>
@@ -250,6 +257,7 @@ export default function WishlistPage() {
         <FestiveFooter />
       </main>
 
+      {/* Add / Edit Wish Modal */}
       <WishModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -257,17 +265,18 @@ export default function WishlistPage() {
         wishToEdit={wishToEdit}
       />
 
+      {/* Delete Confirmation Modal */}
       <ConfirmModal
         isOpen={deleteConfirmOpen}
-        title="Remove Gift Wish"
-        message={`Are you sure you want to remove "${wishToDelete?.productName}" from your wishlist?`}
+        title="Remove Gift Wish?"
+        message={`Are you sure you want to remove "${wishToDelete?.productName}" from your Christmas wishlist?`}
+        confirmText="Remove Wish"
+        isDanger={true}
         onConfirm={handleConfirmDelete}
         onCancel={() => {
           setDeleteConfirmOpen(false);
           setWishToDelete(null);
         }}
-        confirmText="Remove Wish"
-        isDanger={true}
       />
     </>
   );
