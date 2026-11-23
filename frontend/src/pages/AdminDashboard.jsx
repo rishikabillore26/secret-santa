@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Navbar from '../components/Navbar';
 import FestiveFooter from '../components/FestiveFooter';
-import SantaCap from '../components/SantaCap';
 import JingleBell from '../components/JingleBell';
+import ChristmasTree from '../components/ChristmasTree';
+import RealisticSanta from '../components/RealisticSanta';
 import AssignSantaModal from '../components/AssignSantaModal';
 import { adminApi } from '../api/adminApi';
 
@@ -99,18 +100,27 @@ export default function AdminDashboard() {
           </div>
         )}
 
-        <div className="festive-card">
+        <div className="festive-card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
           <div className="card-ribbon" />
-          <SantaCap size={36} className="card-corner-cap" />
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-            <JingleBell size={28} />
-            <h2 className="festive-heading" style={{ margin: 0 }}>
-              Administrator Dashboard 🎅
-            </h2>
+          
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flex: '1 1 350px' }}>
+            <RealisticSanta pose="sitting" size={105} />
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                <JingleBell size={28} />
+                <h2 className="festive-heading" style={{ margin: 0 }}>
+                  Administrator Dashboard 🎅
+                </h2>
+              </div>
+              <p className="festive-sub" style={{ marginBottom: 0 }}>
+                Pair employees for the office Secret Santa exchange. Pairings and wishlist details remain strictly confidential.
+              </p>
+            </div>
           </div>
-          <p className="festive-sub" style={{ marginBottom: 0 }}>
-            Pair employees for the office Secret Santa exchange. Pairings and wishlist details remain strictly confidential.
-          </p>
+
+          <div>
+            <ChristmasTree size={120} />
+          </div>
         </div>
 
         {error && (
@@ -146,7 +156,6 @@ export default function AdminDashboard() {
         {/* Employee List Section with Filter Buttons */}
         <section className="festive-card">
           <div className="card-ribbon" />
-          <SantaCap size={36} className="card-corner-cap" />
           
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '14px', marginBottom: '18px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>

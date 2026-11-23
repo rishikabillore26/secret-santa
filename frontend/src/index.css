@@ -97,22 +97,22 @@ body::before {
    ===================================================== */
 .flying-sleigh-sky-layer {
   position: fixed;
-  top: 15px;
+  top: 22px;
   left: 0;
   width: 100vw;
-  height: 120px;
+  height: 110px;
   pointer-events: none;
-  z-index: 80;
-  overflow: hidden;
+  z-index: 120;
+  overflow: visible;
 }
 
 .flying-rath-track {
   position: absolute;
-  top: 10px;
+  top: 6px;
   left: -480px;
   display: flex;
   align-items: center;
-  animation: flyAcrossSky 20s linear infinite;
+  animation: flyAcrossSky 22s linear infinite;
 }
 
 @keyframes flyAcrossSky {
@@ -124,13 +124,13 @@ body::before {
     opacity: 1;
   }
   25% {
-    transform: translateX(calc(30vw + 120px)) translateY(-10px) rotate(2deg);
+    transform: translateX(calc(30vw + 120px)) translateY(-8px) rotate(2deg);
   }
   50% {
-    transform: translateX(calc(60vw + 240px)) translateY(8px) rotate(-1.5deg);
+    transform: translateX(calc(60vw + 240px)) translateY(6px) rotate(-1.5deg);
   }
   75% {
-    transform: translateX(calc(85vw + 360px)) translateY(-6px) rotate(1.5deg);
+    transform: translateX(calc(85vw + 360px)) translateY(-5px) rotate(1.5deg);
   }
   97% {
     opacity: 1;
@@ -142,7 +142,7 @@ body::before {
 }
 
 .sleigh-rath-svg {
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.65));
 }
 
 .rudolph-nose {
@@ -247,6 +247,327 @@ body::before {
 }
 
 /* =====================================================
+   REALISTIC SANTA ANIMATIONS (SITTING, WAITING, DELIVERING)
+   ===================================================== */
+/* Dangling legs bounce playfully over the ledge/title */
+.santa-dangle-leg-left {
+  transform-origin: 56px 105px;
+  animation: legDangleBounce 2.8s infinite ease-in-out;
+}
+
+.santa-dangle-leg-right {
+  transform-origin: 100px 105px;
+  animation: legDangleBounce 2.8s infinite ease-in-out 0.4s;
+}
+
+@keyframes legDangleBounce {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(7deg) translateY(-2px); }
+}
+
+/* Sitting Santa arm waving */
+.santa-sitting-wave-arm {
+  transform-origin: 112px 80px;
+  animation: santaSitArmWave 1.8s infinite alternate ease-in-out;
+}
+
+@keyframes santaSitArmWave {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(18deg); }
+}
+
+/* Waiting Santa foot tapping */
+.santa-foot-tap {
+  transform-origin: 102px 118px;
+  animation: footTapAction 1.4s infinite alternate ease-in-out;
+}
+
+@keyframes footTapAction {
+  0% { transform: rotate(0deg); }
+  70% { transform: rotate(0deg); }
+  85% { transform: rotate(-8deg); }
+  100% { transform: rotate(6deg); }
+}
+
+/* Pom-pom bounces */
+.santa-sitting-pompom,
+.santa-waiting-pompom {
+  animation: pompomBob 1.6s infinite alternate ease-in-out;
+}
+
+/* =====================================================
+   SANTA PERCHED ON TOP OF "Add to Your Wishlist" MODAL TITLE
+   ===================================================== */
+.modal-with-perched-santa {
+  padding-top: 24px !important;
+  position: relative !important;
+}
+
+.santa-perched-on-title {
+  position: absolute;
+  top: -55px;
+  left: 28px;
+  z-index: 10005;
+  pointer-events: none;
+  animation: santaDropSit 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes santaDropSit {
+  0% {
+    transform: translateY(-90px) translateX(60px) rotate(16deg) scale(0.7);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(6px) translateX(-4px) rotate(-4deg) scale(1.05);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-3px) translateX(2px) rotate(2deg) scale(0.98);
+  }
+  100% {
+    transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* =====================================================
+   SANTA WAITING ON WISHLIST EMPTY STATE
+   ===================================================== */
+.santa-perched-waiting-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  animation: santaArriveAndSit 0.85s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+}
+
+@keyframes santaArriveAndSit {
+  0% {
+    transform: translateY(-50px) scale(0.85);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(6px) scale(1.03);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.santa-speech-bubble {
+  background: linear-gradient(135deg, #fef08a 0%, #fde047 100%);
+  color: #18181b;
+  font-weight: 800;
+  font-size: 0.92rem;
+  padding: 8px 18px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  margin-bottom: 8px;
+  position: relative;
+  animation: bubbleFloat 2.2s infinite alternate ease-in-out;
+}
+
+.santa-speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #fde047;
+}
+
+@keyframes bubbleFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-5px); }
+}
+
+/* =====================================================
+   GIFT WRAPPING ANIMATION SCENE (DASHBOARD)
+   ===================================================== */
+.gift-wrapping-stage-container {
+  background: linear-gradient(145deg, rgba(22, 38, 64, 0.92) 0%, rgba(12, 22, 38, 0.96) 100%);
+  border: 1.5px solid rgba(251, 191, 36, 0.45);
+  border-radius: 18px;
+  padding: 24px 20px 20px;
+  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.55), 0 12px 35px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.wrapping-scenery-backdrop {
+  position: relative;
+  min-height: 175px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.snowy-ground-ledge {
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+  width: 90%;
+  height: 8px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85) 20%, rgba(226, 232, 240, 0.85) 80%, transparent);
+  border-radius: 4px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+}
+
+.santa-delivery-track {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 32px;
+  position: relative;
+  min-height: 165px;
+  padding-bottom: 8px;
+}
+
+/* Santa delivery motion */
+.santa-character-wrapper {
+  transition: transform 0.3s ease;
+}
+
+.santa-character-wrapper.phase-carrying {
+  animation: santaDeliverStride 2.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.santa-character-wrapper.phase-departed {
+  opacity: 0;
+  transform: translateX(450px) translateY(-40px) scale(0.6);
+}
+
+@keyframes santaDeliverStride {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  20% {
+    transform: translateX(40px) translateY(-8px);
+  }
+  40% {
+    transform: translateX(110px) translateY(-14px);
+  }
+  65% {
+    transform: translateX(220px) translateY(-22px) rotate(-3deg);
+  }
+  85% {
+    transform: translateX(340px) translateY(-32px) rotate(-5deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(460px) translateY(-45px) rotate(-6deg) scale(0.6);
+    opacity: 0;
+  }
+}
+
+/* Gift Box Ribbon Wrapping Animations */
+.pedestal-gift-box {
+  position: relative;
+  display: inline-block;
+  animation: boxHover 2s infinite alternate ease-in-out;
+}
+
+@keyframes boxHover {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+.ribbon-vertical-wrap {
+  transform-origin: top center;
+  animation: wrapVert 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes wrapVert {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+.ribbon-horizontal-wrap {
+  transform-origin: left center;
+  animation: wrapHoriz 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+@keyframes wrapHoriz {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+.ribbon-bow-pop {
+  transform-origin: 50px 28px;
+  animation: bowPopIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.9s forwards;
+}
+
+@keyframes bowPopIn {
+  0% { transform: scale(0); opacity: 0; }
+  70% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.wrapping-sparkle-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.wrap-sparkle {
+  position: absolute;
+  font-size: 1.2rem;
+  animation: sparkleOrbit 1.5s infinite ease-out;
+}
+
+.wrap-sparkle.s1 { top: -25px; left: -25px; animation-delay: 0s; }
+.wrap-sparkle.s2 { top: -30px; right: -25px; animation-delay: 0.35s; }
+.wrap-sparkle.s3 { bottom: -20px; left: -20px; animation-delay: 0.7s; }
+.wrap-sparkle.s4 { bottom: -22px; right: -22px; animation-delay: 1.05s; }
+
+@keyframes sparkleOrbit {
+  0% { transform: scale(0.3) rotate(0deg); opacity: 0; }
+  50% { transform: scale(1.3) rotate(90deg); opacity: 1; }
+  100% { transform: scale(0.5) rotate(180deg); opacity: 0; }
+}
+
+.santa-departed-message {
+  text-align: center;
+  padding: 30px 16px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =====================================================
+   CHRISTMAS TREE STYLES & GLOWS
+   ===================================================== */
+.tree-top-star {
+  transform-origin: 80px 18px;
+  animation: starPulse 1.8s infinite alternate ease-in-out;
+}
+
+@keyframes starPulse {
+  0% { transform: scale(0.92); filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6)); }
+  100% { transform: scale(1.15); filter: drop-shadow(0 0 16px rgba(251, 191, 36, 1)); }
+}
+
+.tree-light-wire {
+  animation: wireTwinkle 1.6s infinite alternate ease-in-out;
+}
+
+@keyframes wireTwinkle {
+  0% { opacity: 0.5; stroke: #fde047; }
+  100% { opacity: 1; stroke: #ffffff; }
+}
+
+/* =====================================================
    ANIMATED JINGLE BELL (SWINGS & SPARKLES)
    ===================================================== */
 .jingle-bell-wrapper {
@@ -305,30 +626,13 @@ body::before {
   100% { transform: scale(1.15) translateY(-2px); }
 }
 
-/* Corner Santa Cap on Cards */
-.card-corner-cap {
-  position: absolute;
-  top: -8px;
-  right: -6px;
-  z-index: 15;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.45));
-}
-
-.modal-corner-cap {
-  position: absolute;
-  top: -12px;
-  left: -8px;
-  z-index: 15;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
-}
-
 /* =====================================================
    NAVBAR (LUXURY FROSTED GLASS & GOLD ACCENTS)
    ===================================================== */
 .app-navbar {
   position: sticky;
   top: 0;
-  background: rgba(10, 20, 36, 0.88);
+  background: rgba(10, 20, 36, 0.92);
   backdrop-filter: blur(18px);
   border-bottom: 1.5px solid rgba(251, 191, 36, 0.35);
   padding: 12px 28px;
@@ -511,16 +815,11 @@ body::before {
    ===================================================== */
 .festive-waiting-box {
   text-align: center;
-  padding: 46px 20px;
+  padding: 40px 20px;
   background: linear-gradient(135deg, rgba(30, 48, 77, 0.75) 0%, rgba(18, 30, 49, 0.88) 100%);
   border: 1.8px dashed rgba(251, 191, 36, 0.5);
   border-radius: 16px;
   box-shadow: inset 0 0 35px rgba(251, 191, 36, 0.08), 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-@keyframes hourglassBob {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(8deg); }
 }
 
 /* =====================================================
@@ -684,16 +983,6 @@ body::before {
   overflow: visible;
 }
 
-.santa-walker {
-  animation: santaSlideIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
-}
-
-@keyframes santaSlideIn {
-  0% { transform: translateX(-80px) rotate(-6deg); opacity: 0; }
-  100% { transform: translateX(0) rotate(0deg); opacity: 1; }
-}
-
 /* =====================================================
    GIFT TAG WISHLIST PARCEL CARDS (NO WHITE BACKGROUNDS!)
    ===================================================== */
@@ -838,11 +1127,6 @@ body::before {
 @keyframes floatAway {
   0% { opacity: 1; transform: translateY(0) scale(1); }
   100% { opacity: 0; transform: translateY(-30px) rotate(4deg) scale(0.85); }
-}
-
-@keyframes giftBounce {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-10px) scale(1.06); }
 }
 
 /* =====================================================
@@ -1106,8 +1390,8 @@ body::before {
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
-  background: rgba(3, 7, 18, 0.8) !important;
-  backdrop-filter: blur(10px) !important;
+  background: rgba(3, 7, 18, 0.82) !important;
+  backdrop-filter: blur(12px) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -1120,8 +1404,8 @@ body::before {
   background: linear-gradient(145deg, rgba(22, 36, 60, 0.97) 0%, rgba(10, 18, 32, 0.98) 100%) !important;
   border-radius: 20px !important;
   width: 100% !important;
-  max-width: 480px !important;
-  padding: 32px 30px !important;
+  max-width: 490px !important;
+  padding: 34px 30px !important;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(239, 68, 68, 0.2) !important;
   position: relative !important;
   z-index: 10000 !important;

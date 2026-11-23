@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import FestiveFooter from '../components/FestiveFooter';
-import SantaCap from '../components/SantaCap';
 import JingleBell from '../components/JingleBell';
+import ChristmasTree from '../components/ChristmasTree';
+import RealisticSanta from '../components/RealisticSanta';
+import GiftWrappingScene from '../components/GiftWrappingScene';
 import { employeeApi } from '../api/employeeApi';
 import { Link } from 'react-router-dom';
 
@@ -66,119 +68,59 @@ export default function EmployeeDashboard() {
           </div>
         )}
 
-        {/* Quick Wishlist Banner */}
-        <div className="festive-card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
+        {/* Quick Wishlist Banner with Christmas Tree */}
+        <div className="festive-card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
           <div className="card-ribbon" />
-          <SantaCap size={36} className="card-corner-cap" />
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
-              <JingleBell size={26} />
-              <h2 className="festive-heading" style={{ margin: 0 }}>
-                Your Secret Santa Headquarters 🎄
-              </h2>
+          
+          <div style={{ display: 'flex', alignItems: 'center', gap: '22px', flex: '1 1 350px' }}>
+            <ChristmasTree size={120} />
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
+                <JingleBell size={26} />
+                <h2 className="festive-heading" style={{ margin: 0 }}>
+                  Your Secret Santa Headquarters 🎄
+                </h2>
+              </div>
+              <p style={{ color: '#cbd5e1', fontSize: '0.96rem', margin: 0 }}>
+                You currently have <strong style={{ color: '#fef08a' }}>{status?.wishCount ?? 0} wish(es)</strong> saved on your wishlist.
+              </p>
             </div>
-            <p style={{ color: '#cbd5e1', fontSize: '0.96rem', margin: 0 }}>
-              You currently have <strong style={{ color: '#fef08a' }}>{status?.wishCount ?? 0} wish(es)</strong> saved on your wishlist.
-            </p>
           </div>
-          <Link to="/wishlist" className="btn-festive btn-red btn-glow" style={{ fontSize: '1rem', padding: '12px 26px' }}>
+
+          <Link to="/wishlist" className="btn-festive btn-red btn-glow" style={{ fontSize: '1rem', padding: '13px 28px' }}>
             <span>🎁</span>
             <span>Open My Wishlist</span>
           </Link>
         </div>
 
-        {/* Section: My Secret Santa Recipient */}
+        {/* Section: My Secret Santa Recipient with Santa Gift Wrapping & Delivery Scene */}
         <section className="festive-card">
           <div className="card-ribbon" />
-          <SantaCap size={36} className="card-corner-cap" />
           
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px' }}>
-            <JingleBell size={26} />
-            <h3 className="festive-heading" style={{ fontSize: '1.5rem', margin: 0 }}>
-              My Secret Santa Recipient
-            </h3>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginBottom: '20px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <JingleBell size={28} />
+              <h3 className="festive-heading" style={{ fontSize: '1.6rem', margin: 0 }}>
+                My Secret Santa Recipient
+              </h3>
+            </div>
+
+            <span style={{ fontSize: '0.88rem', color: '#86efac', background: 'rgba(34, 197, 94, 0.15)', border: '1px solid rgba(34, 197, 94, 0.35)', padding: '4px 14px', borderRadius: '9999px', fontWeight: 600 }}>
+              {status?.assigned ? '✓ Matched by Admin' : '⏳ Pairing in Progress'}
+            </span>
           </div>
 
           {loading ? (
             <div style={{ textAlign: 'center', padding: '40px' }}>
               <div className="candy-spinner" />
             </div>
-          ) : !status?.assigned ? (
-            <div className="festive-waiting-box">
-              <div style={{ fontSize: '3.6rem', marginBottom: '12px', animation: 'hourglassBob 3s infinite ease-in-out' }}>
-                ⏳
-              </div>
-              <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', color: '#fef08a', marginBottom: '10px', textShadow: '0 0 10px rgba(251, 191, 36, 0.4)' }}>
-                Your Secret Santa match isn't ready yet, check back soon!
-              </h4>
-              <p style={{ color: '#cbd5e1', fontSize: '0.96rem', maxWidth: '520px', margin: '0 auto', lineHeight: 1.6 }}>
-                Your office administrator is currently selecting the gift pairings. As soon as your recipient is assigned, you'll be able to reveal them here!
-              </p>
-            </div>
-          ) : revealStage === 'idle' ? (
-            <div className="reveal-stage">
-              <p style={{ fontSize: '1.15rem', color: '#f8fafc', fontWeight: 600, marginBottom: '24px', textShadow: '0 0 10px rgba(255, 255, 255, 0.3)' }}>
-                ✨ Santa’s elves have made a match for you! Ready to unwrap your recipient?
-              </p>
-
-              <div className="reveal-box-wrapper" onClick={handleStartRevealSequence} title="Click to unwrap your gift!">
-                {/* Glowing gift box rays */}
-                <div className="gift-halo-glow" />
-
-                {/* Gift Box SVG */}
-                <svg width="140" height="140" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="giftbox-svg-interactive">
-                  <rect x="20" y="38" width="60" height="52" rx="4" fill="#c2252b" />
-                  <rect x="44" y="38" width="12" height="52" fill="#fbbf24" />
-                  {/* Ribbon Bow on Lid */}
-                  <rect x="16" y="28" width="68" height="14" rx="3" fill="#991b1b" />
-                  <rect x="44" y="28" width="12" height="14" fill="#f59e0b" />
-                  <path d="M42 28C34 16 22 24 38 28Z" fill="#fbbf24" />
-                  <path d="M58 28C66 16 78 24 62 28Z" fill="#fbbf24" />
-                  <circle cx="50" cy="28" r="4.5" fill="#d97706" />
-                </svg>
-
-                <div style={{ marginTop: '16px' }}>
-                  <button className="btn-festive btn-gold btn-glow" style={{ fontSize: '1.05rem', padding: '12px 28px' }}>
-                    <span>🎁 Reveal My Secret Santa Person ✨</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ) : revealStage === 'shaking' || revealStage === 'popping' ? (
-            <div className="reveal-stage">
-              <p style={{ fontSize: '1.2rem', color: '#fde68a', fontWeight: 700, marginBottom: '20px' }}>
-                {revealStage === 'shaking' ? '🎅 Santa is checking the list twice...' : '✨ UNWRAPPING YOUR SECRET SANTA RECIPIENT! ✨'}
-              </p>
-
-              <div className={`reveal-box-wrapper ${revealStage === 'shaking' ? 'giftbox-shaking' : 'giftbox-popping'}`}>
-                <div className="gift-halo-glow active" />
-                <svg width="140" height="140" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="20" y="44" width="60" height="46" rx="4" fill="#c2252b" />
-                  <rect x="44" y="44" width="12" height="46" fill="#fbbf24" />
-                  <g transform={revealStage === 'popping' ? "translate(0, -28) rotate(-18 50 20)" : ""}>
-                    <rect x="16" y="32" width="68" height="12" rx="3" fill="#991b1b" />
-                    <rect x="44" y="32" width="12" height="12" fill="#f59e0b" />
-                    <path d="M42 32C34 20 22 28 38 32Z" fill="#fbbf24" />
-                    <path d="M58 32C66 20 78 28 62 32Z" fill="#fbbf24" />
-                    <circle cx="50" cy="32" r="4" fill="#d97706" />
-                  </g>
-                </svg>
-
-                {revealStage === 'popping' && (
-                  <div className="confetti-burst">
-                    <span style={{ fontSize: '3.5rem' }}>✨🎉🌟🎁✨</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          ) : (
+          ) : revealStage === 'revealed' ? (
             /* Stage: Revealed */
             <div>
               <div className="recipient-reveal-card">
-                <SantaCap size={44} className="card-corner-cap" />
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-                  <JingleBell size={26} />
-                  <span style={{ fontSize: '1.05rem', fontWeight: 700, color: '#fef08a', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+                  <JingleBell size={28} />
+                  <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fef08a', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
                     You are the Secret Santa for:
                   </span>
                 </div>
@@ -187,22 +129,22 @@ export default function EmployeeDashboard() {
                   🎉 {recipient?.recipientName}
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '0.95rem', color: '#f1f5f9' }}>
-                  <span>🛷 Sleigh Delivery assigned to you! Keep it a festive surprise! 🤫</span>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '0.98rem', color: '#f1f5f9' }}>
+                  <span>🛷 Santa has prepared this gift delivery for you! Keep it a surprise! 🤫</span>
                 </div>
               </div>
 
-              <div style={{ marginTop: '32px' }}>
+              <div style={{ marginTop: '34px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px' }}>
                   <JingleBell size={24} />
-                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.35rem', color: '#fef08a', margin: 0 }}>
+                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', color: '#fef08a', margin: 0 }}>
                     ✨ {recipient?.recipientName}’s Holiday Wishlist:
                   </h4>
                 </div>
 
                 {recipient?.wishes?.length === 0 ? (
-                  <div style={{ padding: '32px', background: 'rgba(30, 48, 77, 0.7)', borderRadius: '14px', border: '1.5px dashed rgba(251, 191, 36, 0.4)', textAlign: 'center', color: '#cbd5e1' }}>
-                    <p style={{ fontStyle: 'italic', fontSize: '1.02rem', margin: 0 }}>
+                  <div style={{ padding: '34px', background: 'rgba(30, 48, 77, 0.7)', borderRadius: '14px', border: '1.5px dashed rgba(251, 191, 36, 0.4)', textAlign: 'center', color: '#cbd5e1' }}>
+                    <p style={{ fontStyle: 'italic', fontSize: '1.05rem', margin: 0 }}>
                       {recipient?.recipientName} hasn't added any specific wishes yet. Feel free to surprise them with a classic holiday gift! 🎁
                     </p>
                   </div>
@@ -243,15 +185,74 @@ export default function EmployeeDashboard() {
                 )}
               </div>
 
-              <div style={{ textAlign: 'center', marginTop: '32px' }}>
+              <div style={{ textAlign: 'center', marginTop: '34px' }}>
                 <button
-                  onClick={handleStartRevealSequence}
+                  onClick={() => setRevealStage('idle')}
                   className="btn-festive btn-outline-festive"
-                  style={{ fontSize: '0.9rem', padding: '8px 20px' }}
+                  style={{ fontSize: '0.92rem', padding: '10px 22px' }}
                 >
-                  <span>🔄 Replay Reveal Animation 🎁</span>
+                  <span>🔄 Replay Santa Delivery Animation 🎁</span>
                 </button>
               </div>
+            </div>
+          ) : revealStage === 'shaking' || revealStage === 'popping' ? (
+            /* Stage: Shaking / Popping */
+            <div className="reveal-stage">
+              <p style={{ fontSize: '1.25rem', color: '#fde68a', fontWeight: 700, marginBottom: '22px' }}>
+                {revealStage === 'shaking' ? '🎅 Santa is checking the list twice...' : '✨ UNWRAPPING YOUR SECRET SANTA RECIPIENT! ✨'}
+              </p>
+
+              <div className={`reveal-box-wrapper ${revealStage === 'shaking' ? 'giftbox-shaking' : 'giftbox-popping'}`}>
+                <div className="gift-halo-glow active" />
+                <svg width="150" height="150" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="20" y="44" width="60" height="46" rx="4" fill="#c2252b" />
+                  <rect x="44" y="44" width="12" height="46" fill="#fbbf24" />
+                  <g transform={revealStage === 'popping' ? "translate(0, -28) rotate(-18 50 20)" : ""}>
+                    <rect x="16" y="32" width="68" height="12" rx="3" fill="#991b1b" />
+                    <rect x="44" y="32" width="12" height="12" fill="#f59e0b" />
+                    <path d="M42 32C34 20 22 28 38 32Z" fill="#fbbf24" />
+                    <path d="M58 32C66 20 78 28 62 32Z" fill="#fbbf24" />
+                    <circle cx="50" cy="32" r="4" fill="#d97706" />
+                  </g>
+                </svg>
+
+                {revealStage === 'popping' && (
+                  <div className="confetti-burst">
+                    <span style={{ fontSize: '3.8rem' }}>✨🎉🌟🎁✨</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : (
+            /* Stage: Default Idle - Santa Gift Wrapping & Delivery Scene */
+            <div>
+              {/* SANTA GIFT WRAPPING ANIMATION SCENE */}
+              <GiftWrappingScene
+                isAssigned={status?.assigned}
+                onRevealClick={status?.assigned ? handleStartRevealSequence : null}
+              />
+
+              {!status?.assigned ? (
+                <div className="festive-waiting-box" style={{ marginTop: '24px' }}>
+                  <div style={{ fontSize: '3.4rem', marginBottom: '10px' }}>⏳</div>
+                  <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', color: '#fef08a', marginBottom: '8px' }}>
+                    Your Secret Santa match isn't ready yet, check back soon!
+                  </h4>
+                  <p style={{ color: '#cbd5e1', fontSize: '0.96rem', maxWidth: '520px', margin: '0 auto', lineHeight: 1.6 }}>
+                    Your office administrator is currently selecting the gift pairings. Santa is preparing and wrapping the surprise gifts in the meantime!
+                  </p>
+                </div>
+              ) : (
+                <div style={{ textAlign: 'center', marginTop: '24px' }}>
+                  <button
+                    onClick={handleStartRevealSequence}
+                    className="btn-festive btn-gold btn-glow"
+                    style={{ fontSize: '1.1rem', padding: '14px 34px' }}
+                  >
+                    <span>🎁 Reveal My Secret Santa Person ✨</span>
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </section>

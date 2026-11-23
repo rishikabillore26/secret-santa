@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import FestiveFooter from '../components/FestiveFooter';
-import SantaCap from '../components/SantaCap';
 import JingleBell from '../components/JingleBell';
+import RealisticSanta from '../components/RealisticSanta';
+import ChristmasTree from '../components/ChristmasTree';
 import WishModal from '../components/WishModal';
 import ConfirmModal from '../components/ConfirmModal';
 import { employeeApi } from '../api/employeeApi';
@@ -116,36 +117,25 @@ export default function WishlistPage() {
           </div>
         )}
 
-        {/* Santa Entrance Animation Banner */}
-        <div className="santa-banner-box">
-          <SantaCap size={36} className="card-corner-cap" />
-          <div className="santa-walker">
-            <svg width="74" height="74" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="30" r="14" fill="#fed7aa" />
-              <path d="M36 26C38 12 60 12 64 26Z" fill="#dc2626" />
-              <circle cx="68" cy="20" r="5" fill="#ffffff" />
-              <path d="M40 32C42 46 58 46 60 32C56 42 44 42 40 32Z" fill="#ffffff" />
-              <rect x="36" y="44" width="28" height="30" rx="8" fill="#dc2626" />
-              <rect x="36" y="58" width="28" height="6" fill="#1f2937" />
-              <rect x="47" y="56" width="6" height="10" stroke="#fbbf24" strokeWidth="2" fill="none" />
-              <rect x="38" y="74" width="10" height="12" rx="4" fill="#1f2937" />
-              <rect x="52" y="74" width="10" height="12" rx="4" fill="#1f2937" />
-              <circle cx="28" cy="50" r="16" fill="#15803d" />
-              <path d="M22 38L32 46" stroke="#fbbf24" strokeWidth="3" />
-              <circle cx="68" cy="46" r="6" fill="#ffffff" />
-              <path d="M68 42L76 34" stroke="#ffffff" strokeWidth="4" strokeLinecap="round" />
-            </svg>
-          </div>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <JingleBell size={24} />
-              <h2 style={{ fontFamily: 'var(--font-festive)', fontSize: '2.2rem', color: '#fef08a', margin: 0, textShadow: '0 0 12px rgba(251, 191, 36, 0.4)' }}>
-                My Christmas Wishlist 📜
-              </h2>
+        {/* Santa & Christmas Tree Banner */}
+        <div className="santa-banner-box" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
+            <RealisticSanta pose="sitting" size={105} />
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <JingleBell size={26} />
+                <h2 style={{ fontFamily: 'var(--font-festive)', fontSize: '2.3rem', color: '#fef08a', margin: 0, textShadow: '0 0 14px rgba(251, 191, 36, 0.45)' }}>
+                  My Christmas Wishlist 📜
+                </h2>
+              </div>
+              <p style={{ fontSize: '0.96rem', color: '#cbd5e1', marginTop: '6px', margin: 0 }}>
+                Santa and your Secret Santa are listening! Add the gifts you'd love to unwrap this year.
+              </p>
             </div>
-            <p style={{ fontSize: '0.95rem', color: '#cbd5e1', marginTop: '4px', margin: 0 }}>
-              Santa and your Secret Santa are listening! Add the gifts you'd love to unwrap this year.
-            </p>
+          </div>
+
+          <div style={{ marginRight: '10px' }}>
+            <ChristmasTree size={120} />
           </div>
         </div>
 
@@ -156,10 +146,10 @@ export default function WishlistPage() {
         )}
 
         {/* Card Header & Add Button */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '22px', flexWrap: 'wrap', gap: '12px' }}>
           <div>
-            <span style={{ fontSize: '1.15rem', fontWeight: 700, color: '#fef08a', textShadow: '0 0 8px rgba(251, 191, 36, 0.3)' }}>
-              Your Gift Wishes ({wishes.length})
+            <span style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fef08a', textShadow: '0 0 10px rgba(251, 191, 36, 0.35)' }}>
+              Your Gift Wishes ({wishes.length} / 3)
             </span>
           </div>
 
@@ -168,7 +158,7 @@ export default function WishlistPage() {
             <button
               onClick={handleOpenAdd}
               className="btn-festive btn-red btn-glow"
-              style={{ fontSize: '0.98rem', padding: '11px 24px' }}
+              style={{ fontSize: '1rem', padding: '12px 26px' }}
             >
               <span>+ Add Wish</span>
               <span>🎁</span>
@@ -176,29 +166,44 @@ export default function WishlistPage() {
           )}
         </div>
 
-        {/* Wishlist Items List */}
+        {/* Wishlist Items List or Waiting Empty State */}
         {loading ? (
           <div style={{ textAlign: 'center', padding: '60px' }}>
             <div className="candy-spinner" />
           </div>
         ) : wishes.length === 0 ? (
-          <div className="festive-card empty-wishlist-box" style={{ textAlign: 'center', padding: '54px 20px' }}>
-            <SantaCap size={36} className="card-corner-cap" />
-            <div style={{ fontSize: '3.6rem', marginBottom: '14px', animation: 'giftBounce 2.5s infinite ease-in-out' }}>
-              🎁
+          /* SANTA SITTING DIRECTLY ABOVE "No wishes yet, add your first one!" WAITING */
+          <div className="festive-card empty-wishlist-interactive-stage" style={{ textAlign: 'center', padding: '48px 24px 40px', position: 'relative' }}>
+            <div className="card-ribbon" />
+
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '40px', flexWrap: 'wrap', marginBottom: '16px' }}>
+              {/* Christmas Tree Beside Santa */}
+              <div className="empty-state-tree">
+                <ChristmasTree size={170} />
+              </div>
+
+              {/* Realistic Santa Sitting and Waiting with his scroll */}
+              <div className="santa-perched-waiting-slot">
+                <div className="santa-speech-bubble">
+                  Ho Ho Ho! I'm waiting for your wish! 🎅✨
+                </div>
+                <RealisticSanta pose="waiting" size={150} />
+              </div>
             </div>
-            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', color: '#fef08a', marginBottom: '8px' }}>
+
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', color: '#fef08a', marginBottom: '10px', textShadow: '0 0 12px rgba(251, 191, 36, 0.4)' }}>
               No wishes yet, add your first one!
             </h3>
-            <p style={{ color: '#cbd5e1', maxWidth: '440px', margin: '0 auto 24px', fontSize: '0.95rem', lineHeight: 1.6 }}>
-              Tell your Secret Santa what makes you smile! It could be coffee beans, warm socks, gadgets, or books.
+            <p style={{ color: '#cbd5e1', maxWidth: '500px', margin: '0 auto 26px', fontSize: '1rem', lineHeight: 1.6 }}>
+              Santa is sitting by the tree checking his quill and list! Tell your Secret Santa what makes you smile: gadgets, warm hoodies, coffee, or books.
             </p>
+
             <button
               onClick={handleOpenAdd}
               className="btn-festive btn-green btn-glow"
-              style={{ padding: '12px 28px', fontSize: '1rem' }}
+              style={{ padding: '14px 34px', fontSize: '1.08rem' }}
             >
-              <span>+ Create Your First Wish ✨</span>
+              <span>+ Create Your First Wish ✨🎁</span>
             </button>
           </div>
         ) : (
@@ -257,7 +262,7 @@ export default function WishlistPage() {
         <FestiveFooter />
       </main>
 
-      {/* Add / Edit Wish Modal */}
+      {/* Add / Edit Wish Modal with Santa sitting on top of the title */}
       <WishModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
