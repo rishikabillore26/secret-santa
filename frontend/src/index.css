@@ -296,95 +296,72 @@ body::before {
 }
 
 /* =====================================================
-   SANTA PERCHED ON TOP OF "Add to Your Wishlist" MODAL TITLE
+   SANTA GLIDING SLOWLY FROM UPPER-RIGHT CORNER TO SIT ON TEXT
    ===================================================== */
 .modal-with-perched-santa {
-  padding-top: 24px !important;
+  padding-top: 28px !important;
   position: relative !important;
 }
 
-.santa-perched-on-title {
+/* Santa glides slowly from upper-right corner and sits directly on the modal text */
+.santa-glide-sit-modal {
   position: absolute;
-  top: -55px;
-  left: 28px;
+  top: -48px;
+  left: 20px;
   z-index: 10005;
   pointer-events: none;
-  animation: santaDropSit 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: santaGlideFromTopRight 1.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-@keyframes santaDropSit {
+@keyframes santaGlideFromTopRight {
   0% {
-    transform: translateY(-90px) translateX(60px) rotate(16deg) scale(0.7);
+    transform: translate(280px, -150px) rotate(22deg) scale(0.65);
     opacity: 0;
   }
-  60% {
-    transform: translateY(6px) translateX(-4px) rotate(-4deg) scale(1.05);
+  30% {
     opacity: 1;
   }
-  80% {
-    transform: translateY(-3px) translateX(2px) rotate(2deg) scale(0.98);
+  75% {
+    transform: translate(-6px, 4px) rotate(-4deg) scale(1.04);
+  }
+  90% {
+    transform: translate(2px, -2px) rotate(2deg) scale(0.98);
   }
   100% {
-    transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+    transform: translate(0, 0) rotate(0deg) scale(1);
     opacity: 1;
   }
 }
 
-/* =====================================================
-   SANTA WAITING ON WISHLIST EMPTY STATE
-   ===================================================== */
-.santa-perched-waiting-slot {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  animation: santaArriveAndSit 0.85s cubic-bezier(0.2, 1, 0.3, 1) forwards;
-}
-
-@keyframes santaArriveAndSit {
-  0% {
-    transform: translateY(-50px) scale(0.85);
-    opacity: 0;
-  }
-  70% {
-    transform: translateY(6px) scale(1.03);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-}
-
-.santa-speech-bubble {
-  background: linear-gradient(135deg, #fef08a 0%, #fde047 100%);
-  color: #18181b;
-  font-weight: 800;
-  font-size: 0.92rem;
-  padding: 8px 18px;
-  border-radius: 14px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
-  margin-bottom: 8px;
-  position: relative;
-  animation: bubbleFloat 2.2s infinite alternate ease-in-out;
-}
-
-.santa-speech-bubble::after {
-  content: '';
+/* Santa glides slowly from upper-right corner and sits directly on the empty state text */
+.santa-glide-sit-empty-text {
   position: absolute;
-  bottom: -7px;
+  top: -62px;
   left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 8px solid #fde047;
+  margin-left: -52px;
+  z-index: 20;
+  pointer-events: none;
+  animation: santaGlideToEmptyText 1.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-@keyframes bubbleFloat {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-5px); }
+@keyframes santaGlideToEmptyText {
+  0% {
+    transform: translate(340px, -180px) rotate(24deg) scale(0.65);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    transform: translate(-8px, 6px) rotate(-5deg) scale(1.05);
+  }
+  90% {
+    transform: translate(3px, -2px) rotate(2deg) scale(0.98);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
 }
 
 /* =====================================================
@@ -534,16 +511,7 @@ body::before {
   100% { transform: scale(0.5) rotate(180deg); opacity: 0; }
 }
 
-.santa-departed-message {
-  text-align: center;
-  padding: 30px 16px;
-  animation: fadeIn 0.5s ease-out;
-}
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
 
 /* =====================================================
    CHRISTMAS TREE STYLES & GLOWS

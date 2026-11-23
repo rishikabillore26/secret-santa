@@ -117,10 +117,10 @@ export default function WishlistPage() {
           </div>
         )}
 
-        {/* Santa & Christmas Tree Banner */}
+        {/* Santa & Christmas Tree Header Banner */}
         <div className="santa-banner-box" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
-            <RealisticSanta pose="sitting" size={105} />
+            <RealisticSanta pose="sitting" size={95} />
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <JingleBell size={26} />
@@ -172,36 +172,29 @@ export default function WishlistPage() {
             <div className="candy-spinner" />
           </div>
         ) : wishes.length === 0 ? (
-          /* SANTA SITTING DIRECTLY ABOVE "No wishes yet, add your first one!" WAITING */
-          <div className="festive-card empty-wishlist-interactive-stage" style={{ textAlign: 'center', padding: '48px 24px 40px', position: 'relative' }}>
+          /* SANTA SLOWLY COMES FROM UPPER-RIGHT CORNER AND SITS DIRECTLY ON THE TEXT */
+          <div className="festive-card" style={{ textAlign: 'center', padding: '48px 20px 42px', position: 'relative' }}>
             <div className="card-ribbon" />
 
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '40px', flexWrap: 'wrap', marginBottom: '16px' }}>
-              {/* Christmas Tree Beside Santa */}
-              <div className="empty-state-tree">
-                <ChristmasTree size={170} />
+            <div style={{ position: 'relative', display: 'inline-block', margin: '48px auto 14px' }}>
+              {/* Santa glides in slowly from top right corner and sits directly on the text */}
+              <div className="santa-glide-sit-empty-text" aria-hidden="true">
+                <RealisticSanta pose="sitting" size={110} />
               </div>
 
-              {/* Realistic Santa Sitting and Waiting with his scroll */}
-              <div className="santa-perched-waiting-slot">
-                <div className="santa-speech-bubble">
-                  Ho Ho Ho! I'm waiting for your wish! 🎅✨
-                </div>
-                <RealisticSanta pose="waiting" size={150} />
-              </div>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', color: '#fef08a', margin: 0, textShadow: '0 0 14px rgba(251, 191, 36, 0.45)' }}>
+                No wishes yet, add your first one!
+              </h3>
             </div>
 
-            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', color: '#fef08a', marginBottom: '10px', textShadow: '0 0 12px rgba(251, 191, 36, 0.4)' }}>
-              No wishes yet, add your first one!
-            </h3>
-            <p style={{ color: '#cbd5e1', maxWidth: '500px', margin: '0 auto 26px', fontSize: '1rem', lineHeight: 1.6 }}>
-              Santa is sitting by the tree checking his quill and list! Tell your Secret Santa what makes you smile: gadgets, warm hoodies, coffee, or books.
+            <p style={{ color: '#cbd5e1', maxWidth: '480px', margin: '0 auto 28px', fontSize: '1rem', lineHeight: 1.6 }}>
+              Tell your Secret Santa what makes you smile: gadgets, warm hoodies, coffee, or books.
             </p>
 
             <button
               onClick={handleOpenAdd}
               className="btn-festive btn-green btn-glow"
-              style={{ padding: '14px 34px', fontSize: '1.08rem' }}
+              style={{ padding: '13px 32px', fontSize: '1.05rem' }}
             >
               <span>+ Create Your First Wish ✨🎁</span>
             </button>

@@ -3,7 +3,6 @@ import Navbar from '../components/Navbar';
 import FestiveFooter from '../components/FestiveFooter';
 import JingleBell from '../components/JingleBell';
 import ChristmasTree from '../components/ChristmasTree';
-import RealisticSanta from '../components/RealisticSanta';
 import GiftWrappingScene from '../components/GiftWrappingScene';
 import { employeeApi } from '../api/employeeApi';
 import { Link } from 'react-router-dom';
@@ -184,16 +183,6 @@ export default function EmployeeDashboard() {
                   </div>
                 )}
               </div>
-
-              <div style={{ textAlign: 'center', marginTop: '34px' }}>
-                <button
-                  onClick={() => setRevealStage('idle')}
-                  className="btn-festive btn-outline-festive"
-                  style={{ fontSize: '0.92rem', padding: '10px 22px' }}
-                >
-                  <span>🔄 Replay Santa Delivery Animation 🎁</span>
-                </button>
-              </div>
             </div>
           ) : revealStage === 'shaking' || revealStage === 'popping' ? (
             /* Stage: Shaking / Popping */
@@ -232,25 +221,15 @@ export default function EmployeeDashboard() {
                 onRevealClick={status?.assigned ? handleStartRevealSequence : null}
               />
 
-              {!status?.assigned ? (
+              {!status?.assigned && (
                 <div className="festive-waiting-box" style={{ marginTop: '24px' }}>
-                  <div style={{ fontSize: '3.4rem', marginBottom: '10px' }}>⏳</div>
+                  <div style={{ fontSize: '3.2rem', marginBottom: '10px' }}>⏳</div>
                   <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', color: '#fef08a', marginBottom: '8px' }}>
                     Your Secret Santa match isn't ready yet, check back soon!
                   </h4>
                   <p style={{ color: '#cbd5e1', fontSize: '0.96rem', maxWidth: '520px', margin: '0 auto', lineHeight: 1.6 }}>
                     Your office administrator is currently selecting the gift pairings. Santa is preparing and wrapping the surprise gifts in the meantime!
                   </p>
-                </div>
-              ) : (
-                <div style={{ textAlign: 'center', marginTop: '24px' }}>
-                  <button
-                    onClick={handleStartRevealSequence}
-                    className="btn-festive btn-gold btn-glow"
-                    style={{ fontSize: '1.1rem', padding: '14px 34px' }}
-                  >
-                    <span>🎁 Reveal My Secret Santa Person ✨</span>
-                  </button>
                 </div>
               )}
             </div>

@@ -57,41 +57,44 @@ export default function WishModal({ isOpen, onClose, onSave, wishToEdit }) {
     <div className="modal-overlay" onClick={onClose} role="dialog" aria-modal="true">
       <div className="modal-content-animated festive-dark-modal modal-with-perched-santa" onClick={(e) => e.stopPropagation()}>
         
-        {/* SANTA COMES FROM TOP AND SITS DIRECTLY ON TOP OF "Add to Your Wishlist" TEXT */}
-        <div className="santa-perched-on-title" aria-label="Santa sitting on title">
-          <RealisticSanta pose="sitting" size={95} />
-        </div>
-
-        {/* Modal Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '22px', marginTop: '28px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <JingleBell size={26} />
-            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', color: '#fef08a', margin: 0, textShadow: '0 0 12px rgba(251, 191, 36, 0.45)' }}>
-              {wishToEdit ? 'Edit Christmas Wish' : 'Add to Your Wishlist'}
-            </h3>
+        {/* Header container with Santa gliding in slowly from the upper-right corner */}
+        <div style={{ position: 'relative', marginTop: '10px', marginBottom: '22px' }}>
+          
+          {/* Santa glides slowly from upper right corner and sits directly on top of the text */}
+          <div className="santa-glide-sit-modal" aria-hidden="true">
+            <RealisticSanta pose="sitting" size={88} />
           </div>
-          <button
-            type="button"
-            className="modal-close"
-            onClick={onClose}
-            disabled={isSubmitting}
-            style={{
-              background: 'rgba(255, 255, 255, 0.1)',
-              border: '1px solid rgba(255, 255, 255, 0.25)',
-              borderRadius: '50%',
-              width: '32px',
-              height: '32px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '1.3rem',
-              cursor: 'pointer',
-              color: '#e2e8f0',
-              transition: 'all 0.2s ease'
-            }}
-          >
-            &times;
-          </button>
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <JingleBell size={26} />
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', color: '#fef08a', margin: 0, textShadow: '0 0 12px rgba(251, 191, 36, 0.45)' }}>
+                {wishToEdit ? 'Edit Christmas Wish' : 'Add to Your Wishlist'}
+              </h3>
+            </div>
+            <button
+              type="button"
+              className="modal-close"
+              onClick={onClose}
+              disabled={isSubmitting}
+              style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.25)',
+                borderRadius: '50%',
+                width: '32px',
+                height: '32px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '1.3rem',
+                cursor: 'pointer',
+                color: '#e2e8f0',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              &times;
+            </button>
+          </div>
         </div>
 
         {error && (
