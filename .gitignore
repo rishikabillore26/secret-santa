@@ -1,0 +1,36 @@
+# Maven / Java
+target/
+**/target/
+*.jar
+*.war
+*.class
+
+# Node / Frontend
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDEs and Editors
+.idea/
+*.iml
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+
+# Operating System
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and environment
+*.log
+.env
+.env.local
