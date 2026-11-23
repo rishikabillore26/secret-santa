@@ -36,7 +36,7 @@ public class AuthController {
 
     private String getClientIp(HttpServletRequest request) {
         String xfHeader = request.getHeader("X-Forwarded-For");
-        if (xfHeader == null || xfHeader.isEmpty() || !xfHeader.contains(",")) {
+        if (xfHeader == null || xfHeader.trim().isEmpty()) {
             return request.getRemoteAddr();
         }
         return xfHeader.split(",")[0].trim();
