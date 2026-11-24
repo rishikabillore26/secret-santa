@@ -1,4 +1,6 @@
-const API_BASE = '/api';
+const rawBase = import.meta.env.VITE_API_BASE_URL || '/api';
+const cleanBase = rawBase.replace(/\/+$/, '');
+const API_BASE = cleanBase.endsWith('/api') ? cleanBase : `${cleanBase}/api`;
 
 export async function apiRequest(endpoint, options = {}) {
   const token = sessionStorage.getItem('token');

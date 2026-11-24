@@ -29,7 +29,8 @@ public class CorsConfig {
                 "https://*.ngrok-free.app",
                 "https://*.ngrok.app",
                 "https://*.ngrok.io",
-                "https://tacking-rockband-settle.ngrok-free.dev"
+                "https://tacking-rockband-settle.ngrok-free.dev",
+                "https://*.onrender.com"
         ));
 
         if (StringUtils.hasText(allowedOriginsProperty)) {
