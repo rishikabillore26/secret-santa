@@ -131,6 +131,7 @@ public class SecurityAndAuthTest {
 
         assertNotNull(emp1Dto);
         assertTrue(emp1Dto.isAssigned());
+        assertEquals("emp1@company.com", emp1Dto.getEmail());
         assertEquals(emp2.getName(), emp1Dto.getRecipientName());
         assertEquals(emp2.getId(), emp1Dto.getRecipientId());
     }

@@ -72,6 +72,7 @@ public class AdminService {
             statusList.add(new EmployeeStatusDto(
                     emp.getId(),
                     emp.getName(),
+                    emp.getEmail(),
                     status,
                     assigned,
                     recipientId,

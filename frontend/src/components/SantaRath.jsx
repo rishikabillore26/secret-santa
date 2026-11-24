@@ -262,20 +262,20 @@ export default function SantaRath({ mode = 'flying', width = 380, className = ''
         </defs>
 
         {/* GOLDEN HARNESS & REINS */}
-        <path d="M125 64 Q 170 76 210 64 Q 255 70 295 58 Q 340 64 380 52" stroke="#fbbf24" strokeWidth="2" strokeDasharray="4 2" fill="none" />
+        <path d="M125 64 Q 165 74 210 60 Q 255 68 295 54 Q 340 62 380 48" stroke="#fbbf24" strokeWidth="2" strokeDasharray="4 2" fill="none" />
 
-        {/* REINDEER 3 (LEAD RUDOLPH - 4 LEAPING GALLOPING LEGS) */}
-        <g className="gallop-deer gallop-deer-1" transform="translate(330, 20)">
-          {/* 1. Back Far Leg (darker shade, pushing backward) */}
-          <g className="deer-leg deer-back-far" style={{ transformOrigin: '18px 36px' }}>
-            <path d="M16 35 Q10 44 8 50 L3 61 L7 62 L9 65 L4 65 L5 52 Q9 43 19 37 Z" fill="#78350f" />
-            <polygon points="3,61 7,62 9,65 4,65" fill="#18181b" />
+        {/* REINDEER 3 (LEAD RUDOLPH - OUT IN FRONT OF RATH WITH 4 LEGS) */}
+        <g transform="translate(330, 18)">
+          {/* 1. Back Far Leg (tucked forward under belly in mid-stride) */}
+          <g>
+            <path d="M18 36 Q 24 45 22 52 L 17 62 L 22 63 L 23 66 L 15 65 L 16 52 Q 18 44 14 36 Z" fill="#78350f" />
+            <polygon points="17,62 22,63 23,66 15,65" fill="#18181b" />
           </g>
 
-          {/* 2. Front Far Leg (darker shade, bent knee in running stride) */}
-          <g className="deer-leg deer-front-far" style={{ transformOrigin: '42px 38px' }}>
-            <path d="M40 37 Q46 44 49 48 L46 58 L50 59 L51 62 L44 62 L44 50 Q42 44 38 39 Z" fill="#78350f" />
-            <polygon points="46,58 50,59 51,62 44,62" fill="#18181b" />
+          {/* 2. Front Far Leg (bent knee tucked under chest) */}
+          <g>
+            <path d="M38 37 Q 44 44 42 50 L 36 60 L 41 61 L 41 64 L 34 63 L 36 50 Q 38 43 34 38 Z" fill="#78350f" />
+            <polygon points="36,60 41,61 41,64 34,63" fill="#18181b" />
           </g>
 
           {/* 3. Fluffy White Tail */}
@@ -285,16 +285,16 @@ export default function SantaRath({ mode = 'flying', width = 380, className = ''
           <ellipse cx="32" cy="37" rx="20" ry="11" fill="url(#deerFlyCoat)" />
           <ellipse cx="44" cy="38" rx="4" ry="7" fill="#fef3c7" opacity="0.45" />
 
-          {/* 5. Back Near Leg (warm chestnut, kicking back with black hoof) */}
-          <g className="deer-leg deer-back-near" style={{ transformOrigin: '22px 36px' }}>
-            <path d="M22 35 Q14 43 12 51 L4 63 L8 65 L6 68 L1 66 L9 53 Q14 44 24 37 Z" fill="#b45309" />
-            <polygon points="4,63 8,65 6,68 1,66" fill="#18181b" />
+          {/* 5. Back Near Leg (thrusting straight backward in powerful propulsion) */}
+          <g>
+            <path d="M22 36 Q 14 44 10 50 L 1 60 L 6 62 L 5 65 L -1 63 L 5 50 Q 12 43 24 37 Z" fill="#b45309" />
+            <polygon points="1,60 6,62 5,65 -1,63" fill="#18181b" />
           </g>
 
-          {/* 6. Front Near Leg (warm chestnut, reaching forward ahead of chest with black hoof) */}
-          <g className="deer-leg deer-front-near" style={{ transformOrigin: '46px 38px' }}>
-            <path d="M44 38 Q52 45 56 49 L66 56 L69 54 L71 58 L63 60 L54 52 Q48 46 43 40 Z" fill="#b45309" />
-            <polygon points="66,56 69,54 71,58 63,60" fill="#18181b" />
+          {/* 6. Front Near Leg (reaching boldly forward ahead of chest) */}
+          <g>
+            <path d="M44 38 Q 54 44 58 48 L 68 55 L 71 53 L 73 57 L 65 59 L 55 51 Q 48 45 42 39 Z" fill="#b45309" />
+            <polygon points="68,55 71,53 73,57 65,59" fill="#18181b" />
           </g>
 
           {/* 7. Neck & Head */}
@@ -314,23 +314,23 @@ export default function SantaRath({ mode = 'flying', width = 380, className = ''
           <circle cx="48" cy="32" r="2.2" fill="#fbbf24" />
           <circle cx="51" cy="34" r="1.8" fill="#fde047" />
 
-          {/* Magical Stardust Under Galloping Hooves */}
+          {/* Magical Stardust Under Hooves */}
           <circle cx="68" cy="64" r="1.5" fill="#fde047" className="hoof-sparkle" />
           <circle cx="5" cy="70" r="1.5" fill="#fde047" className="hoof-sparkle" />
         </g>
 
-        {/* REINDEER 2 (MID - 4 LEAPING GALLOPING LEGS) */}
-        <g className="gallop-deer gallop-deer-2" transform="translate(245, 26)">
+        {/* REINDEER 2 (MID - OUT IN FRONT OF RATH WITH 4 LEGS) */}
+        <g transform="translate(245, 24)">
           {/* 1. Back Far Leg */}
-          <g className="deer-leg deer-back-far" style={{ transformOrigin: '18px 36px' }}>
-            <path d="M16 35 Q10 44 8 50 L3 61 L7 62 L9 65 L4 65 L5 52 Q9 43 19 37 Z" fill="#78350f" />
-            <polygon points="3,61 7,62 9,65 4,65" fill="#18181b" />
+          <g>
+            <path d="M18 36 Q 24 45 22 52 L 17 62 L 22 63 L 23 66 L 15 65 L 16 52 Q 18 44 14 36 Z" fill="#78350f" />
+            <polygon points="17,62 22,63 23,66 15,65" fill="#18181b" />
           </g>
 
           {/* 2. Front Far Leg */}
-          <g className="deer-leg deer-front-far" style={{ transformOrigin: '42px 38px' }}>
-            <path d="M40 37 Q46 44 49 48 L46 58 L50 59 L51 62 L44 62 L44 50 Q42 44 38 39 Z" fill="#78350f" />
-            <polygon points="46,58 50,59 51,62 44,62" fill="#18181b" />
+          <g>
+            <path d="M38 37 Q 44 44 42 50 L 36 60 L 41 61 L 41 64 L 34 63 L 36 50 Q 38 43 34 38 Z" fill="#78350f" />
+            <polygon points="36,60 41,61 41,64 34,63" fill="#18181b" />
           </g>
 
           {/* 3. Fluffy White Tail */}
@@ -341,15 +341,15 @@ export default function SantaRath({ mode = 'flying', width = 380, className = ''
           <ellipse cx="44" cy="38" rx="4" ry="7" fill="#fef3c7" opacity="0.45" />
 
           {/* 5. Back Near Leg */}
-          <g className="deer-leg deer-back-near" style={{ transformOrigin: '22px 36px' }}>
-            <path d="M22 35 Q14 43 12 51 L4 63 L8 65 L6 68 L1 66 L9 53 Q14 44 24 37 Z" fill="#b45309" />
-            <polygon points="4,63 8,65 6,68 1,66" fill="#18181b" />
+          <g>
+            <path d="M22 36 Q 14 44 10 50 L 1 60 L 6 62 L 5 65 L -1 63 L 5 50 Q 12 43 24 37 Z" fill="#b45309" />
+            <polygon points="1,60 6,62 5,65 -1,63" fill="#18181b" />
           </g>
 
           {/* 6. Front Near Leg */}
-          <g className="deer-leg deer-front-near" style={{ transformOrigin: '46px 38px' }}>
-            <path d="M44 38 Q52 45 56 49 L66 56 L69 54 L71 58 L63 60 L54 52 Q48 46 43 40 Z" fill="#b45309" />
-            <polygon points="66,56 69,54 71,58 63,60" fill="#18181b" />
+          <g>
+            <path d="M44 38 Q 54 44 58 48 L 68 55 L 71 53 L 73 57 L 65 59 L 55 51 Q 48 45 42 39 Z" fill="#b45309" />
+            <polygon points="68,55 71,53 73,57 65,59" fill="#18181b" />
           </g>
 
           {/* 7. Neck & Head */}
@@ -372,18 +372,18 @@ export default function SantaRath({ mode = 'flying', width = 380, className = ''
           <circle cx="5" cy="70" r="1.5" fill="#fde047" className="hoof-sparkle" />
         </g>
 
-        {/* REINDEER 1 (REAR - 4 LEAPING GALLOPING LEGS) */}
-        <g className="gallop-deer gallop-deer-3" transform="translate(160, 32)">
+        {/* REINDEER 1 (REAR - OUT IN FRONT OF RATH WITH 4 LEGS) */}
+        <g transform="translate(160, 30)">
           {/* 1. Back Far Leg */}
-          <g className="deer-leg deer-back-far" style={{ transformOrigin: '18px 36px' }}>
-            <path d="M16 35 Q10 44 8 50 L3 61 L7 62 L9 65 L4 65 L5 52 Q9 43 19 37 Z" fill="#78350f" />
-            <polygon points="3,61 7,62 9,65 4,65" fill="#18181b" />
+          <g>
+            <path d="M18 36 Q 24 45 22 52 L 17 62 L 22 63 L 23 66 L 15 65 L 16 52 Q 18 44 14 36 Z" fill="#78350f" />
+            <polygon points="17,62 22,63 23,66 15,65" fill="#18181b" />
           </g>
 
           {/* 2. Front Far Leg */}
-          <g className="deer-leg deer-front-far" style={{ transformOrigin: '42px 38px' }}>
-            <path d="M40 37 Q46 44 49 48 L46 58 L50 59 L51 62 L44 62 L44 50 Q42 44 38 39 Z" fill="#78350f" />
-            <polygon points="46,58 50,59 51,62 44,62" fill="#18181b" />
+          <g>
+            <path d="M38 37 Q 44 44 42 50 L 36 60 L 41 61 L 41 64 L 34 63 L 36 50 Q 38 43 34 38 Z" fill="#78350f" />
+            <polygon points="36,60 41,61 41,64 34,63" fill="#18181b" />
           </g>
 
           {/* 3. Fluffy White Tail */}
@@ -394,15 +394,15 @@ export default function SantaRath({ mode = 'flying', width = 380, className = ''
           <ellipse cx="44" cy="38" rx="4" ry="7" fill="#fef3c7" opacity="0.45" />
 
           {/* 5. Back Near Leg */}
-          <g className="deer-leg deer-back-near" style={{ transformOrigin: '22px 36px' }}>
-            <path d="M22 35 Q14 43 12 51 L4 63 L8 65 L6 68 L1 66 L9 53 Q14 44 24 37 Z" fill="#b45309" />
-            <polygon points="4,63 8,65 6,68 1,66" fill="#18181b" />
+          <g>
+            <path d="M22 36 Q 14 44 10 50 L 1 60 L 6 62 L 5 65 L -1 63 L 5 50 Q 12 43 24 37 Z" fill="#b45309" />
+            <polygon points="1,60 6,62 5,65 -1,63" fill="#18181b" />
           </g>
 
           {/* 6. Front Near Leg */}
-          <g className="deer-leg deer-front-near" style={{ transformOrigin: '46px 38px' }}>
-            <path d="M44 38 Q52 45 56 49 L66 56 L69 54 L71 58 L63 60 L54 52 Q48 46 43 40 Z" fill="#b45309" />
-            <polygon points="66,56 69,54 71,58 63,60" fill="#18181b" />
+          <g>
+            <path d="M44 38 Q 54 44 58 48 L 68 55 L 71 53 L 73 57 L 65 59 L 55 51 Q 48 45 42 39 Z" fill="#b45309" />
+            <polygon points="68,55 71,53 73,57 65,59" fill="#18181b" />
           </g>
 
           {/* 7. Neck & Head */}

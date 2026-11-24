@@ -222,6 +222,7 @@ export default function AdminDashboard() {
                   <tr>
                     <th style={{ width: '40px' }}>#</th>
                     <th>Employee Name</th>
+                    <th>Email</th>
                     <th>Wishlist Status</th>
                     <th>Secret Santa Status</th>
                     <th style={{ textAlign: 'center' }}>Action</th>
@@ -233,6 +234,9 @@ export default function AdminDashboard() {
                       <td style={{ color: '#94a3b8' }}>{idx + 1}</td>
                       <td style={{ fontWeight: 600, color: '#f8fafc' }}>
                         🎁 {emp.name}
+                      </td>
+                      <td style={{ color: '#cbd5e1', fontSize: '0.88rem' }}>
+                        ✉️ {emp.email || '—'}
                       </td>
                       <td>
                         {emp.status === 'Submitted' ? (

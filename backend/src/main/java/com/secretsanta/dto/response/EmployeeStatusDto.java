@@ -3,6 +3,7 @@ package com.secretsanta.dto.response;
 public class EmployeeStatusDto {
     private Long id;
     private String name;
+    private String email;
     private String status; // "Submitted" or "Pending"
     private boolean assigned; // true if this santa has a recipient, false otherwise
     private Long recipientId; // id of the assigned recipient (if assigned)
@@ -12,12 +13,13 @@ public class EmployeeStatusDto {
     }
 
     public EmployeeStatusDto(Long id, String name, String status, boolean assigned) {
-        this(id, name, status, assigned, null, null);
+        this(id, name, null, status, assigned, null, null);
     }
 
-    public EmployeeStatusDto(Long id, String name, String status, boolean assigned, Long recipientId, String recipientName) {
+    public EmployeeStatusDto(Long id, String name, String email, String status, boolean assigned, Long recipientId, String recipientName) {
         this.id = id;
         this.name = name;
+        this.email = email;
         this.status = status;
         this.assigned = assigned;
         this.recipientId = recipientId;
@@ -38,6 +40,14 @@ public class EmployeeStatusDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getStatus() {
