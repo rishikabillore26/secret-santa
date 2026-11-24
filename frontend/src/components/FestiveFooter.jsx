@@ -5,7 +5,7 @@ export default function FestiveFooter() {
     <footer className="festive-footer">
       <p>🎄 Spreading Joy, Cheer & Holiday Magic across the Office 🎅</p>
       <p style={{ fontSize: '0.8rem', marginTop: '4px', opacity: 0.8 }}>
-        Secret Santa Exchange • Happy Holidays!
+        Secret Santa Exchange
       </p>
     </footer>
   );

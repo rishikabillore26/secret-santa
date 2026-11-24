@@ -55,8 +55,7 @@ export default function EmployeeDashboard() {
         {/* Quick Wishlist Banner with Santa's Rath Hero */}
         <div className="festive-card rath-banner-card">
           <div className="rath-banner-left">
-            <div className="pill-badge-emerald">
-              <span>🎄 Holiday Headquarters</span>
+            <div>
             </div>
             <h2 className="festive-heading" style={{ fontSize: '2.1rem', margin: '8px 0 6px' }}>
               Your Secret Santa Headquarters

@@ -156,6 +156,94 @@ body::before {
   100% { opacity: 1; r: 5px; }
 }
 
+/* =====================================================
+   RUNNING REINDEER 4-LEGGED GALLOP ANIMATIONS
+   ===================================================== */
+.gallop-deer {
+  transform-box: fill-box;
+}
+
+.gallop-deer-1 {
+  animation: deerGallopBob 0.65s infinite alternate ease-in-out;
+}
+
+.gallop-deer-2 {
+  animation: deerGallopBob 0.65s infinite alternate ease-in-out;
+  animation-delay: -0.22s;
+}
+
+.gallop-deer-3 {
+  animation: deerGallopBob 0.65s infinite alternate ease-in-out;
+  animation-delay: -0.44s;
+}
+
+@keyframes deerGallopBob {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(1.2deg);
+  }
+  100% {
+    transform: translateY(2px) rotate(-0.8deg);
+  }
+}
+
+.deer-leg {
+  transform-box: fill-box;
+}
+
+.deer-front-near {
+  animation: deerFrontLegRunNear 0.65s infinite alternate ease-in-out;
+}
+
+.deer-front-far {
+  animation: deerFrontLegRunFar 0.65s infinite alternate ease-in-out;
+  animation-delay: -0.16s;
+}
+
+.deer-back-near {
+  animation: deerBackLegRunNear 0.65s infinite alternate ease-in-out;
+}
+
+.deer-back-far {
+  animation: deerBackLegRunFar 0.65s infinite alternate ease-in-out;
+  animation-delay: -0.2s;
+}
+
+@keyframes deerFrontLegRunNear {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(-13deg); }
+  100% { transform: rotate(10deg); }
+}
+
+@keyframes deerFrontLegRunFar {
+  0% { transform: rotate(8deg); }
+  50% { transform: rotate(-10deg); }
+  100% { transform: rotate(-14deg); }
+}
+
+@keyframes deerBackLegRunNear {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(16deg); }
+  100% { transform: rotate(-8deg); }
+}
+
+@keyframes deerBackLegRunFar {
+  0% { transform: rotate(-10deg); }
+  50% { transform: rotate(6deg); }
+  100% { transform: rotate(18deg); }
+}
+
+.hoof-sparkle {
+  animation: hoofSparkleFlicker 0.9s infinite alternate ease-in-out;
+}
+
+@keyframes hoofSparkleFlicker {
+  0% { opacity: 0.3; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
 .santa-hero-wave {
   transform-origin: 92px 48px;
   animation: heroArmWave 1.8s infinite alternate ease-in-out;

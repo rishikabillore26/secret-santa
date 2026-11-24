@@ -103,8 +103,7 @@ export default function WishlistPage() {
         {/* Santa's Rath Hero Banner */}
         <div className="festive-card rath-banner-card">
           <div className="rath-banner-left">
-            <div className="pill-badge-gold">
-              <span>🛷 Holiday Gift Registry</span>
+            <div>
             </div>
             <h2 className="festive-heading" style={{ fontSize: '2.1rem', margin: '8px 0 6px' }}>
               My Christmas Wishlist 📜

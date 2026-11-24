@@ -116,11 +116,15 @@ export default function SantaRath({ mode = 'flying', width = 380, className = ''
 
           {/* REINDEER 2 (MID) */}
           <g transform="translate(205, 30)">
-            {/* Legs */}
+            {/* 4 Distinct Legs with Hooves */}
             <path d="M15 54 L8 80 L14 82 L22 58" fill="#78350f" />
+            <polygon points="8,80 14,82 13,85 7,83" fill="#18181b" />
             <path d="M22 52 L16 78 L21 80 L28 56" fill="#92400e" />
+            <polygon points="16,78 21,80 20,83 15,81" fill="#18181b" />
             <path d="M46 48 L58 78 L64 78 L52 52" fill="#78350f" />
+            <polygon points="58,78 64,78 63,82 57,82" fill="#18181b" />
             <path d="M42 50 L52 76 L58 76 L48 54" fill="#92400e" />
+            <polygon points="52,76 58,76 57,80 51,80" fill="#18181b" />
             {/* Body */}
             <ellipse cx="32" cy="46" rx="22" ry="12" fill="url(#deerCoatHero)" />
             {/* Tail */}
@@ -130,6 +134,7 @@ export default function SantaRath({ mode = 'flying', width = 380, className = ''
             <ellipse cx="60" cy="28" rx="10" ry="7" fill="#b45309" />
             <ellipse cx="68" cy="28" rx="4.5" ry="4" fill="#d97706" />
             <circle cx="60" cy="26" r="1.8" fill="#18181b" />
+            <circle cx="60.5" cy="25.5" r="0.6" fill="#ffffff" />
             {/* Antlers */}
             <path d="M56 22 Q 54 8 46 3 M52 14 Q 44 12 42 7 M55 10 Q 51 4 48 0" stroke="#fef08a" strokeWidth="2.4" strokeLinecap="round" fill="none" />
             <circle cx="71" cy="28" r="2.2" fill="#18181b" />
@@ -141,15 +146,20 @@ export default function SantaRath({ mode = 'flying', width = 380, className = ''
           {/* REINDEER 1 (RUDOLPH IN LEAD) */}
           <g transform="translate(275, 20)">
             <path d="M15 54 L8 80 L14 82 L22 58" fill="#78350f" />
+            <polygon points="8,80 14,82 13,85 7,83" fill="#18181b" />
             <path d="M22 52 L16 78 L21 80 L28 56" fill="#92400e" />
+            <polygon points="16,78 21,80 20,83 15,81" fill="#18181b" />
             <path d="M46 48 L58 78 L64 78 L52 52" fill="#78350f" />
+            <polygon points="58,78 64,78 63,82 57,82" fill="#18181b" />
             <path d="M42 50 L52 76 L58 76 L48 54" fill="#92400e" />
+            <polygon points="52,76 58,76 57,80 51,80" fill="#18181b" />
             <ellipse cx="32" cy="46" rx="22" ry="12" fill="url(#deerCoatHero)" />
             <path d="M11 44 Q 4 38 8 36 Q 14 40 13 46" fill="#ffffff" />
             <path d="M44 44 L54 28 L62 30 L52 50 Z" fill="url(#deerCoatHero)" />
             <ellipse cx="60" cy="28" rx="10" ry="7" fill="#b45309" />
             <ellipse cx="68" cy="28" rx="4.5" ry="4" fill="#d97706" />
             <circle cx="60" cy="26" r="1.8" fill="#18181b" />
+            <circle cx="60.5" cy="25.5" r="0.6" fill="#ffffff" />
             <path d="M56 22 Q 54 8 46 3 M52 14 Q 44 12 42 7 M55 10 Q 51 4 48 0" stroke="#fef08a" strokeWidth="2.4" strokeLinecap="round" fill="none" />
             {/* Glowing Rudolph Red Nose */}
             <circle cx="71" cy="28" r="4.2" fill="#ef4444" filter="url(#heroRudolphGlow)" className="rudolph-hero-nose" />
@@ -252,61 +262,167 @@ export default function SantaRath({ mode = 'flying', width = 380, className = ''
         </defs>
 
         {/* GOLDEN HARNESS & REINS */}
-        <path d="M125 64 Q 190 76 240 60 Q 280 68 315 56 Q 355 64 385 50" stroke="#fbbf24" strokeWidth="2" strokeDasharray="4 2" fill="none" />
+        <path d="M125 64 Q 170 76 210 64 Q 255 70 295 58 Q 340 64 380 52" stroke="#fbbf24" strokeWidth="2" strokeDasharray="4 2" fill="none" />
 
-        {/* REINDEER 3 (LEAD RUDOLPH) */}
-        <g className="gallop-deer" transform="translate(330, 22)">
-          <path d="M12 42 L4 58 L10 60 L18 46" fill="#92400e" />
-          <path d="M16 40 L10 56 L15 58 L22 43" fill="#b45309" />
-          <path d="M46 36 L62 26 L64 30 L50 42" fill="#92400e" />
-          <path d="M42 38 L58 30 L60 34 L46 44" fill="#b45309" />
-          <ellipse cx="32" cy="38" rx="20" ry="11" fill="url(#deerFlyCoat)" />
-          <path d="M11 36 Q 4 30 8 28 Q 14 32 13 38" fill="#ffffff" />
-          <path d="M44 36 L54 22 L62 24 L52 42 Z" fill="url(#deerFlyCoat)" />
-          <ellipse cx="58" cy="22" rx="9" ry="6" fill="#b45309" />
-          <ellipse cx="65" cy="22" rx="4" ry="3.5" fill="#d97706" />
-          <circle cx="58" cy="20" r="1.5" fill="#18181b" />
-          <path d="M54 17 Q 52 6 46 2 M51 11 Q 44 9 42 5 M53 8 Q 50 3 48 0" stroke="#fef08a" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+        {/* REINDEER 3 (LEAD RUDOLPH - 4 LEAPING GALLOPING LEGS) */}
+        <g className="gallop-deer gallop-deer-1" transform="translate(330, 20)">
+          {/* 1. Back Far Leg (darker shade, pushing backward) */}
+          <g className="deer-leg deer-back-far" style={{ transformOrigin: '18px 36px' }}>
+            <path d="M16 35 Q10 44 8 50 L3 61 L7 62 L9 65 L4 65 L5 52 Q9 43 19 37 Z" fill="#78350f" />
+            <polygon points="3,61 7,62 9,65 4,65" fill="#18181b" />
+          </g>
+
+          {/* 2. Front Far Leg (darker shade, bent knee in running stride) */}
+          <g className="deer-leg deer-front-far" style={{ transformOrigin: '42px 38px' }}>
+            <path d="M40 37 Q46 44 49 48 L46 58 L50 59 L51 62 L44 62 L44 50 Q42 44 38 39 Z" fill="#78350f" />
+            <polygon points="46,58 50,59 51,62 44,62" fill="#18181b" />
+          </g>
+
+          {/* 3. Fluffy White Tail */}
+          <path d="M11 34 Q 3 28 6 25 Q 14 29 13 36 Z" fill="#ffffff" />
+
+          {/* 4. Torso Body */}
+          <ellipse cx="32" cy="37" rx="20" ry="11" fill="url(#deerFlyCoat)" />
+          <ellipse cx="44" cy="38" rx="4" ry="7" fill="#fef3c7" opacity="0.45" />
+
+          {/* 5. Back Near Leg (warm chestnut, kicking back with black hoof) */}
+          <g className="deer-leg deer-back-near" style={{ transformOrigin: '22px 36px' }}>
+            <path d="M22 35 Q14 43 12 51 L4 63 L8 65 L6 68 L1 66 L9 53 Q14 44 24 37 Z" fill="#b45309" />
+            <polygon points="4,63 8,65 6,68 1,66" fill="#18181b" />
+          </g>
+
+          {/* 6. Front Near Leg (warm chestnut, reaching forward ahead of chest with black hoof) */}
+          <g className="deer-leg deer-front-near" style={{ transformOrigin: '46px 38px' }}>
+            <path d="M44 38 Q52 45 56 49 L66 56 L69 54 L71 58 L63 60 L54 52 Q48 46 43 40 Z" fill="#b45309" />
+            <polygon points="66,56 69,54 71,58 63,60" fill="#18181b" />
+          </g>
+
+          {/* 7. Neck & Head */}
+          <path d="M42 36 L52 19 L62 21 L48 41 Z" fill="url(#deerFlyCoat)" />
+          <ellipse cx="58" cy="19" rx="9" ry="6" fill="#b45309" />
+          <ellipse cx="65" cy="20" rx="4.5" ry="3.5" fill="#d97706" />
+          <circle cx="58" cy="18" r="1.6" fill="#18181b" />
+          <circle cx="58.5" cy="17.5" r="0.6" fill="#ffffff" />
+          <path d="M51 16 Q 44 14 47 11 Q 52 13 52 17 Z" fill="#92400e" />
+          <path d="M54 14 Q 52 4 46 0 M51 9 Q 44 8 41 4 M53 6 Q 49 2 47 -1" stroke="#fef08a" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+
           {/* Glowing Red Nose */}
-          <circle cx="68" cy="22" r="4.2" fill="#ef4444" filter="url(#rathRudolphGlow)" className="rudolph-sky-nose" />
-          <path d="M47 31 L53 34" stroke="#dc2626" strokeWidth="3" strokeLinecap="round" />
-          <circle cx="50" cy="35" r="2" fill="#fbbf24" />
+          <circle cx="68" cy="20" r="4.2" fill="#ef4444" filter="url(#rathRudolphGlow)" className="rudolph-sky-nose" />
+
+          {/* Festive Collar with Golden Jingle Bells */}
+          <path d="M46 29 L52 33" stroke="#dc2626" strokeWidth="3.5" strokeLinecap="round" />
+          <circle cx="48" cy="32" r="2.2" fill="#fbbf24" />
+          <circle cx="51" cy="34" r="1.8" fill="#fde047" />
+
+          {/* Magical Stardust Under Galloping Hooves */}
+          <circle cx="68" cy="64" r="1.5" fill="#fde047" className="hoof-sparkle" />
+          <circle cx="5" cy="70" r="1.5" fill="#fde047" className="hoof-sparkle" />
         </g>
 
-        {/* REINDEER 2 (MID) */}
-        <g className="gallop-deer" transform="translate(250, 28)">
-          <path d="M12 42 L4 58 L10 60 L18 46" fill="#92400e" />
-          <path d="M16 40 L10 56 L15 58 L22 43" fill="#b45309" />
-          <path d="M46 36 L62 26 L64 30 L50 42" fill="#92400e" />
-          <path d="M42 38 L58 30 L60 34 L46 44" fill="#b45309" />
-          <ellipse cx="32" cy="38" rx="20" ry="11" fill="url(#deerFlyCoat)" />
-          <path d="M11 36 Q 4 30 8 28 Q 14 32 13 38" fill="#ffffff" />
-          <path d="M44 36 L54 22 L62 24 L52 42 Z" fill="url(#deerFlyCoat)" />
-          <ellipse cx="58" cy="22" rx="9" ry="6" fill="#b45309" />
-          <ellipse cx="65" cy="22" rx="4" ry="3.5" fill="#d97706" />
-          <circle cx="58" cy="20" r="1.5" fill="#18181b" />
-          <path d="M54 17 Q 52 6 46 2 M51 11 Q 44 9 42 5 M53 8 Q 50 3 48 0" stroke="#fbbf24" strokeWidth="2.2" strokeLinecap="round" fill="none" />
-          <circle cx="68" cy="22" r="2.2" fill="#18181b" />
-          <path d="M47 31 L53 34" stroke="#16a34a" strokeWidth="3" strokeLinecap="round" />
-          <circle cx="50" cy="35" r="2" fill="#fbbf24" />
+        {/* REINDEER 2 (MID - 4 LEAPING GALLOPING LEGS) */}
+        <g className="gallop-deer gallop-deer-2" transform="translate(245, 26)">
+          {/* 1. Back Far Leg */}
+          <g className="deer-leg deer-back-far" style={{ transformOrigin: '18px 36px' }}>
+            <path d="M16 35 Q10 44 8 50 L3 61 L7 62 L9 65 L4 65 L5 52 Q9 43 19 37 Z" fill="#78350f" />
+            <polygon points="3,61 7,62 9,65 4,65" fill="#18181b" />
+          </g>
+
+          {/* 2. Front Far Leg */}
+          <g className="deer-leg deer-front-far" style={{ transformOrigin: '42px 38px' }}>
+            <path d="M40 37 Q46 44 49 48 L46 58 L50 59 L51 62 L44 62 L44 50 Q42 44 38 39 Z" fill="#78350f" />
+            <polygon points="46,58 50,59 51,62 44,62" fill="#18181b" />
+          </g>
+
+          {/* 3. Fluffy White Tail */}
+          <path d="M11 34 Q 3 28 6 25 Q 14 29 13 36 Z" fill="#ffffff" />
+
+          {/* 4. Torso Body */}
+          <ellipse cx="32" cy="37" rx="20" ry="11" fill="url(#deerFlyCoat)" />
+          <ellipse cx="44" cy="38" rx="4" ry="7" fill="#fef3c7" opacity="0.45" />
+
+          {/* 5. Back Near Leg */}
+          <g className="deer-leg deer-back-near" style={{ transformOrigin: '22px 36px' }}>
+            <path d="M22 35 Q14 43 12 51 L4 63 L8 65 L6 68 L1 66 L9 53 Q14 44 24 37 Z" fill="#b45309" />
+            <polygon points="4,63 8,65 6,68 1,66" fill="#18181b" />
+          </g>
+
+          {/* 6. Front Near Leg */}
+          <g className="deer-leg deer-front-near" style={{ transformOrigin: '46px 38px' }}>
+            <path d="M44 38 Q52 45 56 49 L66 56 L69 54 L71 58 L63 60 L54 52 Q48 46 43 40 Z" fill="#b45309" />
+            <polygon points="66,56 69,54 71,58 63,60" fill="#18181b" />
+          </g>
+
+          {/* 7. Neck & Head */}
+          <path d="M42 36 L52 19 L62 21 L48 41 Z" fill="url(#deerFlyCoat)" />
+          <ellipse cx="58" cy="19" rx="9" ry="6" fill="#b45309" />
+          <ellipse cx="65" cy="20" rx="4.5" ry="3.5" fill="#d97706" />
+          <circle cx="58" cy="18" r="1.6" fill="#18181b" />
+          <circle cx="58.5" cy="17.5" r="0.6" fill="#ffffff" />
+          <path d="M51 16 Q 44 14 47 11 Q 52 13 52 17 Z" fill="#92400e" />
+          <path d="M54 14 Q 52 4 46 0 M51 9 Q 44 8 41 4 M53 6 Q 49 2 47 -1" stroke="#fbbf24" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+          <circle cx="68" cy="20" r="2.2" fill="#18181b" />
+
+          {/* Emerald Festive Collar with Golden Jingle Bells */}
+          <path d="M46 29 L52 33" stroke="#16a34a" strokeWidth="3.5" strokeLinecap="round" />
+          <circle cx="48" cy="32" r="2.2" fill="#fbbf24" />
+          <circle cx="51" cy="34" r="1.8" fill="#fde047" />
+
+          {/* Magical Stardust Under Hooves */}
+          <circle cx="68" cy="64" r="1.5" fill="#fde047" className="hoof-sparkle" />
+          <circle cx="5" cy="70" r="1.5" fill="#fde047" className="hoof-sparkle" />
         </g>
 
-        {/* REINDEER 1 (REAR) */}
-        <g className="gallop-deer" transform="translate(170, 34)">
-          <path d="M12 42 L4 58 L10 60 L18 46" fill="#92400e" />
-          <path d="M16 40 L10 56 L15 58 L22 43" fill="#b45309" />
-          <path d="M46 36 L62 26 L64 30 L50 42" fill="#92400e" />
-          <path d="M42 38 L58 30 L60 34 L46 44" fill="#b45309" />
-          <ellipse cx="32" cy="38" rx="20" ry="11" fill="url(#deerFlyCoat)" />
-          <path d="M11 36 Q 4 30 8 28 Q 14 32 13 38" fill="#ffffff" />
-          <path d="M44 36 L54 22 L62 24 L52 42 Z" fill="url(#deerFlyCoat)" />
-          <ellipse cx="58" cy="22" rx="9" ry="6" fill="#b45309" />
-          <ellipse cx="65" cy="22" rx="4" ry="3.5" fill="#d97706" />
-          <circle cx="58" cy="20" r="1.5" fill="#18181b" />
-          <path d="M54 17 Q 52 6 46 2 M51 11 Q 44 9 42 5 M53 8 Q 50 3 48 0" stroke="#fbbf24" strokeWidth="2.2" strokeLinecap="round" fill="none" />
-          <circle cx="68" cy="22" r="2.2" fill="#18181b" />
-          <path d="M47 31 L53 34" stroke="#dc2626" strokeWidth="3" strokeLinecap="round" />
-          <circle cx="50" cy="35" r="2" fill="#fbbf24" />
+        {/* REINDEER 1 (REAR - 4 LEAPING GALLOPING LEGS) */}
+        <g className="gallop-deer gallop-deer-3" transform="translate(160, 32)">
+          {/* 1. Back Far Leg */}
+          <g className="deer-leg deer-back-far" style={{ transformOrigin: '18px 36px' }}>
+            <path d="M16 35 Q10 44 8 50 L3 61 L7 62 L9 65 L4 65 L5 52 Q9 43 19 37 Z" fill="#78350f" />
+            <polygon points="3,61 7,62 9,65 4,65" fill="#18181b" />
+          </g>
+
+          {/* 2. Front Far Leg */}
+          <g className="deer-leg deer-front-far" style={{ transformOrigin: '42px 38px' }}>
+            <path d="M40 37 Q46 44 49 48 L46 58 L50 59 L51 62 L44 62 L44 50 Q42 44 38 39 Z" fill="#78350f" />
+            <polygon points="46,58 50,59 51,62 44,62" fill="#18181b" />
+          </g>
+
+          {/* 3. Fluffy White Tail */}
+          <path d="M11 34 Q 3 28 6 25 Q 14 29 13 36 Z" fill="#ffffff" />
+
+          {/* 4. Torso Body */}
+          <ellipse cx="32" cy="37" rx="20" ry="11" fill="url(#deerFlyCoat)" />
+          <ellipse cx="44" cy="38" rx="4" ry="7" fill="#fef3c7" opacity="0.45" />
+
+          {/* 5. Back Near Leg */}
+          <g className="deer-leg deer-back-near" style={{ transformOrigin: '22px 36px' }}>
+            <path d="M22 35 Q14 43 12 51 L4 63 L8 65 L6 68 L1 66 L9 53 Q14 44 24 37 Z" fill="#b45309" />
+            <polygon points="4,63 8,65 6,68 1,66" fill="#18181b" />
+          </g>
+
+          {/* 6. Front Near Leg */}
+          <g className="deer-leg deer-front-near" style={{ transformOrigin: '46px 38px' }}>
+            <path d="M44 38 Q52 45 56 49 L66 56 L69 54 L71 58 L63 60 L54 52 Q48 46 43 40 Z" fill="#b45309" />
+            <polygon points="66,56 69,54 71,58 63,60" fill="#18181b" />
+          </g>
+
+          {/* 7. Neck & Head */}
+          <path d="M42 36 L52 19 L62 21 L48 41 Z" fill="url(#deerFlyCoat)" />
+          <ellipse cx="58" cy="19" rx="9" ry="6" fill="#b45309" />
+          <ellipse cx="65" cy="20" rx="4.5" ry="3.5" fill="#d97706" />
+          <circle cx="58" cy="18" r="1.6" fill="#18181b" />
+          <circle cx="58.5" cy="17.5" r="0.6" fill="#ffffff" />
+          <path d="M51 16 Q 44 14 47 11 Q 52 13 52 17 Z" fill="#92400e" />
+          <path d="M54 14 Q 52 4 46 0 M51 9 Q 44 8 41 4 M53 6 Q 49 2 47 -1" stroke="#fbbf24" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+          <circle cx="68" cy="20" r="2.2" fill="#18181b" />
+
+          {/* Ruby Festive Collar with Golden Jingle Bells */}
+          <path d="M46 29 L52 33" stroke="#dc2626" strokeWidth="3.5" strokeLinecap="round" />
+          <circle cx="48" cy="32" r="2.2" fill="#fbbf24" />
+          <circle cx="51" cy="34" r="1.8" fill="#fde047" />
+
+          {/* Magical Stardust Under Hooves */}
+          <circle cx="68" cy="64" r="1.5" fill="#fde047" className="hoof-sparkle" />
+          <circle cx="5" cy="70" r="1.5" fill="#fde047" className="hoof-sparkle" />
         </g>
 
         {/* SANTA IN HIS FLYING CHARIOT */}
