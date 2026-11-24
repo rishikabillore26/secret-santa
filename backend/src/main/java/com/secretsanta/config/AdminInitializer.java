@@ -31,14 +31,24 @@ public class AdminInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // Ensure default admin exists
-        if (userRepository.findByEmailIgnoreCase(adminEmail).isEmpty()) {
+        // Ensure default admin exists or update credentials if changed in properties / env vars
+        java.util.List<User> existingAdmins = userRepository.findByRoleOrderByNameAsc(Role.ADMIN);
+        if (existingAdmins.isEmpty()) {
             User admin = new User(
                     adminName,
                     adminEmail.toLowerCase().trim(),
                     passwordEncoder.encode(adminPassword),
                     Role.ADMIN
             );
+            userRepository.save(admin);
+        } else {
+            // Automatically sync admin credentials on startup if configured in env vars / properties
+            User admin = existingAdmins.get(0);
+            if (adminName != null && !adminName.isBlank()) {
+                admin.setName(adminName);
+            }
+            admin.setEmail(adminEmail.toLowerCase().trim());
+            admin.setPasswordHash(passwordEncoder.encode(adminPassword));
             userRepository.save(admin);
         }
     }
