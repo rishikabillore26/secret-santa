@@ -38,4 +38,10 @@ public class AdminController {
         adminService.assignSecretSanta(request.getSantaId(), request.getRecipientId());
         return ResponseEntity.ok(Map.of("message", "Secret Santa assigned successfully!"));
     }
+
+    @DeleteMapping("/assignments/{santaId}")
+    public ResponseEntity<Map<String, String>> removeAssignment(@PathVariable Long santaId) {
+        adminService.removeAssignment(santaId);
+        return ResponseEntity.ok(Map.of("message", "Secret Santa assignment removed successfully!"));
+    }
 }

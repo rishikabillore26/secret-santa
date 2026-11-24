@@ -21,7 +21,9 @@ export default function AssignSantaModal({ isOpen, onClose, employee, onAssigned
       setError('');
       const data = await adminApi.getCandidates(employee.id);
       setCandidates(data);
-      if (data.length > 0) {
+      if (employee.recipientId && data.some((c) => c.id === employee.recipientId)) {
+        setSelectedRecipientId(String(employee.recipientId));
+      } else if (data.length > 0) {
         setSelectedRecipientId(String(data[0].id));
       } else {
         setSelectedRecipientId('');
@@ -65,10 +67,18 @@ export default function AssignSantaModal({ isOpen, onClose, employee, onAssigned
         <div className="modal-header-clean">
           <div>
             <h3 className="modal-heading-text">
-              🛷 Secret Santa Assignment
+              {employee.assigned ? '🔄 Change Secret Santa Match' : '🛷 Secret Santa Assignment'}
             </h3>
             <p style={{ color: '#94a3b8', fontSize: '0.86rem', margin: '3px 0 0' }}>
-              Select who <strong style={{ color: '#fef08a' }}>{employee.name}</strong> will be Santa for
+              {employee.assigned ? (
+                <>
+                  Currently giving to <strong style={{ color: '#fef08a' }}>{employee.recipientName}</strong>. Choose a new recipient for <strong style={{ color: '#fef08a' }}>{employee.name}</strong>:
+                </>
+              ) : (
+                <>
+                  Select who <strong style={{ color: '#fef08a' }}>{employee.name}</strong> will be Santa for
+                </>
+              )}
             </p>
           </div>
           <button
@@ -115,14 +125,14 @@ export default function AssignSantaModal({ isOpen, onClose, employee, onAssigned
               >
                 {candidates.map((c) => (
                   <option key={c.id} value={c.id} style={{ background: '#0f172a', color: '#f8fafc' }}>
-                    🎁 {c.name}
+                    🎁 {c.name} {employee.recipientId === c.id ? ' (Current Recipient)' : ''}
                   </option>
                 ))}
               </select>
             </div>
 
             <div className="rath-rules-pill">
-              ℹ️ <strong>Confidential Assignment:</strong> Candidate list excludes {employee.name} and anyone already assigned. Assignments are permanent and confidential.
+              ℹ️ <strong>Secret Santa Pairing:</strong> Candidate list excludes {employee.name} and anyone chosen by another Santa. You can change or reset assignments anytime if needed.
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
@@ -139,7 +149,7 @@ export default function AssignSantaModal({ isOpen, onClose, employee, onAssigned
                 className="btn-festive btn-green"
                 disabled={saving || !selectedRecipientId}
               >
-                {saving ? 'Assigning...' : 'Confirm Assignment ✓'}
+                {saving ? 'Saving...' : employee.assigned ? 'Update Match 🔄' : 'Confirm Assignment ✓'}
               </button>
             </div>
           </form>

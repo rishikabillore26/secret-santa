@@ -5,15 +5,23 @@ public class EmployeeStatusDto {
     private String name;
     private String status; // "Submitted" or "Pending"
     private boolean assigned; // true if this santa has a recipient, false otherwise
+    private Long recipientId; // id of the assigned recipient (if assigned)
+    private String recipientName; // name of the assigned recipient (if assigned)
 
     public EmployeeStatusDto() {
     }
 
     public EmployeeStatusDto(Long id, String name, String status, boolean assigned) {
+        this(id, name, status, assigned, null, null);
+    }
+
+    public EmployeeStatusDto(Long id, String name, String status, boolean assigned, Long recipientId, String recipientName) {
         this.id = id;
         this.name = name;
         this.status = status;
         this.assigned = assigned;
+        this.recipientId = recipientId;
+        this.recipientName = recipientName;
     }
 
     public Long getId() {
@@ -46,5 +54,21 @@ public class EmployeeStatusDto {
 
     public void setAssigned(boolean assigned) {
         this.assigned = assigned;
+    }
+
+    public Long getRecipientId() {
+        return recipientId;
+    }
+
+    public void setRecipientId(Long recipientId) {
+        this.recipientId = recipientId;
+    }
+
+    public String getRecipientName() {
+        return recipientName;
+    }
+
+    public void setRecipientName(String recipientName) {
+        this.recipientName = recipientName;
     }
 }

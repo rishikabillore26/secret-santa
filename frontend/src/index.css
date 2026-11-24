@@ -953,6 +953,34 @@ body::before {
   color: #fef08a;
 }
 
+.btn-outline-gold {
+  background: rgba(251, 191, 36, 0.12);
+  border: 1.5px solid rgba(251, 191, 36, 0.6);
+  color: #fef08a;
+  font-weight: 600;
+}
+
+.btn-outline-gold:hover:not(:disabled) {
+  background: rgba(251, 191, 36, 0.28);
+  border-color: #fbbf24;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.4);
+}
+
+.btn-outline-danger {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1.5px solid rgba(239, 68, 68, 0.5);
+  color: #fca5a5;
+  font-weight: 600;
+}
+
+.btn-outline-danger:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.28);
+  border-color: #ef4444;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+}
+
 .btn-festive:disabled {
   opacity: 0.55;
   cursor: not-allowed;

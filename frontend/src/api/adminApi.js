@@ -14,5 +14,11 @@ export const adminApi = {
       method: 'POST',
       body: JSON.stringify({ santaId, recipientId })
     });
+  },
+
+  removeAssignment: (santaId) => {
+    return apiRequest(`/admin/assignments/${santaId}`, {
+      method: 'DELETE'
+    });
   }
 };

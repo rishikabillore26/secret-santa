@@ -3,6 +3,7 @@ package com.secretsanta;
 import com.secretsanta.dto.request.RegisterRequest;
 import com.secretsanta.dto.response.AdminDashboardResponse;
 import com.secretsanta.dto.response.CandidateDto;
+import com.secretsanta.dto.response.EmployeeStatusDto;
 import com.secretsanta.entity.Role;
 import com.secretsanta.entity.User;
 import com.secretsanta.exception.BadRequestException;
@@ -94,34 +95,43 @@ public class SecurityAndAuthTest {
         adminService.assignSecretSanta(alice.getId(), bob.getId());
         assertTrue(assignmentRepository.existsBySantaId(alice.getId()));
 
-        // 4. Alice cannot be assigned a second recipient
-        assertThrows(BadRequestException.class, () -> adminService.assignSecretSanta(alice.getId(), charlie.getId()),
-                "A Santa can be assigned only once");
+        // 4. Assignments are changeable: Admin reassigns Alice -> Charlie
+        adminService.assignSecretSanta(alice.getId(), charlie.getId());
+        assertEquals(charlie.getId(), assignmentRepository.findBySantaId(alice.getId()).get().getRecipient().getId());
 
-        // 5. Candidate list for Charlie cannot include Bob (Bob is already chosen as a recipient)
-        List<CandidateDto> charlieCandidates = adminService.getCandidatesForSanta(charlie.getId());
-        assertEquals(1, charlieCandidates.size());
-        assertEquals(alice.getId(), charlieCandidates.get(0).getId());
+        // 5. Candidate list for Bob cannot include Charlie (Charlie is already chosen as recipient by Alice)
+        List<CandidateDto> bobCandidates = adminService.getCandidatesForSanta(bob.getId());
+        assertEquals(1, bobCandidates.size());
+        assertEquals(alice.getId(), bobCandidates.get(0).getId());
 
-        // 6. Charlie cannot choose Bob because Bob is already chosen
-        assertThrows(BadRequestException.class, () -> adminService.assignSecretSanta(charlie.getId(), bob.getId()));
+        // 6. Bob cannot choose Charlie because Charlie is already chosen by Alice
+        assertThrows(BadRequestException.class, () -> adminService.assignSecretSanta(bob.getId(), charlie.getId()));
+
+        // 7. Admin can remove assignment
+        adminService.removeAssignment(alice.getId());
+        assertFalse(assignmentRepository.existsBySantaId(alice.getId()));
     }
 
     @Test
-    void testAdminDashboardDoesNotExposeWishContentOrAssignments() {
-        userRepository.save(new User("Admin User", "admin@company.com", "hash", Role.ADMIN));
-        userRepository.save(new User("Emp 1", "emp1@company.com", "hash", Role.EMPLOYEE));
-        userRepository.save(new User("Emp 2", "emp2@company.com", "hash", Role.EMPLOYEE));
+    void testAdminDashboardDisplaysRecipientWhenAssigned() {
+        User admin = userRepository.save(new User("Admin User", "admin@company.com", "hash", Role.ADMIN));
+        User emp1 = userRepository.save(new User("Emp 1", "emp1@company.com", "hash", Role.EMPLOYEE));
+        User emp2 = userRepository.save(new User("Emp 2", "emp2@company.com", "hash", Role.EMPLOYEE));
+
+        adminService.assignSecretSanta(emp1.getId(), emp2.getId());
 
         AdminDashboardResponse dashboard = adminService.getDashboard();
 
         assertEquals(2, dashboard.getTotalEmployees());
         assertNotNull(dashboard.getEmployees());
 
-        dashboard.getEmployees().forEach(emp -> {
-            assertNotNull(emp.getName());
-            assertNotNull(emp.getStatus());
-            assertTrue(emp.getStatus().equals("Pending") || emp.getStatus().equals("Submitted"));
-        });
+        EmployeeStatusDto emp1Dto = dashboard.getEmployees().stream()
+                .filter(e -> e.getId().equals(emp1.getId()))
+                .findFirst().orElse(null);
+
+        assertNotNull(emp1Dto);
+        assertTrue(emp1Dto.isAssigned());
+        assertEquals(emp2.getName(), emp1Dto.getRecipientName());
+        assertEquals(emp2.getId(), emp1Dto.getRecipientId());
     }
 }

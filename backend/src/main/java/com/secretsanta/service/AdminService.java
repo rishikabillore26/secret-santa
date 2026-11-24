@@ -43,6 +43,10 @@ public class AdminService {
         long unassignedCount = 0;
         List<EmployeeStatusDto> statusList = new ArrayList<>();
 
+        List<Assignment> allAssignments = assignmentRepository.findAll();
+        Map<Long, Assignment> santaToAssignmentMap = allAssignments.stream()
+                .collect(Collectors.toMap(a -> a.getSanta().getId(), a -> a, (a1, a2) -> a1));
+
         for (User emp : employees) {
             long wishCount = wishRepository.countByUserId(emp.getId());
             String status = wishCount > 0 ? "Submitted" : "Pending";
@@ -52,20 +56,26 @@ public class AdminService {
                 pendingCount++;
             }
 
-            // A Santa can be assigned only once
-            boolean assigned = assignmentRepository.existsBySantaId(emp.getId());
+            Assignment assignment = santaToAssignmentMap.get(emp.getId());
+            boolean assigned = assignment != null && assignment.getRecipient() != null;
+            Long recipientId = null;
+            String recipientName = null;
+
             if (assigned) {
                 assignedCount++;
+                recipientId = assignment.getRecipient().getId();
+                recipientName = assignment.getRecipient().getName();
             } else {
                 unassignedCount++;
             }
 
-            // IMPORTANT: Privacy rule - never return recipient pair or wish content to admin
             statusList.add(new EmployeeStatusDto(
                     emp.getId(),
                     emp.getName(),
                     status,
-                    assigned
+                    assigned,
+                    recipientId,
+                    recipientName
             ));
         }
 
@@ -88,25 +98,20 @@ public class AdminService {
             throw new BadRequestException("Only employees can be assigned a Secret Santa.");
         }
 
-        if (assignmentRepository.existsBySantaId(santaId)) {
-            throw new BadRequestException("This Secret Santa has already been assigned. Assignments cannot be changed.");
-        }
-
-        // All employees who are ALREADY chosen as a recipient by any Santa
+        // List must contain ONLY employees who are:
+        // a) not the Santa himself, and
+        // b) not already chosen as a recipient by ANOTHER Santa (current Santa's own recipient is allowed so they can re-select or keep)
         List<Assignment> allAssignments = assignmentRepository.findAll();
-        Set<Long> chosenRecipientIds = allAssignments.stream()
+        Set<Long> chosenRecipientIdsByOthers = allAssignments.stream()
+                .filter(a -> !a.getSanta().getId().equals(santaId))
                 .map(a -> a.getRecipient().getId())
                 .collect(Collectors.toSet());
 
-        // List must contain ONLY employees who are:
-        // a) not the Santa himself, and
-        // b) not already chosen as a recipient by another Santa
-        // Must return only id and name of available employees, nothing else
         List<User> employees = userRepository.findByRoleOrderByNameAsc(Role.EMPLOYEE);
 
         return employees.stream()
                 .filter(emp -> !emp.getId().equals(santaId))
-                .filter(emp -> !chosenRecipientIds.contains(emp.getId()))
+                .filter(emp -> !chosenRecipientIdsByOthers.contains(emp.getId()))
                 .map(emp -> new CandidateDto(emp.getId(), emp.getName()))
                 .collect(Collectors.toList());
     }
@@ -126,16 +131,28 @@ public class AdminService {
             throw new BadRequestException("Both users must be employees.");
         }
 
-        if (assignmentRepository.existsBySantaId(santaId)) {
-            throw new BadRequestException("This Secret Santa has already been assigned a recipient. Assignments cannot be changed.");
-        }
-
-        if (assignmentRepository.existsByRecipientId(recipientId)) {
+        // If recipient is already chosen by another Santa, reject
+        Optional<Assignment> existingForRecipient = assignmentRepository.findByRecipientId(recipientId);
+        if (existingForRecipient.isPresent() && !existingForRecipient.get().getSanta().getId().equals(santaId)) {
             throw new BadRequestException("This recipient is already chosen by another Secret Santa.");
         }
 
-        // Save assignment. STRICT SECURITY: Do not log assignments anywhere.
+        // If this Santa is already assigned, update their recipient (allows reassigning / changing)
+        Optional<Assignment> existingForSanta = assignmentRepository.findBySantaId(santaId);
+        if (existingForSanta.isPresent()) {
+            Assignment existing = existingForSanta.get();
+            existing.setRecipient(recipient);
+            assignmentRepository.save(existing);
+            return;
+        }
+
+        // Create new assignment
         Assignment assignment = new Assignment(santa, recipient);
         assignmentRepository.save(assignment);
+    }
+
+    @Transactional
+    public void removeAssignment(Long santaId) {
+        assignmentRepository.deleteBySantaId(santaId);
     }
 }

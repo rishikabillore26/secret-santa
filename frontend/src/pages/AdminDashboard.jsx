@@ -33,12 +33,31 @@ export default function AdminDashboard() {
   };
 
   const handleOpenAssignModal = (employee) => {
-    if (employee.assigned) return;
     setSelectedSantaForModal(employee);
   };
 
+  const handleRemoveAssignment = async (employee) => {
+    const confirmed = window.confirm(
+      `Are you sure you want to remove the Secret Santa assignment for "${employee.name}"? ${
+        employee.recipientName ? `Their recipient (${employee.recipientName}) will become available again.` : ''
+      }`
+    );
+    if (!confirmed) return;
+
+    try {
+      setLoading(true);
+      await adminApi.removeAssignment(employee.id);
+      setToast(`Secret Santa assignment for ${employee.name} removed! 🎄`);
+      setTimeout(() => setToast(''), 3500);
+      loadDashboard();
+    } catch (err) {
+      setError(err.message || 'Failed to remove assignment.');
+      setLoading(false);
+    }
+  };
+
   const handleAssignedSuccess = () => {
-    setToast('Secret Santa assigned successfully! 🎁');
+    setToast('Secret Santa match updated successfully! 🎁');
     setTimeout(() => setToast(''), 3500);
     loadDashboard();
   };
@@ -224,7 +243,12 @@ export default function AdminDashboard() {
                       </td>
                       <td>
                         {emp.assigned ? (
-                          <span className="chip chip-assigned">Assigned ✓</span>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                            <span className="chip chip-assigned">Assigned ✓</span>
+                            <span style={{ fontSize: '0.84rem', color: '#fef08a', fontWeight: 600 }}>
+                              🎁 Giving to: <span style={{ color: '#ffffff', textDecoration: 'underline decoration-amber-400' }}>{emp.recipientName || 'Assigned'}</span>
+                            </span>
+                          </div>
                         ) : (
                           <span className="chip chip-unassigned">
                             Not Assigned
@@ -233,9 +257,26 @@ export default function AdminDashboard() {
                       </td>
                       <td style={{ textAlign: 'center' }}>
                         {emp.assigned ? (
-                          <span className="assigned-status-badge">
-                            Assigned ✓
-                          </span>
+                          <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', alignItems: 'center' }}>
+                            <button
+                              type="button"
+                              onClick={() => handleOpenAssignModal(emp)}
+                              className="btn-festive btn-outline-gold"
+                              style={{ padding: '6px 12px', fontSize: '0.82rem' }}
+                              title={`Change who ${emp.name} is Secret Santa for`}
+                            >
+                              <span>🔄 Change</span>
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveAssignment(emp)}
+                              className="btn-festive btn-outline-danger"
+                              style={{ padding: '6px 10px', fontSize: '0.82rem' }}
+                              title={`Clear ${emp.name}'s Secret Santa match`}
+                            >
+                              <span>✕ Clear</span>
+                            </button>
+                          </div>
                         ) : (
                           <button
                             type="button"
