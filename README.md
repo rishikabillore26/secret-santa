@@ -117,3 +117,77 @@ cd backend
 mvn test
 ```
 All tests verify role authorization, duplicate email rejection, wish ownership and 3-wish ceilings, manual Santa assignment constraints (no self-assignments, single assignment per Santa, single recipient per employee), and data confidentiality.
+
+---
+
+## ☁️ Production Deployment Guide (Render + Aiven MySQL)
+
+### Step 1: Create GitHub Repository & Push Code
+1. Log in to [GitHub](https://github.com) and create a new repository named `secret-santa` under the account `rishikabillore26` (if it does not exist yet).
+2. Push your project to GitHub:
+   ```bash
+   git branch -M main
+   git push -u origin main
+   ```
+   *(If prompted, enter your GitHub Personal Access Token or credentials).*
+
+---
+
+### Step 2: Create Free Managed MySQL on Aiven
+1. Sign up / Log in to [Aiven Console](https://console.aiven.io).
+2. Click **Create Service** → Select **MySQL** → Select Cloud Provider & Region (e.g. AWS or GCP free tier).
+3. Once the database is running, copy the connection details from the Aiven Overview tab:
+   - **Host** (e.g., `mysql-xxxx.aivencloud.com`)
+   - **Port** (e.g., `12345`)
+   - **User** (e.g., `avnadmin`)
+   - **Password**
+   - **Database Name** (default is `defaultdb`)
+4. Construct your JDBC URL:
+   ```
+   jdbc:mysql://<HOST>:<PORT>/defaultdb?sslmode=REQUIRED&serverTimezone=UTC&allowPublicKeyRetrieval=true
+   ```
+
+---
+
+### Step 3: Deploy Backend on Render (Web Service)
+1. Go to [Render Dashboard](https://dashboard.render.com) → Click **New +** → **Web Service**.
+2. Connect your GitHub repository `rishikabillore26/secret-santa`.
+3. Configure the service settings:
+   - **Name**: `secret-santa-backend`
+   - **Region**: Choose the closest region (e.g., Oregon or Frankfurt)
+   - **Root Directory**: `backend`
+   - **Environment**: **Docker** (or Java if building natively)
+     - *If Docker*: Render will automatically detect `backend/Dockerfile`.
+     - *If Java/Native*:
+       - Build Command: `./mvnw clean package -DskipTests`
+       - Start Command: `java -jar target/secretsanta-backend-1.0.0.jar`
+4. Add the following **Environment Variables** in Render:
+   | Key | Value |
+   |---|---|
+   | `PORT` | `8085` |
+   | `DB_URL` | `jdbc:mysql://<AIVEN_HOST>:<PORT>/defaultdb?sslmode=REQUIRED&serverTimezone=UTC&allowPublicKeyRetrieval=true` |
+   | `DB_USERNAME` | `avnadmin` *(or your Aiven username)* |
+   | `DB_PASSWORD` | *(your Aiven password)* |
+   | `JWT_SECRET` | `404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970` *(or generate 64 hex chars)* |
+   | `ADMIN_EMAIL` | `admin@secretsanta.local` |
+   | `ADMIN_PASSWORD` | `Admin@2025` |
+   | `CORS_ALLOWED_ORIGINS` | `https://*.onrender.com` |
+5. Click **Create Web Service**. Wait for the build to finish. Copy your backend URL (e.g. `https://secret-santa-backend.onrender.com`).
+
+---
+
+### Step 4: Deploy Frontend on Render (Static Site)
+1. In [Render Dashboard](https://dashboard.render.com), click **New +** → **Static Site**.
+2. Connect the same GitHub repository `rishikabillore26/secret-santa`.
+3. Configure:
+   - **Name**: `secret-santa-frontend`
+   - **Root Directory**: `frontend`
+   - **Build Command**: `npm install && npm run build`
+   - **Publish Directory**: `dist`
+4. Add **Environment Variable**:
+   | Key | Value |
+   |---|---|
+   | `VITE_API_BASE_URL` | `https://<YOUR_BACKEND_SERVICE>.onrender.com/api` |
+5. Click **Create Static Site**.
+6. When deployed, open your frontend link (e.g. `https://secret-santa-frontend.onrender.com`). Client-side routing is handled automatically via `_redirects`.
+
