@@ -172,8 +172,8 @@ All tests verify role authorization, duplicate email rejection, wish ownership a
    | `DB_USERNAME` | *(your Enzonic MySQL username)* |
    | `DB_PASSWORD` | *(your Enzonic MySQL password)* |
    | `JWT_SECRET` | `404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970` *(or generate 64 hex chars)* |
-   | `ADMIN_EMAIL` | `admin@secretsanta.local` |
-   | `ADMIN_PASSWORD` | `Admin@2025` |
+   | `ADMIN_EMAIL` | *(your secret admin email, set directly in Render environment)* |
+   | `ADMIN_PASSWORD` | *(your secret admin password, set directly in Render environment)* |
    | `CORS_ALLOWED_ORIGINS` | `https://*.onrender.com` |
 5. Click **Create Web Service**. Wait for the build to finish. Copy your backend URL (e.g. `https://secret-santa-backend.onrender.com`).
 
@@ -193,4 +193,29 @@ All tests verify role authorization, duplicate email rejection, wish ownership a
    | `VITE_API_BASE_URL` | `https://<YOUR_BACKEND_SERVICE>.onrender.com/api` |
 5. Click **Create Static Site**.
 6. When deployed, open your frontend link (e.g. `https://secret-santa-frontend.onrender.com`). Client-side routing is handled automatically via `_redirects`.
+
+---
+
+### ⏱️ Keeping Render & Database Awake (Health Check & Keep-Alive)
+
+1. **Automatic Database Keep-Alive Scheduler (Internal)**:
+   - The backend includes an internal Spring scheduler (`DatabaseKeepAliveScheduler`) running automatically every **3 minutes** (`@Scheduled(fixedRate = 180000)`).
+   - It performs a lightweight `SELECT 1` ping against your MySQL database, keeping HikariCP pool connections active and preventing cloud database hosts (like Enzonic) from terminating idle connections.
+
+2. **Public Health Check Endpoint (External Ping)**:
+   - Endpoints: `GET /api/health` and `GET /health` (no authentication required).
+   - Checks both application status and real-time database response latency, returning JSON:
+     ```json
+     {
+       "service": "secret-santa-backend",
+       "timestamp": "2026-11-24T11:05:00Z",
+       "status": "UP",
+       "database": {
+         "status": "UP",
+         "latencyMs": 4,
+         "message": "Database connection is active and responsive"
+       }
+     }
+     ```
+   - **Preventing Render Inactivity Sleep**: Render free-tier web services spin down after 15 minutes of inactivity. You can set up a free periodic ping service (such as [cron-job.org](https://cron-job.org) or [UptimeRobot](https://uptimerobot.com)) to ping `https://<YOUR_BACKEND_SERVICE>.onrender.com/api/health` every 5 to 10 minutes to keep your backend awake 24/7.
 
