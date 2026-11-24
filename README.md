@@ -120,11 +120,11 @@ All tests verify role authorization, duplicate email rejection, wish ownership a
 
 ---
 
-## ☁️ Production Deployment Guide (Render + Aiven MySQL)
+## ☁️ Production Deployment Guide (Render + Enzonic MySQL)
 
 ### Step 1: Create GitHub Repository & Push Code
 1. Log in to [GitHub](https://github.com) and create a new repository named `secret-santa` under the account `rishikabillore26` (if it does not exist yet).
-2. Push your project to GitHub:
+2. Remote is already configured as `https://github.com/rishikabillore26/secret-santa.git`. Push your project to GitHub:
    ```bash
    git branch -M main
    git push -u origin main
@@ -133,19 +133,22 @@ All tests verify role authorization, duplicate email rejection, wish ownership a
 
 ---
 
-### Step 2: Create Free Managed MySQL on Aiven
-1. Sign up / Log in to [Aiven Console](https://console.aiven.io).
-2. Click **Create Service** → Select **MySQL** → Select Cloud Provider & Region (e.g. AWS or GCP free tier).
-3. Once the database is running, copy the connection details from the Aiven Overview tab:
-   - **Host** (e.g., `mysql-xxxx.aivencloud.com`)
-   - **Port** (e.g., `12345`)
-   - **User** (e.g., `avnadmin`)
+### Step 2: Create MySQL Database on Enzonic (https://databases.enzonic.com/)
+1. Sign up or log in to [Enzonic Databases](https://databases.enzonic.com/).
+2. Click **Create Database** / **New Service** → Choose **MySQL**.
+3. Select your desired region/plan and create the database instance.
+4. Once created, note your database connection details from the Enzonic dashboard:
+   - **Host** (e.g., `mysql.enzonic.com` or your instance hostname)
+   - **Port** (e.g., `3306` or your assigned port)
+   - **Database Name** (e.g., `secretsanta_db` or the database created for you)
+   - **Username** (e.g., `root` or generated user)
    - **Password**
-   - **Database Name** (default is `defaultdb`)
-4. Construct your JDBC URL:
+5. Construct your JDBC URL:
    ```
-   jdbc:mysql://<HOST>:<PORT>/defaultdb?sslmode=REQUIRED&serverTimezone=UTC&allowPublicKeyRetrieval=true
+   jdbc:mysql://<HOST>:<PORT>/<DATABASE_NAME>?useSSL=true&allowPublicKeyRetrieval=true&serverTimezone=UTC
    ```
+   *(Note: If Enzonic's connection does not use SSL, set `useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC`).*
+6. *(Optional)* You can import `database/schema.sql` via any MySQL client or Enzonic's management tool, or let Spring Boot automatically create the required tables on initial launch via `spring.jpa.hibernate.ddl-auto=update`.
 
 ---
 
@@ -165,9 +168,9 @@ All tests verify role authorization, duplicate email rejection, wish ownership a
    | Key | Value |
    |---|---|
    | `PORT` | `8085` |
-   | `DB_URL` | `jdbc:mysql://<AIVEN_HOST>:<PORT>/defaultdb?sslmode=REQUIRED&serverTimezone=UTC&allowPublicKeyRetrieval=true` |
-   | `DB_USERNAME` | `avnadmin` *(or your Aiven username)* |
-   | `DB_PASSWORD` | *(your Aiven password)* |
+   | `DB_URL` | `jdbc:mysql://<ENZONIC_HOST>:<PORT>/<DATABASE_NAME>?useSSL=true&allowPublicKeyRetrieval=true&serverTimezone=UTC` |
+   | `DB_USERNAME` | *(your Enzonic MySQL username)* |
+   | `DB_PASSWORD` | *(your Enzonic MySQL password)* |
    | `JWT_SECRET` | `404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970` *(or generate 64 hex chars)* |
    | `ADMIN_EMAIL` | `admin@secretsanta.local` |
    | `ADMIN_PASSWORD` | `Admin@2025` |
