@@ -222,7 +222,6 @@ export default function AdminDashboard() {
                   <tr>
                     <th style={{ width: '40px' }}>#</th>
                     <th>Employee Name</th>
-                    <th>Email</th>
                     <th>Wishlist Status</th>
                     <th>Secret Santa Status</th>
                     <th style={{ textAlign: 'center' }}>Action</th>
@@ -233,10 +232,7 @@ export default function AdminDashboard() {
                     <tr key={emp.id}>
                       <td style={{ color: '#94a3b8' }}>{idx + 1}</td>
                       <td style={{ fontWeight: 600, color: '#f8fafc' }}>
-                        🎁 {emp.name}
-                      </td>
-                      <td style={{ color: '#cbd5e1', fontSize: '0.88rem' }}>
-                        ✉️ {emp.email || '—'}
+                        🎁 {emp.name}{emp.email ? ` (${emp.email})` : ''}
                       </td>
                       <td>
                         {emp.status === 'Submitted' ? (
@@ -247,29 +243,23 @@ export default function AdminDashboard() {
                       </td>
                       <td>
                         {emp.assigned ? (
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                            <span className="chip chip-assigned">Assigned ✓</span>
-                            <span style={{ fontSize: '0.84rem', color: '#fef08a', fontWeight: 600 }}>
-                              🎁 Giving to: <span style={{ color: '#ffffff', textDecoration: 'underline decoration-amber-400' }}>{emp.recipientName || 'Assigned'}</span>
-                            </span>
-                          </div>
+                          <span className="chip chip-assigned">Assigned</span>
                         ) : (
-                          <span className="chip chip-unassigned">
-                            Not Assigned
-                          </span>
+                          <span className="chip chip-unassigned">Not Assigned</span>
                         )}
                       </td>
                       <td style={{ textAlign: 'center' }}>
                         {emp.assigned ? (
-                          <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', alignItems: 'center' }}>
+                          <div style={{ display: 'inline-flex', gap: '8px', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
                             <button
                               type="button"
                               onClick={() => handleOpenAssignModal(emp)}
                               className="btn-festive btn-outline-gold"
-                              style={{ padding: '6px 12px', fontSize: '0.82rem' }}
-                              title={`Change who ${emp.name} is Secret Santa for`}
+                              style={{ padding: '6px 12px', fontSize: '0.84rem', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                              title={`Click to change Secret Santa recipient for ${emp.name}`}
                             >
-                              <span>🔄 Change</span>
+                              <span>🎁 {emp.recipientName || 'Assigned'}</span>
+                              <span style={{ fontSize: '0.78rem', opacity: 0.85 }}>✏️</span>
                             </button>
                             <button
                               type="button"
@@ -278,7 +268,7 @@ export default function AdminDashboard() {
                               style={{ padding: '6px 10px', fontSize: '0.82rem' }}
                               title={`Clear ${emp.name}'s Secret Santa match`}
                             >
-                              <span>✕ Clear</span>
+                              <span>✕</span>
                             </button>
                           </div>
                         ) : (
@@ -286,7 +276,7 @@ export default function AdminDashboard() {
                             type="button"
                             onClick={() => handleOpenAssignModal(emp)}
                             className="btn-festive btn-red btn-glow"
-                            style={{ padding: '7px 18px', fontSize: '0.85rem' }}
+                            style={{ padding: '7px 18px', fontSize: '0.85rem', whiteSpace: 'nowrap' }}
                           >
                             <span>🛷 Secret Santa</span>
                           </button>

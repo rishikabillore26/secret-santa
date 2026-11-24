@@ -106,7 +106,7 @@ body::before {
   width: 100vw;
   height: 110px;
   pointer-events: none;
-  z-index: 30; /* Floats above background, below modals & interactive dropdowns */
+  z-index: 1; /* Floats in the background sky behind cards and interactive content */
   overflow: visible;
 }
 
@@ -1006,12 +1006,15 @@ body::before {
 /* Data Table in Dark Luxury Glass */
 .table-responsive {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
   border-radius: 16px;
   border: 1px solid rgba(251, 191, 36, 0.22);
 }
 
 .data-table {
   width: 100%;
+  min-width: 580px;
   border-collapse: collapse;
   text-align: left;
   font-size: 0.94rem;
@@ -1343,6 +1346,136 @@ body::before {
   font-size: 0.88rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   margin-top: 50px;
+}
+
+/* =====================================================
+   RESPONSIVE MEDIA QUERIES FOR ALL SCREEN SIZES
+   ===================================================== */
+@media (max-width: 900px) {
+  .rath-banner-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 20px;
+    gap: 18px;
+  }
+
+  .rath-banner-left {
+    flex: 1 1 100%;
+  }
+
+  .rath-banner-right {
+    width: 100%;
+  }
+
+  .rath-banner-right .santa-rath-hero {
+    max-width: 280px;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-navbar {
+    padding: 10px 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .brand-title {
+    font-size: 1.3rem;
+  }
+
+  .nav-left, .nav-right {
+    gap: 8px;
+  }
+
+  .user-profile-chip {
+    padding: 4px 10px;
+    font-size: 0.82rem;
+  }
+
+  .user-name {
+    font-size: 0.82rem;
+  }
+
+  .page-container {
+    padding: 20px 12px 60px;
+  }
+
+  .festive-card {
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 14px 12px;
+  }
+
+  .stat-card .stat-value {
+    font-size: 1.55rem;
+  }
+
+  .filter-tabs {
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .filter-tab {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .flying-sleigh-sky-layer {
+    transform: scale(0.65);
+    transform-origin: top left;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 11px 12px;
+    font-size: 0.86rem;
+  }
+
+  .modal-card {
+    width: 95% !important;
+    padding: 20px 16px !important;
+    max-height: 90vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-navbar {
+    padding: 8px 12px;
+  }
+
+  .brand-title {
+    font-size: 1.15rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .rath-banner-card {
+    padding: 18px 14px;
+  }
+
+  .rath-banner-left h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 9px 10px;
+    font-size: 0.82rem;
+  }
 }
 
 /* =====================================================
