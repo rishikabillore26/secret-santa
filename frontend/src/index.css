@@ -101,47 +101,44 @@ body::before {
    ===================================================== */
 .flying-sleigh-sky-layer {
   position: fixed;
-  top: 74px; /* Clearly below the sticky navbar */
+  top: 52px; /* At the very top of the page right under the navbar */
   left: 0;
   width: 100vw;
   height: 110px;
   pointer-events: none;
-  z-index: 1; /* Floats in the background sky behind cards and interactive content */
+  z-index: 95; /* Present on the very top layer above all cards, never hidden */
   overflow: visible;
 }
 
 .flying-rath-track {
   position: absolute;
   top: 0;
-  left: -520px;
+  left: -440px;
   display: flex;
   align-items: center;
-  animation: flyRathAcrossSky 28s linear infinite;
+  animation: flyRathAcrossSky 22s linear infinite;
 }
 
 @keyframes flyRathAcrossSky {
   0% {
-    transform: translateX(0) translateY(12px) rotate(2deg) scale(0.9);
-    opacity: 0;
-  }
-  3% {
+    transform: translateX(0) translateY(8px) rotate(1.5deg) scale(0.92);
     opacity: 1;
   }
-  28% {
-    transform: translateX(calc(28vw + 80px)) translateY(-8px) rotate(1deg) scale(0.95);
+  25% {
+    transform: translateX(calc(25vw + 100px)) translateY(-6px) rotate(0.8deg) scale(0.94);
+    opacity: 1;
   }
-  55% {
-    transform: translateX(calc(58vw + 160px)) translateY(6px) rotate(-1deg) scale(0.92);
+  50% {
+    transform: translateX(calc(50vw + 200px)) translateY(6px) rotate(-0.8deg) scale(0.92);
+    opacity: 1;
   }
-  80% {
-    transform: translateX(calc(82vw + 240px)) translateY(-6px) rotate(1.5deg) scale(0.94);
-  }
-  97% {
+  75% {
+    transform: translateX(calc(75vw + 300px)) translateY(-4px) rotate(1.2deg) scale(0.94);
     opacity: 1;
   }
   100% {
-    transform: translateX(calc(100vw + 600px)) translateY(4px) rotate(2deg) scale(0.9);
-    opacity: 0;
+    transform: translateX(calc(100vw + 480px)) translateY(4px) rotate(1.5deg) scale(0.92);
+    opacity: 1;
   }
 }
 
@@ -1433,6 +1430,8 @@ body::before {
   }
 
   .flying-sleigh-sky-layer {
+    top: 48px;
+    z-index: 95;
     transform: scale(0.65);
     transform-origin: top left;
   }
