@@ -123,8 +123,8 @@ All tests verify role authorization, duplicate email rejection, wish ownership a
 ## ☁️ Production Deployment Guide (Render + Enzonic MySQL)
 
 ### Step 1: Create GitHub Repository & Push Code
-1. Log in to [GitHub](https://github.com) and create a new repository named `secret-santa` under the account `rishikabillore26` (if it does not exist yet).
-2. Remote is already configured as `https://github.com/rishikabillore26/secret-santa.git`. Push your project to GitHub:
+1. Log in to [GitHub](https://github.com) and create a new repository named `secret-santa` under the account `sudhirkr2003` (if it does not exist yet).
+2. Remote is already configured as `https://github.com/sudhirkr2003/secret-santa.git`. Push your project to GitHub:
    ```bash
    git branch -M main
    git push -u origin main
@@ -154,7 +154,7 @@ All tests verify role authorization, duplicate email rejection, wish ownership a
 
 ### Step 3: Deploy Backend on Render (Web Service)
 1. Go to [Render Dashboard](https://dashboard.render.com) → Click **New +** → **Web Service**.
-2. Connect your GitHub repository `rishikabillore26/secret-santa`.
+2. Connect your GitHub repository `sudhirkr2003/secret-santa`.
 3. Configure the service settings:
    - **Name**: `secret-santa-backend`
    - **Region**: Choose the closest region (e.g., Oregon or Frankfurt)
@@ -181,7 +181,7 @@ All tests verify role authorization, duplicate email rejection, wish ownership a
 
 ### Step 4: Deploy Frontend on Render (Static Site)
 1. In [Render Dashboard](https://dashboard.render.com), click **New +** → **Static Site**.
-2. Connect the same GitHub repository `rishikabillore26/secret-santa`.
+2. Connect the same GitHub repository `sudhirkr2003/secret-santa`.
 3. Configure:
    - **Name**: `secret-santa-frontend`
    - **Root Directory**: `frontend`
