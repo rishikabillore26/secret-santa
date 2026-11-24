@@ -131,9 +131,7 @@ export default function AssignSantaModal({ isOpen, onClose, employee, onAssigned
               </select>
             </div>
 
-            <div className="rath-rules-pill">
-              ℹ️ <strong>Secret Santa Pairing:</strong> Candidate list excludes {employee.name} and anyone chosen by another Santa. You can change or reset assignments anytime if needed.
-            </div>
+
 
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
               <button

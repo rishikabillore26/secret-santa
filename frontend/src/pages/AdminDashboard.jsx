@@ -38,8 +38,7 @@ export default function AdminDashboard() {
 
   const handleRemoveAssignment = async (employee) => {
     const confirmed = window.confirm(
-      `Are you sure you want to remove the Secret Santa assignment for "${employee.name}"? ${
-        employee.recipientName ? `Their recipient (${employee.recipientName}) will become available again.` : ''
+      `Are you sure you want to remove the Secret Santa assignment for "${employee.name}"? ${employee.recipientName ? `Their recipient (${employee.recipientName}) will become available again.` : ''
       }`
     );
     if (!confirmed) return;
@@ -260,15 +259,6 @@ export default function AdminDashboard() {
                             >
                               <span>🎁 {emp.recipientName || 'Assigned'}</span>
                               <span style={{ fontSize: '0.78rem', opacity: 0.85 }}>✏️</span>
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => handleRemoveAssignment(emp)}
-                              className="btn-festive btn-outline-danger"
-                              style={{ padding: '6px 10px', fontSize: '0.82rem' }}
-                              title={`Clear ${emp.name}'s Secret Santa match`}
-                            >
-                              <span>✕</span>
                             </button>
                           </div>
                         ) : (
