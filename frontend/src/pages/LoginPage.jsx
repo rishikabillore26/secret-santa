@@ -34,7 +34,7 @@ export default function LoginPage() {
         navigate('/dashboard');
       }
     } catch (err) {
-      setError(err.message || 'Login failed. Please check your email and password.');
+      setError(err.message || 'Invalid email or password');
     } finally {
       setIsLoading(false);
     }

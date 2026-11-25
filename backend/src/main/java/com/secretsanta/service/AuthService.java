@@ -13,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,13 +79,13 @@ public class AuthService {
             rateLimiterService.loginSucceeded(rateLimitKey);
 
             User user = userRepository.findByEmailIgnoreCase(normalizedEmail)
-                    .orElseThrow(() -> new BadRequestException("Invalid credentials"));
+                    .orElseThrow(() -> new BadCredentialsException("Invalid email or password"));
 
             String token = tokenProvider.generateToken(user.getEmail(), user.getRole().name());
             return new JwtAuthResponse(token, user.getName(), user.getEmail(), user.getRole().name());
-        } catch (BadCredentialsException ex) {
+        } catch (AuthenticationException ex) {
             rateLimiterService.loginFailed(rateLimitKey);
-            throw ex;
+            throw new BadCredentialsException("Invalid email or password");
         }
     }
 }

@@ -18,17 +18,37 @@ export async function apiRequest(endpoint, options = {}) {
     headers
   });
 
-  if (response.status === 401) {
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('user');
-    window.location.href = '/login';
-    throw new Error('Session expired. Please log in again.');
-  }
-
   let data = null;
   const contentType = response.headers.get('content-type');
   if (contentType && contentType.includes('application/json')) {
-    data = await response.json();
+    try {
+      data = await response.json();
+    } catch {
+      data = null;
+    }
+  }
+
+  if (response.status === 401) {
+    // If it's an authentication endpoint (login/register), do NOT redirect to /login!
+    // It's bad credentials or auth failure, so throw the message to let the page display it.
+    if (endpoint.startsWith('/auth') || endpoint.includes('login') || endpoint.includes('register')) {
+      const errorMessage = data?.message || (typeof data?.error === 'string' ? data.error : 'Invalid email or password');
+      const error = new Error(errorMessage);
+      error.status = 401;
+      error.data = data;
+      throw error;
+    }
+
+    // For protected endpoints, session expired or token is invalid
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
+    if (window.location.pathname !== '/login') {
+      window.location.href = '/login';
+    }
+    const error = new Error(data?.message || 'Session expired. Please log in again.');
+    error.status = 401;
+    error.data = data;
+    throw error;
   }
 
   if (!response.ok) {

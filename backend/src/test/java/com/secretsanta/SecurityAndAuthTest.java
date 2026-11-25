@@ -1,5 +1,6 @@
 package com.secretsanta;
 
+import com.secretsanta.dto.request.LoginRequest;
 import com.secretsanta.dto.request.RegisterRequest;
 import com.secretsanta.dto.response.AdminDashboardResponse;
 import com.secretsanta.dto.response.CandidateDto;
@@ -14,6 +15,7 @@ import com.secretsanta.service.AdminService;
 import com.secretsanta.service.AuthService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
@@ -75,6 +77,21 @@ public class SecurityAndAuthTest {
         RegisterRequest request = new RegisterRequest("New Employee", "newemp@company.com", "Password@123");
         assertDoesNotThrow(() -> authService.register(request),
                 "Registration must always be open for employees");
+    }
+
+    @Test
+    void testLoginWithWrongPasswordThrowsBadCredentials() {
+        authService.register(new RegisterRequest("Eve Login", "eve@company.com", "CorrectPass@123"));
+        LoginRequest wrongPass = new LoginRequest("eve@company.com", "WrongPassword!999");
+        assertThrows(BadCredentialsException.class, () -> authService.login(wrongPass, "127.0.0.1"),
+                "Wrong password must throw BadCredentialsException");
+    }
+
+    @Test
+    void testLoginWithNonExistentEmailThrowsBadCredentials() {
+        LoginRequest nonExistent = new LoginRequest("nobody@company.com", "AnyPassword@123");
+        assertThrows(BadCredentialsException.class, () -> authService.login(nonExistent, "127.0.0.1"),
+                "Non-existent email must throw BadCredentialsException");
     }
 
     @Test
