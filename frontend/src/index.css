@@ -101,12 +101,12 @@ body::before {
    ===================================================== */
 .flying-sleigh-sky-layer {
   position: fixed;
-  top: 52px; /* At the very top of the page right under the navbar */
+  top: 0; /* Start from the very top of the page, above the navbar */
   left: 0;
   width: 100vw;
-  height: 110px;
+  height: 160px;
   pointer-events: none;
-  z-index: 95; /* Present on the very top layer above all cards, never hidden */
+  z-index: 160; /* Above navbar (150) so the rath is always visible at the very top */
   overflow: visible;
 }
 
@@ -1430,8 +1430,8 @@ body::before {
   }
 
   .flying-sleigh-sky-layer {
-    top: 48px;
-    z-index: 95;
+    top: 0;
+    z-index: 160;
     transform: scale(0.65);
     transform-origin: top left;
   }

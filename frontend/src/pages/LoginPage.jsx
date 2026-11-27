@@ -34,7 +34,12 @@ export default function LoginPage() {
         navigate('/dashboard');
       }
     } catch (err) {
-      setError(err.message || 'Invalid email or password');
+      // Network / server down errors
+      if (err.message === 'Failed to fetch' || err.message === 'NetworkError when attempting to fetch resource.' || err.name === 'TypeError') {
+        setError('Unable to connect to server. Please try again in a moment. 🎄');
+      } else {
+        setError(err.message || 'Invalid email or password. Please try again.');
+      }
     } finally {
       setIsLoading(false);
     }
