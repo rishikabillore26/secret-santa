@@ -34,6 +34,7 @@ public class HealthController {
         long start = System.currentTimeMillis();
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement()) {
+            stmt.setQueryTimeout(3);
             stmt.execute("SELECT 1");
             long latency = System.currentTimeMillis() - start;
 

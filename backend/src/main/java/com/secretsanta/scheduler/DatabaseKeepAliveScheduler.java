@@ -20,15 +20,16 @@ public class DatabaseKeepAliveScheduler {
     }
 
     /**
-     * Automatically runs every 3 minutes (180,000 ms) with an initial delay of 10 seconds.
+     * Automatically runs every 1 minute (60,000 ms) with an initial delay of 10 seconds.
      * Executes a lightweight database ping query (SELECT 1) to keep HikariCP database connections
      * alive and avoid idle connection timeouts on cloud-hosted databases (e.g. Enzonic MySQL).
      */
-    @Scheduled(fixedRate = 180000, initialDelay = 10000)
+    @Scheduled(fixedRate = 60000, initialDelay = 10000)
     public void pingDatabase() {
         long start = System.currentTimeMillis();
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement()) {
+            stmt.setQueryTimeout(3);
             stmt.execute("SELECT 1");
             long elapsed = System.currentTimeMillis() - start;
             log.info("⏰ Keep-alive scheduled task: Database ping successful ({} ms)", elapsed);
